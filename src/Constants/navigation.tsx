@@ -1,8 +1,8 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 
-export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences'} = 
-{ LANDING: 'LandingPage', SIGNIN: 'SignIn',ONBOARDING:'Onboarding', ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences'}
+export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender'} = 
+{ LANDING: 'LandingPage', SIGNIN: 'SignIn',ONBOARDING:'Onboarding', ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender'}
 
 
 export type rootStackParamList = {
@@ -20,6 +20,8 @@ export type onboardingStackParamList = {
     AddFingerprint:undefined
     AddProfile:undefined
     AddPreferences:undefined
+    AddInterest:undefined
+    AddGender:undefined
 };
 export type LandingPageProps = NativeStackScreenProps<
 onboardingStackParamList,
@@ -49,3 +51,11 @@ onboardingStackParamList,
 export type AddPrefencesProps= NativeStackScreenProps<
 onboardingStackParamList,
 "AddPreferences">
+
+export type AddInterestProps= NativeStackScreenProps<
+onboardingStackParamList,
+"AddInterest">
+
+export type AddGenderProps= NativeStackScreenProps<
+onboardingStackParamList,
+"AddGender">

@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         marginHorizontal: 80,
         fontSize: SIZES.font14,
-        width:225
+        
     },
     text2: {
         color: COLORS.PRIMARY.PURPLE,
@@ -51,6 +51,12 @@ export const styles = StyleSheet.create({
             color: COLORS.SECONDARY.WHITE,
             fontSize: SIZES.font17,
         },
+        modalBackground: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
     });
     
 

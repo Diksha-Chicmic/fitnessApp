@@ -1,4 +1,4 @@
-
+import { RFValue } from "react-native-responsive-fontsize";
 import Lock from '../Assets/Svgs/lock.svg'
 import User from '../Assets/Svgs/user.svg'
 import Google from '../Assets/Svgs/googleLogo.svg'
@@ -6,7 +6,17 @@ import Facebook from '../Assets/Svgs/facebookLogo.svg'
 import Twitter from '../Assets/Svgs/twitterLogo.svg'
 import Logo from '../Assets/Svgs/logo.svg'
 import LeftArrow from '../Assets/Svgs/leftArrow.svg'
-import { RFValue } from "react-native-responsive-fontsize";
+import Plant from '../Assets/Svgs/plant.svg'
+import Meditation from '../Assets/Svgs/meditation.svg'
+import Sleep from '../Assets/Svgs/sleep_1.svg'
+import Running from '../Assets/Svgs/running.svg'
+import NoSmoking from '../Assets/Svgs/No-Smoking_1.svg'
+import Vegan from '../Assets/Svgs/vegan.svg'
+import Health from '../Assets/Svgs/health.svg'
+import Fitness from '../Assets/Svgs/fitness.svg'
+import Fashion from '../Assets/Svgs/fashion.svg'
+import Male from '../Assets/Svgs/man.svg'
+import Female from '../Assets/Svgs/female.svg'
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
@@ -42,6 +52,18 @@ export const ICONS = {
     Facebook: (params: iconProps) => Facebook({ ...iconStyle({ ...params }) }),
     Logo: (params: iconProps) => Logo({ ...iconStyle({ ...params }) }),
     LeftArrow: (params: iconProps) => LeftArrow({ ...iconStyle({ ...params }) }),
+    PLANT: (params: iconProps) => Plant({ ...iconStyle({ ...params }) }),
+    MEDITATION: (params: iconProps) => Meditation({ ...iconStyle({ ...params }) }),
+    SLEEP: (params: iconProps) => Sleep({ ...iconStyle({ ...params }) }),
+    RUNNING: (params: iconProps) => Running({ ...iconStyle({ ...params }) }),
+    NOSMOKING: (params: iconProps) => NoSmoking({ ...iconStyle({ ...params }) }),
+    VEGAN: (params: iconProps) => Vegan({ ...iconStyle({ ...params }) }),
+    FITNESS: (params: iconProps) => Fitness({ ...iconStyle({ ...params }) }),
+    FASHION: (params: iconProps) => Fashion({ ...iconStyle({ ...params }) }),
+    HEALTH: (params: iconProps) => Health({ ...iconStyle({ ...params }) }),
+    MALE: (params: iconProps) => Male({ ...iconStyle({ ...params }) }),
+    FEMALE: (params: iconProps) => Female({ ...iconStyle({ ...params }) }),
+    
 
 }
 

@@ -1,30 +1,39 @@
 import { StyleSheet } from "react-native";
-import { COLORS ,SIZES} from "../../Constants/commonStyles";
+import { COLORS, SIZES } from "../../Constants/commonStyles";
 import { RFValue } from "react-native-responsive-fontsize";
 
+
 export const styles = StyleSheet.create({
-  parent: {
-   flex:1,
-    //width: '100%',
-    margin:20,
-    //height:"10%"
+  container: {
+    //flex: 1,
+    margin: 12,
+    //justifyContent: 'center',
     
   },
-  childCtr: {
-   paddingVertical: RFValue(17),
-   paddingHorizontal: RFValue(10),
-    flexDirection: "row",
-   justifyContent: "space-between",
-    backgroundColor: COLORS.SECONDARY.WHITE,
-    borderRadius: SIZES.rounding2,
+  textView: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    paddingVertical: 15,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    shadowColor: COLORS.PRIMARY.PURPLE,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    justifyContent:'space-around',
+    alignContent:'center',
+    
+    
+    
   },
-  textCtr: {
-    alignItems: "center",
-    justifyContent: "center",
-    color:'black'
+  innerTextContainer: {
+    flex: 1,
+    justifyContent:'space-around'
+    
   },
   text: {
-    fontSize: SIZES.font13,
-    color:'black'
+    fontSize: SIZES.font15,
+  
   },
 });

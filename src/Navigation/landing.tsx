@@ -9,7 +9,9 @@ import Header from "../Components/CustomHeader";
 import AddPassword from "../Screens/AddPassword";
 import AddFingerprint from "../Screens/AddFingerprint";
 import AddProfile from "../Screens/AddProfile";
-import AddPreferences from "../Screens/AddPreferences";
+import AddPreferences from "../Screens/AddPrefences";
+import AddInterest from "../Screens/AddInterest";
+import AddGender from "../Screens/AddGender";
 const Stack = createNativeStackNavigator<onboardingStackParamList>();
 
 
@@ -26,6 +28,8 @@ const FirstNav = () => {
         <Stack.Screen name={NAVIGATION.ADDFINGERPRINT} component={AddFingerprint}/>
         <Stack.Screen name ={NAVIGATION.ADDPROFILE} component={AddProfile} />
         <Stack.Screen name={NAVIGATION.ADDPREFERENCES} component={AddPreferences}/>
+        <Stack.Screen name={NAVIGATION.ADDINTEREST} component={AddInterest}/>
+        <Stack.Screen name={NAVIGATION.ADDGENDER} component={AddGender}/>
       </Stack.Navigator>
     );
   };
