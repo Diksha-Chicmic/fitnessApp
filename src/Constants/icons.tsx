@@ -17,7 +17,8 @@ import Fitness from '../Assets/Svgs/fitness.svg'
 import Fashion from '../Assets/Svgs/fashion.svg'
 import Male from '../Assets/Svgs/man.svg'
 import Female from '../Assets/Svgs/female.svg'
-
+import Fingerprint from '../Assets/Svgs/fingerprint.svg'
+import RightArrow from '../Assets/Svgs/double-arrow-right.svg'
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
 import Avatar3 from '../Assets/Svgs/Avatars/avatar_3.svg'
@@ -63,6 +64,8 @@ export const ICONS = {
     HEALTH: (params: iconProps) => Health({ ...iconStyle({ ...params }) }),
     MALE: (params: iconProps) => Male({ ...iconStyle({ ...params }) }),
     FEMALE: (params: iconProps) => Female({ ...iconStyle({ ...params }) }),
+    FINGERPRINT: (params: iconProps) => Fingerprint({ ...iconStyle({ ...params }) }),
+    RIGHTARROW: (params: iconProps) => RightArrow({ ...iconStyle({ ...params }) }),
     
 
 }
