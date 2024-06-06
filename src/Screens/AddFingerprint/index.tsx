@@ -10,6 +10,7 @@ const style={
 function AddFingerprint({navigation}:AddFingerprintProps){
     function handleClick(){
         console.log('rggth')
+        console.log(' PR CHECK')
         navigation.navigate(NAVIGATION.ADDPROFILE)
     }
     return(
