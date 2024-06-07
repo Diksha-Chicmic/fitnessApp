@@ -7,12 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:578521058439:android:f9351a6e2df8a833b6fc22",
+        "mobilesdk_app_id": "1:578521058439:android:0e926c479107d562b6fc22",
         "android_client_info": {
-          "package_name": "com.fitnessapp"
+          "package_name": "com.diksha.fitnessapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "578521058439-pmdir5q7u1ip5snrq6dhgq3gq9m4hv2k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diksha.fitnessapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "578521058439-sninde3lkghvbbdeta52iaa1a0nq5er6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDML71D46ELMl38HgOaxSx2AZl-nx8GuuM"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578521058439-7qrhgsjgdrheaajna1c0v9v6bq1sbl9i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "578521058439-7nvcljgh377bq53j1op3vsp2acat8o5r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.diksha.fitnessapp"
+              }
+            }
+          ]
         }
       }
     }

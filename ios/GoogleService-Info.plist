@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>578521058439-uo2jo7e2juttoh89dm93pd0fom1nrfhj.apps.googleusercontent.com</string>
+	<string>578521058439-7nvcljgh377bq53j1op3vsp2acat8o5r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.578521058439-uo2jo7e2juttoh89dm93pd0fom1nrfhj</string>
+	<string>com.googleusercontent.apps.578521058439-7nvcljgh377bq53j1op3vsp2acat8o5r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>578521058439-pmdir5q7u1ip5snrq6dhgq3gq9m4hv2k.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAxw-Q_eN-V7Q3JpRrRO2BZn3qh2jJ0gh8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,22 +15,22 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.FitnessApp</string>
+	<string>com.diksha.fitnessapp</string>
 	<key>PROJECT_ID</key>
 	<string>fitness-app-19e71</string>
 	<key>STORAGE_BUCKET</key>
 	<string>fitness-app-19e71.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:578521058439:ios:78d78164e9a35ef5b6fc22</string>
+	<string>1:578521058439:ios:c6495413013e4e86b6fc22</string>
 </dict>
 </plist>

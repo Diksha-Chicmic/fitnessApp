@@ -3,17 +3,19 @@ import { ICONS } from "../../Constants/icons";
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { styles } from "./style";
-GoogleSignin.configure({
-    webClientId: '578521058439-uo2jo7e2juttoh89dm93pd0fom1nrfhj.apps.googleusercontent.com',
-});
+
+
 const signInWithGoogle = async () => {
     try {
       // Sign in with Google
-      await GoogleSignin.hasPlayServices();
+      const res=await GoogleSignin.hasPlayServices();
+      console.log(res,'res');
+      
       const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo,'user info ')
       const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
       await auth().signInWithCredential(googleCredential);
-     // navigation.navigate('setPins',{email})
+     // navigation.navigate()
       console.log('Signed in with Google successfully');
     } catch (error) {
       console.error('Google sign-in error:', error);
