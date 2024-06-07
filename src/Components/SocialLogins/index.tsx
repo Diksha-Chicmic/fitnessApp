@@ -6,15 +6,18 @@ import { styles } from "./style";
 GoogleSignin.configure({
     webClientId: '578521058439-uo2jo7e2juttoh89dm93pd0fom1nrfhj.apps.googleusercontent.com',
 });
-async function onGoogleButtonPress() {
-    // Get the user's ID token
-    const { idToken } = await GoogleSignin.signIn();
-
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
+const signInWithGoogle = async () => {
+    try {
+      // Sign in with Google
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
+      await auth().signInWithCredential(googleCredential);
+     // navigation.navigate('setPins',{email})
+      console.log('Signed in with Google successfully');
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+    }
 }
 
 function SocialLogins() {
@@ -26,7 +29,7 @@ function SocialLogins() {
             <TouchableOpacity style={styles.item}>
                 {ICONS.Facebook({ width: 18, height: 18 })}
             </TouchableOpacity>
-            <TouchableOpacity style={styles.item} onPress={onGoogleButtonPress}>
+            <TouchableOpacity style={styles.item} onPress={signInWithGoogle}>
                 {ICONS.Google({ width: 18, height: 18, color: '#4E4BC7' })}
             </TouchableOpacity>
         </View>

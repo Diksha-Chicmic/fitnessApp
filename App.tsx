@@ -20,7 +20,8 @@ import 'react-native-gesture-handler';
 import SignIn from './src/Screens/SignIn';
 import LandingPage from './src/Screens/LandingPage';
 import RootNavigator from './src/Navigation/RootNavigation';
-
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+GoogleSignin.configure(); 
 function App(): React.JSX.Element {
   
 

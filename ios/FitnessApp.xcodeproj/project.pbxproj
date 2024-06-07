@@ -14,8 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		4D9DADDFF554D6526E763E0D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 422AF684C3DBEC00F3B6C511 /* PrivacyInfo.xcprivacy */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		C7132DFB2C11ECA800ADBB1D /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = C7132DFA2C11ECA700ADBB1D /* GoogleService-Info (1).plist */; };
-		C7174F3C2C0843940023955A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7174F3B2C0843940023955A /* GoogleService-Info.plist */; };
+		C794B7A62C12E0AD00796973 /* GoogleService-Info (1).plist in Resources */ = {isa = PBXBuildFile; fileRef = C794B7A52C12E0AD00796973 /* GoogleService-Info (1).plist */; };
+		C794B7A82C12E0CE00796973 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C794B7A72C12E0CE00796973 /* GoogleService-Info.plist */; };
 		C84B305ADF1D9EC44BC465A3 /* Pods_FitnessApp_FitnessAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 564E25FEC4313924937D7013 /* Pods_FitnessApp_FitnessAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +47,8 @@
 		5B7EB9410499542E8C5724F5 /* Pods-FitnessApp-FitnessAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessApp-FitnessAppTests.debug.xcconfig"; path = "Target Support Files/Pods-FitnessApp-FitnessAppTests/Pods-FitnessApp-FitnessAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FitnessApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FitnessApp-FitnessAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FitnessApp-FitnessAppTests.release.xcconfig"; path = "Target Support Files/Pods-FitnessApp-FitnessAppTests/Pods-FitnessApp-FitnessAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		C7132DFA2C11ECA700ADBB1D /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info (1).plist"; sourceTree = "<group>"; };
-		C7174F3B2C0843940023955A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C794B7A52C12E0AD00796973 /* GoogleService-Info (1).plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info (1).plist"; path = "../../../../Downloads/GoogleService-Info (1).plist"; sourceTree = "<group>"; };
+		C794B7A72C12E0CE00796973 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5DBC139A32A1CC830382456 /* Pods_FitnessApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FitnessApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,8 +125,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C7132DFA2C11ECA700ADBB1D /* GoogleService-Info (1).plist */,
-				C7174F3B2C0843940023955A /* GoogleService-Info.plist */,
+				C794B7A72C12E0CE00796973 /* GoogleService-Info.plist */,
+				C794B7A52C12E0AD00796973 /* GoogleService-Info (1).plist */,
 				13B07FAE1A68108700A75B9A /* FitnessApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FitnessAppTests */,
@@ -254,10 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				C7174F3C2C0843940023955A /* GoogleService-Info.plist in Resources */,
-				C7132DFB2C11ECA800ADBB1D /* GoogleService-Info (1).plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C794B7A82C12E0CE00796973 /* GoogleService-Info.plist in Resources */,
 				4D9DADDFF554D6526E763E0D /* PrivacyInfo.xcprivacy in Resources */,
+				C794B7A62C12E0AD00796973 /* GoogleService-Info (1).plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
