@@ -4,7 +4,8 @@ import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { EmailValidationError } from "../../Constants/errors";
 import { NAVIGATION, ADDEMAILInProps } from "../../Constants/navigation";
-import styles from "./style";
+import { STRINGS } from "../../Constants/strings";
+import { styles } from "./style";
 
 const AddEmail = ({navigation}:ADDEMAILInProps) => {
     const [email, setEmail] = useState<string>('');
@@ -24,9 +25,9 @@ const AddEmail = ({navigation}:ADDEMAILInProps) => {
     return (
         <View>
         <View style={styles.container}>
-            <Text style={styles.heading}>What is your Email address?</Text>
+            <Text style={styles.heading}>{STRINGS.EMAIL.HEADING}</Text>
             <CustomInput
-                text="Enter your email address"
+                text={STRINGS.EMAIL.PLACEHOLDERTEXT}
                 value={email}
                 onChangeText={setEmail}
                 type="email"
@@ -34,7 +35,7 @@ const AddEmail = ({navigation}:ADDEMAILInProps) => {
             />
             <EmailValidationError email={email} formkey={form} />
             </View>
-            <CustomButton onPress={handleSubmit} title="Continue" parentStyle={styles.but}/>
+            <CustomButton onPress={handleSubmit} title={STRINGS.BUTTON.TITLE} />
         </View>
     )
 }

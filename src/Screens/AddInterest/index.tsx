@@ -3,6 +3,7 @@ import { Text, View, SafeAreaView, FlatList, Alert } from "react-native";
 import SelectInterest from "../../Components/SelectInterest";
 import { ICONS } from "../../Constants/icons";
 import CustomButton from "../../Components/CustomButton";
+import { STRINGS } from "../../Constants/strings";
 import { NAVIGATION,AddInterestProps } from "../../Constants/navigation";
 import { styles } from "./style";
 
@@ -64,7 +65,7 @@ const AddInterest = ({navigation}:AddInterestProps) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.heading}>Time to customize your interests</Text>
+            <Text style={styles.heading}>{STRINGS.INTEREST.HEADING}</Text>
             <FlatList
                 data={interests}
                 renderItem={renderItem}
