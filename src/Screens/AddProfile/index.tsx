@@ -5,6 +5,7 @@ import AvatarSelector from '../../Components/AvatarSelection'
 import CustomButton from '../../Components/CustomButton';
 import { AvatarKey } from '../../Constants/icons';
 import { NAVIGATION, AddProfileProps } from '../../Constants/navigation';
+import { STRINGS } from '../../Constants/strings';
 import { styles } from './style';
 
 
@@ -68,14 +69,12 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
   return (
     <SafeAreaView>
       <AvatarSelector onSelect={handleAvatarSelect} />
-      <Text style={styles.heading}>Profile Picture</Text>
-      <Text style={styles.text}>
-        You can select a photo from one of these emojis or add your own photo as a profile picture
-      </Text>
+      <Text style={styles.heading}>{STRINGS.PROFILE.HEADING}</Text>
+      <Text style={styles.text}>{STRINGS.PROFILE.TEXT}</Text>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Text style={styles.text2}>Add Custom Photo</Text>
+        <Text style={styles.text2}>{STRINGS.PROFILE.TEXT2}</Text>
       </TouchableOpacity>
-      <CustomButton title="Continue" onPress={handleUpdateProfile} />
+      <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handleUpdateProfile} />
       <Modal
         animationType="slide"
         transparent={true}
@@ -91,10 +90,10 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
         >
           <View style={styles.modalContainer}>
             <TouchableOpacity style={styles.modalButton} onPress={openImagePicker}>
-              <Text style={styles.modalButtonText}>Choose from Library</Text>
+              <Text style={styles.modalButtonText}>{STRINGS.PROFILE.LIBRARY}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.modalButton} onPress={openCamera}>
-              <Text style={styles.modalButtonText}>Take Photo</Text>
+              <Text style={styles.modalButtonText}>{STRINGS.PROFILE.CAMERA}</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

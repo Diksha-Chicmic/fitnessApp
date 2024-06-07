@@ -3,13 +3,15 @@ import { SafeAreaView, Text, Button, StyleSheet, Alert, View } from "react-nativ
 import { ICONS } from "../../Constants/icons";
 import SelectGender from "../../Components/SelectGender";
 import CustomButton from '../../Components/CustomButton';
+import { NAVIGATION,AddGenderProps } from '../../Constants/navigation';
+import { STRINGS } from '../../Constants/strings';
 import { styles } from './style';
 const style = {
     width: 50,
     height: 50,
 };
 
-function AddGender() {
+function AddGender({navigation}:AddGenderProps) {
     const [selectedGender, setSelectedGender] = useState<string>('');
 
     const handlePress = (gender: string) => {
@@ -21,13 +23,13 @@ function AddGender() {
         if (!selectedGender) {
             Alert.alert('Please select a gender to continue.');
         } else {
-             console.log('next');
+             navigation.navigate(NAVIGATION.READYTOGO)
         }
     };
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.heading}>Which one are you?</Text>
+            <Text style={styles.heading}>{STRINGS.GENDER.HEADING}</Text>
             <View style={styles.genderContainer}>
                 <SelectGender
                     text='Male'
@@ -43,8 +45,8 @@ function AddGender() {
                 />
                
             </View>
-            <Text style={styles.text}>To give you a better experience we need to know your gender </Text>
-            <CustomButton title='Continue' onPress={handleNext} parentStyle={styles.button}/>
+            <Text style={styles.text}>{STRINGS.GENDER.TEXT}</Text>
+            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handleNext} parentStyle={styles.button}/>
         </SafeAreaView>
     )
 }

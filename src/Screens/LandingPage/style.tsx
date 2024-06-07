@@ -6,20 +6,21 @@ export const styles = StyleSheet.create({
     image: {
         height: RFValue(210),
         width: RFValue(380),
+        marginVertical:20
     },
     heading: {
         fontSize: SIZES.font24,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginHorizontal: 50,
         opacity: 0.8,
     },
     text: {
         color: COLORS.SECONDARY.GREY,
         textAlign: "center",
-        width: 250,
+        //width: 250,
         marginHorizontal: 50,
         marginVertical: 10,
+        fontSize:SIZES.font13
     },
 
     text1: {

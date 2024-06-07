@@ -3,7 +3,7 @@ import { COLORS } from "../../Constants/commonStyles";
 export const styles = StyleSheet.create({
     conatiner: {
        padding: 25,
-      //margin:30
+
     },
     listContentContainer: {
         justifyContent: 'center',
@@ -12,13 +12,13 @@ export const styles = StyleSheet.create({
     avatarContainer: {
         borderWidth: 1,
         borderColor: 'transparent',
-        borderRadius: 40,
-        // padding: 5,
+        borderRadius: 50,
+        
         marginHorizontal: 20,
         
     },
     selected: {
         borderColor: COLORS.PRIMARY.PURPLE,
-        backgroundColor: 'pink',
+        
     },
 });

@@ -12,6 +12,7 @@ import AddProfile from "../Screens/AddProfile";
 import AddPreferences from "../Screens/AddPrefences";
 import AddInterest from "../Screens/AddInterest";
 import AddGender from "../Screens/AddGender";
+import ReadyToGo from "../Screens/ReadToGo";
 const Stack = createNativeStackNavigator<onboardingStackParamList>();
 
 
@@ -30,6 +31,7 @@ const FirstNav = () => {
         <Stack.Screen name={NAVIGATION.ADDPREFERENCES} component={AddPreferences}/>
         <Stack.Screen name={NAVIGATION.ADDINTEREST} component={AddInterest}/>
         <Stack.Screen name={NAVIGATION.ADDGENDER} component={AddGender}/>
+        <Stack.Screen name={NAVIGATION.READYTOGO}  component={ReadyToGo} options={{headerShown:false}}/>
       </Stack.Navigator>
     );
   };

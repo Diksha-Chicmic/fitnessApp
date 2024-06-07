@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         color: COLORS.SECONDARY.GREY,
         textAlign: 'center',
         marginHorizontal: 80,
-        fontSize: SIZES.font14,
+        fontSize: SIZES.font13,
         
     },
     text2: {

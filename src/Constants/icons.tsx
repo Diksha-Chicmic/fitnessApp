@@ -18,7 +18,9 @@ import Fashion from '../Assets/Svgs/fashion.svg'
 import Male from '../Assets/Svgs/man.svg'
 import Female from '../Assets/Svgs/female.svg'
 import Fingerprint from '../Assets/Svgs/fingerprint.svg'
-import RightArrow from '../Assets/Svgs/double-arrow-right.svg'
+import RightArrow from '../Assets/Svgs/right-arrow.svg'
+
+
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
 import Avatar3 from '../Assets/Svgs/Avatars/avatar_3.svg'
