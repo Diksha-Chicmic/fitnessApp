@@ -2,10 +2,11 @@ import { Text, TouchableOpacity, View } from "react-native";
 import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
 import { useState } from "react";
-import { PassValidationError ,PassEmptyError} from "../../Constants/errors";
+import {PassEmptyError} from "../../Constants/errors";
 import { isValidPassword } from "../../utils/passValidity";
 import PassInputCheck from "../../Components/PassValidation";
 import { AddPasswordProps, NAVIGATION } from "../../Constants/navigation";
+import { STRINGS } from "../../Constants/strings";
 import styles from "./style";
 function AddPassword({navigation}:AddPasswordProps) {
     const [password, setPassword] = useState<string>('')
@@ -24,8 +25,8 @@ function AddPassword({navigation}:AddPasswordProps) {
     return (
         <View>
         <View style={styles.container}>
-            <Text style={styles.heading}>Now let's set up your password</Text>
-            <CustomInput text="password" value={password} type="name" onChangeText={setPassword} parentStyle={styles.input} secureText={true}/>
+            <Text style={styles.heading}>{STRINGS.PASSWORD.HEADING}</Text>
+            <CustomInput text={STRINGS.PASSWORD.PLACEHOLDERTEXT} value={password} type="name" onChangeText={setPassword} parentStyle={styles.input} secureText={true}/>
             <PassEmptyError pass={password} formKey={form}></PassEmptyError>
         </View>
             <PassInputCheck
@@ -33,7 +34,7 @@ function AddPassword({navigation}:AddPasswordProps) {
                 uppercase={isValidPassword.caseCheck(password)}
                 number={isValidPassword.numberCheck(password)} 
                 />
-            <CustomButton title="Continue" onPress={handleClick} />
+            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handleClick} />
 
 
     

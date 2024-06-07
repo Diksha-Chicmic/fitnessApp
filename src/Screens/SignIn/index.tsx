@@ -4,9 +4,10 @@ import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
 import { ICONS } from "../../Constants/icons";
 import SocialLogins from "../../Components/SocialLogins";
-import { styles } from "./styles";
+import { STRINGS } from "../../Constants/strings";
 import { EmailValidationError,PassEmptyError } from "../../Constants/errors";
 import { useNavigation } from "@react-navigation/native";
+import { styles } from "./styles";
 
 function SignIn() {
     const navigation = useNavigation()
@@ -47,7 +48,7 @@ function SignIn() {
                 onChangeText={setPassword}
             />
             <PassEmptyError pass={password} formKey={form}/>
-            <Text style={[styles.text, styles.customButtonParent]}>Sign in with</Text>
+            <Text style={[styles.text, styles.customButtonParent]}>{STRINGS.SIGNIN.TEXT}</Text>
             <SocialLogins />
             <CustomButton title='Continue' onPress={handlePress} />
         </SafeAreaView>

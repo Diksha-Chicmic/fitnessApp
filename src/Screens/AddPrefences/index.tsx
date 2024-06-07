@@ -56,14 +56,13 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
         <View >
             <Text style={styles.heading}>Let us know how we can help you</Text>
             <Text style={styles.text}>You always can change this later</Text>
-            <CustomButton title="Continue" onPress={handlePress} />
-            <FlatList
+             <FlatList
                 data={preferences}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={preferences}
             />
-            {/* <CustomButton title="Continue" onPress={handlePress} /> */}
+            <CustomButton title="Continue" onPress={handlePress} />
         </View>
     );
 };

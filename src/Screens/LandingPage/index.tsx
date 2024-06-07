@@ -1,8 +1,10 @@
 import { View, Text, SafeAreaView, Image, ScrollView, TouchableOpacity } from "react-native";
 import CustomButton from "../../Components/CustomButton";
 import { IMAGES } from "../../Constants/images";
-import { styles } from "./style";
 import { LandingPageProps, NAVIGATION } from "../../Constants/navigation";
+import { STRINGS } from "../../Constants/strings";
+import { styles } from "./style";
+
 
 
 function LandingPage({ navigation }: LandingPageProps) {
@@ -14,17 +16,17 @@ function LandingPage({ navigation }: LandingPageProps) {
     }
     return (
         <SafeAreaView>
-            <ScrollView>
-                <Text style={styles.heading}> Welcome to Fitness App</Text>
-                <Text style={styles.text}> The best UI kit for your next health and fitness project</Text>
+            
+                <Text style={styles.heading}> {STRINGS.LANDING.HEADING}</Text>
+                <Text style={styles.text}>{STRINGS.LANDING.TEXT}</Text>
                 <Image source={IMAGES.LANDING_PAGE} style={styles.image} />
                 <CustomButton title="Get Started" onPress={moveToEmail} />
                 <TouchableOpacity onPress={moveToSignIn} >
-                <Text style={styles.text1}>Already have an account? 
-                <Text style={styles.text2}>Sign in</Text>
+                <Text style={styles.text1}>{STRINGS.LANDING.TEXT2}
+                <Text style={styles.text2}>{STRINGS.LANDING.TEXT3}</Text>
                 </Text>
                 </TouchableOpacity>
-            </ScrollView>
+    
         </SafeAreaView>
     )
 }

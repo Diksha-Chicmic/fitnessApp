@@ -11,13 +11,15 @@ export const styles=StyleSheet.create({
         textAlign:'center',
         fontWeight:'bold',
         marginTop:12,
-        marginHorizontal:40
+        marginHorizontal:40,
+        marginVertical:12
     },
     text:{
         color:COLORS.SECONDARY.GREY,
         fontSize:SIZES.font13,
         textAlign:'center',
 
-    }
+    },
+   
     
 })
