@@ -22,6 +22,7 @@ function AddPassword({navigation}:AddPasswordProps) {
             setPassword(' '); // This will trigger the empty password validation in PassEmptyError component
         } else if (isValidPassword.checkAll(password)) {
             dispatch(updateUser({password:password}))
+            console.log(password)
             navigation.navigate(NAVIGATION.ADDFINGERPRINT)
             console.log('password is okie');
         }

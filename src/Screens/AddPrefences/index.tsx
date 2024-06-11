@@ -5,6 +5,7 @@ import CustomButton from "../../Components/CustomButton";
 import { NAVIGATION, AddPrefencesProps } from "../../Constants/navigation";
 import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
+import { STRINGS } from "../../Constants/strings";
 import { styles } from "./style";
 
 type Preference = {
@@ -58,15 +59,15 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
 
     return (
         <View >
-            <Text style={styles.heading}>Let us know how we can help you</Text>
-            <Text style={styles.text}>You always can change this later</Text>
+            <Text style={styles.heading}>{STRINGS.PREFERENCES.HEADING}</Text>
+            <Text style={styles.text}>{STRINGS.PREFERENCES.TEXT}</Text>
             <FlatList
                 data={preferences}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={preferences}
             />
-            <CustomButton title="Continue" onPress={handlePress} />
+            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handlePress} />
         </View>
     );
 };
