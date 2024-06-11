@@ -3,6 +3,8 @@ import { View, FlatList, Text, Alert } from "react-native";
 import SelectPreferences from "../../Components/SelectPrefences";
 import CustomButton from "../../Components/CustomButton";
 import { NAVIGATION, AddPrefencesProps } from "../../Constants/navigation";
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
 
 type Preference = {
@@ -20,6 +22,7 @@ const preferencesData: Preference[] = [
 
 const AddPreferences = ({ navigation }: AddPrefencesProps) => {
     const [preferences, setPreferences] = useState<Preference[]>(preferencesData);
+    const dispatch = useAppDispatch();
 
     const handleToggle = (id: string) => {
         setPreferences(prevPreferences =>
@@ -48,6 +51,7 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
             );
         } else {
             console.log('add preferences');
+            dispatch(updateUser({ preferences: preferences }));
             navigation.navigate(NAVIGATION.ADDINTEREST);
         }
     };
@@ -56,7 +60,7 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
         <View >
             <Text style={styles.heading}>Let us know how we can help you</Text>
             <Text style={styles.text}>You always can change this later</Text>
-             <FlatList
+            <FlatList
                 data={preferences}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}

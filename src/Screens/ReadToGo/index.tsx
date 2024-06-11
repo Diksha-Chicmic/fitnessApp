@@ -3,7 +3,10 @@ import { ICONS } from "../../Constants/icons";
 import { STRINGS } from "../../Constants/strings";
 import { NAVIGATION,ReadyToGoProps } from "../../Constants/navigation";
 import { styles } from "./style";
-import LandingPage from "../LandingPage";
+import { useAppDispatch, useAppSelector } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";;
+import { createUser, storeUserData } from "../../utils/userhandle";
+import storage from "@react-native-firebase/storage";
 
 const iconStyle={
     width:35,
@@ -11,10 +14,29 @@ const iconStyle={
     color:'white'
 }
 const ReadyToGo=({navigation}:ReadyToGoProps)=>{
+    const { data: { password, ...user }, } = useAppSelector((state) => state.User);
+    console.log(user);
+    const dispatch = useAppDispatch();
     const handlePress=()=>{
-        console.log('Details Completed');
-        navigation.goBack()
+        async () => {
+                if (user.email !== null && password !== "") {
+                  const userCredentials = await createUser(user.email, password);
+            
+                  const reference = storage().ref(
+                    "media/" + userCredentials?.user.uid + "/" + "photo"
+                  );
+
+                  await reference.putFile(user.photo!);
+      const url = await reference.getDownloadURL();
+      console.log("the url is -", url);
+      dispatch(updateUser({ photo: url }));
+      if (userCredentials !== undefined) {
+        user.id = userCredentials.user.uid;
+        storeUserData(user, userCredentials);
+      }
     }
+  };
+}
     return(
         <View style={styles.container}>
             <View style={styles.logo}>
@@ -30,3 +52,26 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
 }
 
 export default ReadyToGo
+
+// const {
+//     data: { password, ...user },
+//   } = useAppSelector((state) => state.User);
+//   const dispatch = useAppDispatch();
+//   const handleSubmit = async () => {
+//     if (user.email !== null && password !== "") {
+//       const userCredentials = await createUser(user.email, password);
+
+//       const reference = storage().ref(
+//         "media/" + userCredentials?.user.uid + "/" + "photo"
+//       );
+
+//       await reference.putFile(user.photo!);
+//       const url = await reference.getDownloadURL();
+//       console.log("the url is -", url);
+//       dispatch(updateUserData({ photo: url }));
+//       if (userCredentials !== undefined) {
+//         user.id = userCredentials.user.uid;
+//         storeUserData(user, userCredentials);
+//       }
+//     }
+//   };

@@ -5,16 +5,19 @@ import SelectGender from "../../Components/SelectGender";
 import CustomButton from '../../Components/CustomButton';
 import { NAVIGATION,AddGenderProps } from '../../Constants/navigation';
 import { STRINGS } from '../../Constants/strings';
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from './style';
 const style = {
     width: 50,
     height: 50,
 };
 
-function AddGender({navigation}:AddGenderProps) {
-    const [selectedGender, setSelectedGender] = useState<string>('');
 
-    const handlePress = (gender: string) => {
+function AddGender({navigation}:AddGenderProps) {
+    const [selectedGender, setSelectedGender] = useState<'male' | 'female' >();
+    const dispatch = useAppDispatch();
+    const handlePress = (gender: 'male'| 'female') => {
         setSelectedGender(gender);
         console.log(`Selected gender: ${gender}`);
     };
@@ -23,6 +26,7 @@ function AddGender({navigation}:AddGenderProps) {
         if (!selectedGender) {
             Alert.alert('Please select a gender to continue.');
         } else {
+            dispatch(updateUser({gender:selectedGender}))
              navigation.navigate(NAVIGATION.READYTOGO)
         }
     };
