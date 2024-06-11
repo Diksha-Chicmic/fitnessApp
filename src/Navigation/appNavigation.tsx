@@ -15,6 +15,7 @@ const AppNavigator = () => {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name={NAVIGATION.ONBOARDING} component={FirstNav} />
+      
     </Stack.Navigator>
   );
 };

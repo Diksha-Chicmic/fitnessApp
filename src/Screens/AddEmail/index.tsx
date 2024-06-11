@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import auth from '@react-native-firebase/auth';
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { EmailValidationError } from "../../Constants/errors";

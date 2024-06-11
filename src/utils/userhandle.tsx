@@ -31,42 +31,51 @@ export const createUser = async (email: string, password: string) => {
 };
 
 export const storeUserData = async (
-  user: User,
-  userCredential: FirebaseAuthTypes.UserCredential
-) => {
-  try {
-    console.log(user);
-    await firestore()
-      .collection("users")
-      .doc("byEmail")
-      .update({
-        [userCredential.user.uid]: user,
-      });
-    await firestore()
-      .collection(firebaseDB.collections.users)
-      .doc(firebaseDB.documents.users.byEmails)
-      .update({
-        emails: firestore.FieldValue.arrayUnion(userCredential.user.uid),
-      });
-    console.log("New User");
-  } catch (e) {
-    console.log("error storing User data - ", e);
-  }
-};
+    user: User,
+    userCredential: FirebaseAuthTypes.UserCredential
+  ) => {
+    try {
+      const userEmail:any  = user.email; // Assuming user has email field
+  
+      console.log(user, 'its a user detail out');
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(firebaseDB.documents.users.byEmail)
+        .set({
+          [userEmail]: user,
+        });
+  
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(firebaseDB.documents.users.byEmails)
+        .set({
+          emails: firestore.FieldValue.arrayUnion(userEmail),
+        });
+  
+      console.log("New User");
+    } catch (e) {
+      console.log("Error storing User data - ", e);
+    }
+  };
+  
+  export const getUserData = async (email: string) => {
+    try {
+      const snapshot = await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(firebaseDB.documents.users.byEmail)
+        .get();
+  
+      const userData = snapshot.get(email);
+      console.log(userData);
+      return userData;
+    } catch (e) {
+      console.log("Error getting user data - ", e);
+      return null;
+    }
+  };
+  
 
 
-
-export const getUserData = async (
-  uid: FirebaseAuthTypes.UserCredential["user"]["uid"]
-) => {
-  const snapshot = await firestore()
-    .collection(firebaseDB.collections.users)
-    .doc(firebaseDB.documents.users.byEmail)
-    .get();
-  const userData = snapshot.get(uid);
-  console.log(userData);
-  return userData ;
-};
 
 
 
