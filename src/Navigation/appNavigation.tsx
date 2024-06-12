@@ -1,21 +1,36 @@
-import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { rootStackParamList } from "../Constants/navigation";
-import { NAVIGATION } from "../Constants/navigation";
+import React, { useEffect } from "react";
+import AuthNavigator from "./authNavigation";
+import { useAppSelector, useAppDispatch } from "../Redux/Store";
+import Steps from "../Screens/MainScreens/Steps";
+import Water from "../Screens/MainScreens/Water";
+import Nutrition from "../Screens/MainScreens/Nutrition ";
+import Home from "../Screens/MainScreens/Home";
+import { homeStackParamList } from "../Constants/navigation";
+import { COLORS } from "../Constants/commonStyles";
 
-// navigators
-import FirstNav from "./landing";
+const Stack = createNativeStackNavigator<homeStackParamList>();
 
-const Stack = createNativeStackNavigator<rootStackParamList>();
+
 
 const AppNavigator = () => {
+ 
   return (
     <Stack.Navigator
-      initialRouteName={NAVIGATION.ONBOARDING}
-      screenOptions={{ headerShown: false }}
+      initialRouteName="HomeNavigator"
+      screenOptions={{
+        headerBackTitle: 'Back',
+        headerShadowVisible: false,
+        headerShown:false,
+        headerTitle: "",
+        headerStyle: { backgroundColor: COLORS.PRIMARY.GREY },
+      }}
     >
-      <Stack.Screen name={NAVIGATION.ONBOARDING} component={FirstNav} />
-      
+      <Stack.Screen name="HomeNavigator" component={AuthNavigator}
+      />
+      <Stack.Screen name="Nutrition" component={Nutrition} />
+      <Stack.Screen name="DailySteps" component={Steps} />
+      <Stack.Screen name="WaterIntake" component={Water} />
     </Stack.Navigator>
   );
 };

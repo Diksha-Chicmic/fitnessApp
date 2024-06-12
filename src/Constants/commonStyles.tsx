@@ -7,11 +7,17 @@ export const COLORS = {
     PRIMARY: {
       GREY: "#F4F6FA",
       PURPLE: "#7265E3",
+      DIMPURPLE: "#E1DDF5",
+      DARKGREY: "#ECECEC",
+      DIMGREY: "#F4F6FA",
     },
     SECONDARY: {
       GREY: "#A9A9A9",
       WHITE: "#FFFFFF",
       RED: "#ff0033",
+      ORANGE: "#F7A56D",
+     CYAN: "#44C7BC",
+     LIGHTGREY: "#DCDDE0",
     },
   };
   const HEADER_CONST = DeviceInfo.isTablet() ? RFValue(11) : RFValue(13);

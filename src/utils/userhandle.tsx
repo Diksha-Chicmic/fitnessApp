@@ -48,7 +48,7 @@ export const storeUserData = async (
       await firestore()
         .collection(firebaseDB.collections.users)
         .doc(firebaseDB.documents.users.byEmails)
-        .set({
+        .update({
           emails: firestore.FieldValue.arrayUnion(userEmail),
         });
   

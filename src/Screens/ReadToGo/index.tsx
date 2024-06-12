@@ -7,7 +7,9 @@ import { NAVIGATION,ReadyToGoProps } from "../../Constants/navigation";
 import { styles } from "./style";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store";
 import { createUser, storeUserData } from "../../utils/userhandle";
+
 import storage from "@react-native-firebase/storage";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 
 const iconStyle={
     width:35,
@@ -16,6 +18,7 @@ const iconStyle={
 }
 const ReadyToGo=({navigation}:ReadyToGoProps)=>{
     const { data: { password, ...user }, } = useAppSelector((state) => state.User);
+    // const dispatch = useAppDispatch();
     console.log(user);
     const handlePress = async () => {
         try {
@@ -62,3 +65,7 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
 }
 
 export default ReadyToGo
+function dispatch(arg0: { payload: Partial<import("../../Defs/user").User & { password: string; }>; type: "User/updateUser"; }) {
+  throw new Error("Function not implemented.");
+}
+
