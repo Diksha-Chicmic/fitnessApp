@@ -1,13 +1,13 @@
 import React from "react";
 import { SafeAreaView, Text } from "react-native";
 
-function Water(){
+function Notifications(){
     return(
         <SafeAreaView>
-           <Text> Water SCREEN</Text>
+           <Text> Notifications Screen </Text>
         </SafeAreaView>
     )
 }
 
 
-export default Water
+export default Notifications

@@ -5,21 +5,49 @@ import { CompositeScreenProps } from "@react-navigation/native";
 
 
 export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', 
-ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',
-AUTHSCREENS:{HOMENAVIGATOR:'HomeNavigator', NUTRITION:'Nutrition',WATERINTAKE:'WaterIntake', DAILYSTEPS:'DailySteps', POSTSCREEN:'PostScreen'},
-SCREENS:{DRAWER:{HOME:'Home', COMMUNITY:'Community', NOTIFICATIONS:'Notifications',SETTINGS:'Settings', GETPREMIUM:'GetPremium',LOGOUT:'logout'}}} = 
+ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',}
+
+ = 
 { LANDING: 'LandingPage', SIGNIN: 'SignIn',ONBOARDING:'Onboarding', ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', 
-ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo' ,
-AUTHSCREENS:{HOMENAVIGATOR:'HomeNavigator',NUTRITION:'Nutrition', WATERINTAKE:'WaterIntake', DAILYSTEPS:'DailySteps',POSTSCREEN:'PostScreen'},
-SCREENS:{DRAWER:{HOME:'Home', COMMUNITY:'Community',NOTIFICATIONS:'Notifications',SETTINGS:'Settings', GETPREMIUM:'GetPremium',LOGOUT:'logout'}}}
+ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo' ,}
+
 
 export type authNavigationList={
   Home:undefined,
+  Notifications: undefined;
+  Community: undefined;
+  GetPremium: undefined;
+  Settings: undefined;
+  LogOut: undefined;
+
 }
 export type HomeScreenProps = CompositeScreenProps<
   NativeStackScreenProps<homeStackParamList>,
   DrawerScreenProps<authNavigationList, "Home">
 >;
+export type NotificationProps = CompositeScreenProps<
+  NativeStackScreenProps<homeStackParamList>,
+  DrawerScreenProps<authNavigationList, "Notifications">
+>;
+
+export type CommunityProps = CompositeScreenProps<
+NativeStackScreenProps<homeStackParamList>,
+DrawerScreenProps<authNavigationList,"Community">
+>;
+
+export type GetPremiumProps = CompositeScreenProps<
+NativeStackScreenProps<homeStackParamList>,
+DrawerScreenProps<authNavigationList,"GetPremium">>
+
+export type SettingProps = CompositeScreenProps<
+NativeStackScreenProps<homeStackParamList>,
+DrawerScreenProps<authNavigationList,"Settings">>
+
+export type LogOutProps= CompositeScreenProps<
+NativeStackScreenProps<homeStackParamList>,
+DrawerScreenProps<authNavigationList,"LogOut">
+>
+
 export type rootStackParamList = {
     Onboarding: undefined;
   };

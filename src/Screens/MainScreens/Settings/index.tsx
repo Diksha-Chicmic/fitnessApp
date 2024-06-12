@@ -1,13 +1,13 @@
 import React from "react";
 import { SafeAreaView, Text } from "react-native";
 
-function Water(){
+function Settings(){
     return(
         <SafeAreaView>
-           <Text> Water SCREEN</Text>
+           <Text> SETTINGS SCREEN</Text>
         </SafeAreaView>
     )
 }
 
 
-export default Water
+export default Settings
