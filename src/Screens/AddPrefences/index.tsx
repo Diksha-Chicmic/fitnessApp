@@ -3,6 +3,9 @@ import { View, FlatList, Text, Alert } from "react-native";
 import SelectPreferences from "../../Components/SelectPrefences";
 import CustomButton from "../../Components/CustomButton";
 import { NAVIGATION, AddPrefencesProps } from "../../Constants/navigation";
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
+import { STRINGS } from "../../Constants/strings";
 import { styles } from "./style";
 
 type Preference = {
@@ -20,6 +23,7 @@ const preferencesData: Preference[] = [
 
 const AddPreferences = ({ navigation }: AddPrefencesProps) => {
     const [preferences, setPreferences] = useState<Preference[]>(preferencesData);
+    const dispatch = useAppDispatch();
 
     const handleToggle = (id: string) => {
         setPreferences(prevPreferences =>
@@ -48,21 +52,22 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
             );
         } else {
             console.log('add preferences');
+            dispatch(updateUser({ preferences: preferences }));
             navigation.navigate(NAVIGATION.ADDINTEREST);
         }
     };
 
     return (
         <View >
-            <Text style={styles.heading}>Let us know how we can help you</Text>
-            <Text style={styles.text}>You always can change this later</Text>
-             <FlatList
+            <Text style={styles.heading}>{STRINGS.PREFERENCES.HEADING}</Text>
+            <Text style={styles.text}>{STRINGS.PREFERENCES.TEXT}</Text>
+            <FlatList
                 data={preferences}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={preferences}
             />
-            <CustomButton title="Continue" onPress={handlePress} />
+            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handlePress} />
         </View>
     );
 };

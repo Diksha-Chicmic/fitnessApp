@@ -1,14 +1,21 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import FirstNav from "./landing";
-import 'react-native-gesture-handler';
+import AppNavigator from "./appNavigation";
+import { User } from "../Defs/user";
+
 
 const RootNavigator = () => {
   return (
     <NavigationContainer>
-      <FirstNav />
+      <AppNavigator />
+      {/* <FirstNav/> */}
     </NavigationContainer>
   );
 };
 
 export default RootNavigator;
+
+{/* <NavigationContainer>
+{!user ? <FirstNav/> : < AppNavigator/>}
+</NavigationContainer> */}

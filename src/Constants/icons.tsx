@@ -19,6 +19,12 @@ import Male from '../Assets/Svgs/man.svg'
 import Female from '../Assets/Svgs/female.svg'
 import Fingerprint from '../Assets/Svgs/fingerprint.svg'
 import RightArrow from '../Assets/Svgs/right-arrow.svg'
+import Drawer from '../Assets/Svgs/drawer.svg'
+import Home from '../Assets/Svgs/home.svg'
+import Community from '../Assets/Svgs/community.svg'
+import Bell from '../Assets/Svgs/bell.svg'
+import Settings from '../Assets/Svgs/settings.svg'
+import Cross from '../Assets/Svgs/cross-svgrepo-com.svg'
 
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
@@ -68,8 +74,12 @@ export const ICONS = {
     FEMALE: (params: iconProps) => Female({ ...iconStyle({ ...params }) }),
     FINGERPRINT: (params: iconProps) => Fingerprint({ ...iconStyle({ ...params }) }),
     RIGHTARROW: (params: iconProps) => RightArrow({ ...iconStyle({ ...params }) }),
-    
-
+    DRAWER:(params: iconProps) => Drawer({ ...iconStyle({ ...params }) }),
+    HOME:(params: iconProps) => Home({ ...iconStyle({ ...params }) }),
+    SETTINGS:(params: iconProps) => Settings({ ...iconStyle({ ...params }) }),
+    BELL:(params: iconProps) => Bell({ ...iconStyle({ ...params }) }),
+    COMMUNITY:(params: iconProps) => Community({ ...iconStyle({ ...params }) }),
+    CROSS:(params: iconProps) => Cross({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={
