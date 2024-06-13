@@ -54,5 +54,15 @@ export const STRINGS={
     },
     SIGNIN:{
         TEXT:"Sign in with"
+    },
+    HOME:{
+        HEADING:"Good Morning,",
+        TEXT:"Eat the right amount of food and stay hydrated through the day",
+        TEXT2:"More details"
+    },
+    ERRORS:{
+        EMPTY:"This field cannot be empty",
+        UNVALID:"Email address is not valid",
+        UNVALIDPASS:"Password is not valid"
     }
 }

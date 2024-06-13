@@ -24,7 +24,7 @@ import Home from '../Assets/Svgs/home.svg'
 import Community from '../Assets/Svgs/community.svg'
 import Bell from '../Assets/Svgs/bell.svg'
 import Settings from '../Assets/Svgs/settings.svg'
-
+import Cross from '../Assets/Svgs/cross-svgrepo-com.svg'
 
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
@@ -79,7 +79,7 @@ export const ICONS = {
     SETTINGS:(params: iconProps) => Settings({ ...iconStyle({ ...params }) }),
     BELL:(params: iconProps) => Bell({ ...iconStyle({ ...params }) }),
     COMMUNITY:(params: iconProps) => Community({ ...iconStyle({ ...params }) }),
-
+    CROSS:(params: iconProps) => Cross({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={

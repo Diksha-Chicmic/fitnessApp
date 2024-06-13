@@ -1,31 +1,31 @@
 import { Text, View, StyleSheet } from "react-native";
+import { styles } from "./style";
 
 const Details =({
     color,
     title,
     text,
-    percentage
+    percentage,
+    borderCheck=true
 
 }:Readonly<{
     color:string,
     title:string,
-    text:string,
-    percentage:number
+    text:number,
+    percentage:number,
+    borderCheck?:boolean
 }>)=>{
       
   return(
-  <View style={styles.container}>
-      <View></View>
-      <Text>{title}</Text>
-      <Text>{text}</Text>
-      <Text>{percentage}%</Text>
+  <View style={[styles.container, borderCheck && styles.border]}>
+    <View style={styles.box1}>
+      <View style={[styles.box,{backgroundColor:color}]}></View>
+      <Text style={styles.text}>{title}</Text>
+    </View>
+      <Text style={styles.text}>{text}g</Text>
+      <Text style={[styles.text,{fontWeight:'bold'}]}>{percentage}%</Text>
   </View>
   )
 }
-const styles= StyleSheet.create({
-    container:{
-      // flex:1,
-       flexDirection:'row'
-    },
-})
+
 export default Details
