@@ -1,16 +1,16 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import CustomDrawer from "../Components/CustomDrawer/Index";
-import Home from "../Screens/MainScreens/Home";
-import LogOut from "../Screens/MainScreens/LogOut";
-import Settings from "../Screens/MainScreens/Settings";
-import Premium from "../Screens/MainScreens/GetPremium";
-import Notifications from "../Screens/MainScreens/Notifications";
-import Community from "../Screens/MainScreens/Community";
 import { authNavigationList } from "../Constants/navigation";
 import { COLORS, SIZES } from "../Constants/commonStyles";
 import { ICONS } from "../Constants/icons";
-import { View } from "react-native";
+import { Settings, View } from "react-native";
+import CustomDrawer from "../Components/CustomDrawer/Index";
+import Community from "../Screens/MainScreens/Community";
+import Premium from "../Screens/MainScreens/GetPremium";
+import Home from "../Screens/MainScreens/Home";
+import LogOut from "../Screens/MainScreens/LogOut";
+import Notifications from "../Screens/MainScreens/Notifications";
+import SettingScreen from "../Screens/MainScreens/Settings";
 
 const iconSize = {
   width: 25,
@@ -38,15 +38,15 @@ const AuthNavigator = () => {
   return (
     <Drawer.Navigator initialRouteName="Home"
     screenOptions={{
-        headerTitle: "",
+       headerTitle: "",
         headerShadowVisible: false,
         headerStyle: {
           backgroundColor: COLORS.PRIMARY.GREY,
-          height: 140,
+          height: 100,
         },
         headerLeft,
-        drawerStyle: {justifyContent: "center",},
-        drawerContentContainerStyle: {top: "25%",},
+        drawerStyle: {justifyContent:'center',},
+        drawerContentContainerStyle: {top: "22%",},
         drawerLabelStyle: { color: "black", fontSize: SIZES.font13 },
         drawerActiveTintColor: COLORS.PRIMARY.PURPLE,
       }} >
@@ -56,7 +56,7 @@ const AuthNavigator = () => {
         //  headerRight,
            headerStyle: {
             backgroundColor: COLORS.PRIMARY.GREY,
-            height: 140,
+            height: 145,
           },
           headerShown:true,
         }}
@@ -67,7 +67,7 @@ const AuthNavigator = () => {
       <Drawer.Screen name="Notifications" component={Notifications}
         options={{drawerIcon: drawerIcon(ICONS.BELL),}}/>
 
-      <Drawer.Screen name="Settings" component={Settings}
+      <Drawer.Screen name="Settings" component={SettingScreen}
        options={{drawerIcon: drawerIcon(ICONS.SETTINGS),}}/>
 
       <Drawer.Screen name="GetPremium" component={Premium}

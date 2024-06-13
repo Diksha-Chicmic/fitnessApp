@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, Text } from "react-native";
 
-function Settings(){
+function SettingScreen(){
     return(
         <SafeAreaView>
            <Text> SETTINGS SCREEN</Text>
@@ -10,4 +10,4 @@ function Settings(){
 }
 
 
-export default Settings
+export default SettingScreen

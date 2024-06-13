@@ -13,7 +13,7 @@ const CustomDrawer = () => {
   };
   return (
     <TouchableOpacity onPress={openDrawer} >
-      {ICONS.DRAWER({ width: 25, height: 25 })}
+      {ICONS.DRAWER({ width: 20, height: 20 })}
     </TouchableOpacity>
   );
 };
