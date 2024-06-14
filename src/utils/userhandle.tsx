@@ -40,17 +40,17 @@ export const storeUserData = async (
       console.log(user, 'its a user detail out');
       await firestore()
         .collection(firebaseDB.collections.users)
-        .doc(firebaseDB.documents.users.byEmail)
-        .set({
-          [userEmail]: user,
-        });
+        .doc(userCredential.user.uid)
+        .set(
+           user
+        );
   
-      await firestore()
-        .collection(firebaseDB.collections.users)
-        .doc(firebaseDB.documents.users.byEmails)
-        .update({
-          emails: firestore.FieldValue.arrayUnion(userEmail),
-        });
+      // await firestore()
+      //   .collection(firebaseDB.collections.users)
+      //   .doc(firebaseDB.documents.users.byEmails)
+      //   .update({
+      //     emails: firestore.FieldValue.arrayUnion(userEmail),
+      //   });
   
       console.log("New User");
     } catch (e) {
@@ -58,14 +58,14 @@ export const storeUserData = async (
     }
   };
   
-  export const getUserData = async (email: string) => {
+  export const getUserData = async (uid: string) => {
     try {
       const snapshot = await firestore()
         .collection(firebaseDB.collections.users)
-        .doc(firebaseDB.documents.users.byEmail)
+        .doc(uid)
         .get();
   
-      const userData = snapshot.get(email);
+      const userData = snapshot.data();
       console.log(userData);
       return userData;
     } catch (e) {

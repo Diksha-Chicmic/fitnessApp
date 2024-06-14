@@ -22,15 +22,18 @@ function SignIn() {
     const [form,setForm]= useState<boolean>(false)
     const [isLoading,setIsLoading]= useState<boolean>(false)
     const dispatch = useAppDispatch()
-    function handlePress() {
+   async function handlePress() {
         setForm(true);
 
         if (!email.trim() || !password.trim()) {
+        
             // Email or password is empty
             setEmail(' ')
             setPassword(' ')
         } else {
-
+            const creds=  await auth().signInWithEmailAndPassword(email,password)
+            const user=  await getUserData(creds.user.uid);
+            console.log(user)
             console.log('Form submitted successfully');
             
         }
