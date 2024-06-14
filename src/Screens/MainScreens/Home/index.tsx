@@ -8,10 +8,7 @@ import { styles } from "./style";
 function Home({navigation}:HomeScreenProps){
    const nutrition=()=>navigation.navigate('Nutrition')  
    const water =()=> navigation.navigate('WaterIntake')
-   const steps =()=> navigation.navigate('DailySteps')
-   function press(){
-    console.log('press');
-   }  
+   const steps =()=> navigation.navigate('DailySteps')  
 
     return(
         <SafeAreaView >
@@ -25,8 +22,7 @@ function Home({navigation}:HomeScreenProps){
            <CustomCard title="Nutrition" percentage={80} point='850 cal / 1200 cal' icon={ICONS.FASHION} onPress={nutrition}/>
            <CustomCard title="Water" percentage={22} point='3 / 8 glasses' icon={ICONS.FASHION} onPress={water}/>
            <CustomCard title="Daily Steps" percentage={70} point='7000 steps/ 10000 steps' icon={ICONS.FASHION} onPress={steps}/>
-
-        </SafeAreaView>
+      </SafeAreaView>
     )
 }
 

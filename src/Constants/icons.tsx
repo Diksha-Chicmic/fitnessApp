@@ -25,7 +25,11 @@ import Community from '../Assets/Svgs/community.svg'
 import Bell from '../Assets/Svgs/bell.svg'
 import Settings from '../Assets/Svgs/settings.svg'
 import Cross from '../Assets/Svgs/cross-svgrepo-com.svg'
-
+import RedSmile from '../Assets/Svgs/redSmile.svg'
+import YellowSmile  from '../Assets/Svgs/yellowSmile.svg'
+import EmptyGlass from '../Assets/Svgs/EmptyGlass.svg'
+import FilledGlass from '../Assets/Svgs/filledGlass.svg'
+import Plus from '../Assets/Svgs/plus.svg'
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
@@ -80,6 +84,11 @@ export const ICONS = {
     BELL:(params: iconProps) => Bell({ ...iconStyle({ ...params }) }),
     COMMUNITY:(params: iconProps) => Community({ ...iconStyle({ ...params }) }),
     CROSS:(params: iconProps) => Cross({ ...iconStyle({ ...params }) }),
+    REDSMILE:(params: iconProps) => RedSmile({ ...iconStyle({ ...params }) }),
+    YELLOWSMILE:(params: iconProps) => YellowSmile({ ...iconStyle({ ...params }) }),
+    EMPTYGLASS:(params: iconProps) => EmptyGlass({ ...iconStyle({ ...params }) }),
+    GLASSFILLED:(params: iconProps) => FilledGlass({ ...iconStyle({ ...params }) }),
+    PLUS:(params: iconProps) => Plus({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={

@@ -4,7 +4,6 @@ import {ProgressChart} from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { COLORS, SIZES } from "../../../Constants/commonStyles";
 import Details from "../../../Components/CustomDetails";
-import CustomModal from "../../../Components/CustomModal";
 import DietDataList from "../../../Components/ModalDetails ";
 import { styles } from "./style";
 const screenWidth = Dimensions.get("window").width;
