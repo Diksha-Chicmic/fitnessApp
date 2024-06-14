@@ -33,7 +33,9 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
       
             // await reference.putFile(user.photo!);
       
-            // const url = await reference.getDownloadURL();
+            // const url = await storage().ref(
+            //   "media/" + userCredentials?.user.uid + "/" + "photo"
+            // ).getDownloadURL();
             // console.log(url, "the url is ");
       
             // dispatch(updateUser({ photo: url }));
