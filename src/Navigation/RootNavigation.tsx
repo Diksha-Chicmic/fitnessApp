@@ -11,13 +11,9 @@ const RootNavigator = () => {
     <NavigationContainer>
       <AppNavigator />
       {/* <FirstNav/> */}
-      {/* {!user ? <FirstNav/> : < AppNavigator/>} */}
+      {/* {user ? <FirstNav/> : < AppNavigator/>} */}
     </NavigationContainer>
   );
 };
 
 export default RootNavigator;
-
-{/* <NavigationContainer>
-{!user ? <FirstNav/> : < AppNavigator/>}
-</NavigationContainer> */}

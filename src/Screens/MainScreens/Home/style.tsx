@@ -3,17 +3,17 @@ import { COLORS, SIZES } from "../../../Constants/commonStyles"
 
 export const styles = StyleSheet.create({
     container:{
-       paddingLeft:20,
+       paddingLeft:"5%",
        
     },
      heading:{
          fontSize:SIZES.font24,
           fontWeight:'bold',
-          paddingVertical:10
+          paddingVertical:"5%"
      },
      text:{
          fontSize:SIZES.font11,
-         paddingVertical:10,
+         paddingVertical:"2%",
          width:'70%',
          
         
@@ -22,6 +22,6 @@ export const styles = StyleSheet.create({
          color:COLORS.PRIMARY.PURPLE,
          fontSize:SIZES.font13,
          fontWeight:'bold',
-         paddingVertical:10
+         paddingVertical:"5%"
      }
  })

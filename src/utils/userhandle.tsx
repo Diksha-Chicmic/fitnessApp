@@ -11,8 +11,8 @@ export const firebaseDB = {
   },
   documents: {
     users: {
-      byEmail:'byEmail',
-      byEmails: "byEmails",
+      byId:'byID',
+      byID: "byIDS",
     },
   },
 };
@@ -45,12 +45,6 @@ export const storeUserData = async (
            user
         );
   
-      // await firestore()
-      //   .collection(firebaseDB.collections.users)
-      //   .doc(firebaseDB.documents.users.byEmails)
-      //   .update({
-      //     emails: firestore.FieldValue.arrayUnion(userEmail),
-      //   });
   
       console.log("New User");
     } catch (e) {

@@ -1,7 +1,7 @@
 #import "AppDelegate.h"
 #import <Firebase.h>
 #import <React/RCTBundleURLProvider.h>
-
+#import "RCTAppleHealthKit.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -13,6 +13,7 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [[RCTAppleHealthKit new] initializeBackgroundObservers:bridge];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

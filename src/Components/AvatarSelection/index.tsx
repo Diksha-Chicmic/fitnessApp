@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { AVATARS, AvatarKey } from '../../Constants/icons';
 import { styles } from './style';
+
 interface AvatarSelectorProps {
     onSelect: (avatar: AvatarKey) => void;
 }

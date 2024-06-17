@@ -1,20 +1,24 @@
 import { Text, View, StyleSheet } from "react-native";
 import { styles } from "./style";
+import React from "react";
 
-const Details =({
+
+interface DetailsProps{
+  color:string,
+  title:string,
+  text:number,
+  percentage:number,
+  borderCheck?:boolean
+}
+
+const Details:React.FC<DetailsProps> =({
     color,
     title,
     text,
     percentage,
     borderCheck=true
 
-}:Readonly<{
-    color:string,
-    title:string,
-    text:number,
-    percentage:number,
-    borderCheck?:boolean
-}>)=>{
+})=>{
       
   return(
   <View style={[styles.container, borderCheck && styles.border]}>

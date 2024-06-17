@@ -2,20 +2,25 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './style';
 import { COLORS } from '../../Constants/commonStyles';
-const iconSize = { width: 24, height: 24 };
-const CustomCard = ({
-    title,
-    onPress,
-    percentage,
-    icon,
-    point,
-}: Readonly<{
+
+
+ interface CardProps{
     title: string;
     onPress: () => void;
     percentage: number;
     icon: (size: { width: number; height: number; color?: string }) => React.ReactNode;
     point: string;
-}>) => {
+ }
+const iconSize = { width: 24, height: 24 };
+
+
+const CustomCard:React.FC<CardProps> = ({
+    title,
+    onPress,
+    percentage,
+    icon,
+    point,
+}) => {
     const button = {
         style: {
             backgroundColor: "#F4DCDC",
