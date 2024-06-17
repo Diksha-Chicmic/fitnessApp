@@ -21,13 +21,13 @@ const AppNavigator = () => {
       screenOptions={{
         headerBackTitle: 'Back',
         headerShadowVisible: false,
-        headerShown:false,
+        headerShown:true,
         headerTitle: "",
         headerStyle: { backgroundColor: COLORS.PRIMARY.GREY },
       }}
     >
       <Stack.Screen name="HomeNavigator" component={AuthNavigator}
-      />
+      options ={{headerShown:false}}/>
       <Stack.Screen name="Nutrition" component={Nutrition} />
       <Stack.Screen name="DailySteps" component={Steps} />
       <Stack.Screen name="WaterIntake" component={Water} />

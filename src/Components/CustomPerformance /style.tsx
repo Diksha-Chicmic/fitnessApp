@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     quantText: {
-      color: COLORS.SECONDARY.GREY,
+      //color: COLORS.SECONDARY.GREY,
       fontSize:SIZES.font14
     },
     text:{

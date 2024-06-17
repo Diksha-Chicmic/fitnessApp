@@ -1,9 +1,7 @@
-
-
 import React, { useState } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { ICONS } from "../../Constants/icons";
-
+import { styles } from "./style";
 interface GlassProps {
     isFilled: boolean;
     onPress: (isFilled: boolean) => void; // Function to handle press
@@ -45,23 +43,7 @@ const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        padding: 20,
 
-
-    },
-    glassBox: {
-        position: "relative"
-    },
-
-    iconBox: {
-        position: "absolute",
-        left: 16,
-        top: 20,
-    },
-});
 
 export default CustomGlass;
 

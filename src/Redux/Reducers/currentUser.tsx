@@ -4,7 +4,7 @@ import { User } from "../../Defs/user";
 const initialState: { data: User & { password: string } } = {
     data: {
         id: null,
-       // firstName: null,
+        //firstName: null,
         //lastName: null,
         email: null,
         finger: null,

@@ -60,6 +60,23 @@ export const STRINGS={
         TEXT:"Eat the right amount of food and stay hydrated through the day",
         TEXT2:"More details"
     },
+    STEPS:{
+        HEADING:"You walked",
+        TEXT:"steps today",
+        PROGESSTXT:"of daily goal",
+        LINETXT:"Statistic"
+
+    },
+    NUTRITION:{
+        HEADING:"You burned",
+        TEXT:"calories today"
+    },
+    WATER:{
+        WARNTXT:"You didn't drink enough water for today.",
+        HEADING:"You drank",
+        TEXT:" today"
+    },
+
     ERRORS:{
         EMPTY:"This field cannot be empty",
         UNVALID:"Email address is not valid",

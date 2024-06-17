@@ -7,26 +7,26 @@ type Icon = {
   width: number;
   color: string;
 };
-
+interface ViewProps{
+  title?: string,
+  items?: Array<string>,
+  quant?: Array<number>,
+  status?: Array<string>,
+  onClose?: () => void
+}
 const iconSize: Icon = {
   height: 25,
   width: 25,
   color: 'grey',
 };
 
-const CustomView = ({
+const CustomView:React.FC<ViewProps> = ({
   title,
   items,
   quant,
   status,
   onClose
-}: Readonly<{
-  title?: string,
-  items?: Array<string>,
-  quant?: Array<number>,
-  status?: Array<string>,
-  onClose?: () => void
-}>) => {
+}) => {
     function handlepress(){
         console.log('press')
     }

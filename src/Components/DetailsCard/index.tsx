@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet, Text,View} from 'react-native'
-import { COLORS, SIZES } from '../../Constants/commonStyles'
+import {Text,View} from 'react-native'
+import { styles } from './style'
 
 interface detailsProps{
     calNum:string,
@@ -24,28 +24,5 @@ const DetailsCard:React.FC<detailsProps> =({calNum,goalNum,calText,goalText})=>{
     )
 }
 
-const styles=StyleSheet.create({
-    container:{
-        flexDirection:'row',
-    paddingVertical:18
-        
-    },
-    box:{
-      
-       marginHorizontal:60,
-    
-    },
-    itemSeparator:{
-        borderRightWidth:1,
-        borderRightColor:COLORS.SECONDARY.GREY
 
-    },
-    title:{
-        fontSize:SIZES.font14
-    },
-    text:{
-        fontSize:SIZES.font11,
-        color:COLORS.SECONDARY.GREY
-    }
-})
 export default DetailsCard
