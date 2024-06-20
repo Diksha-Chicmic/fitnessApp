@@ -4,6 +4,8 @@ import CircularProgress from 'react-native-circular-progress-indicator';
 import {LineChart, } from "react-native-gifted-charts";
 import { Dimensions } from "react-native";
 import { COLORS } from "../../../Constants/commonStyles";
+import { useAppSelector } from "../../../Redux/Store";
+import { date } from "../../../utils/common";
 import DetailsCard from "../../../Components/DetailsCard";
 import PerformanceD from "../../../Components/PerformanceDetail";
 import { ICONS } from "../../../Constants/icons";
@@ -14,14 +16,23 @@ const screenWidth = Dimensions.get("window").width;
 
 
 const data = [{ value: 10 }, { value: 30 }, { value: 60 }, { value: 40 }, { value: 9 }, { value: 50 }, { value: 12 }]
+
 function Steps() {
+
+    const today = date.today();
+    const { totalSteps,
+            nutrition,
+            goals: { stepsGoal, totalNutrition },
+          } = useAppSelector((state) => state.Health.data);
+          const { id } = useAppSelector((state) => state.User.data);
+    
     return (
         <SafeAreaView>
             <ScrollView>
-                <Text style={styles.heading} >{STRINGS.STEPS.HEADING}<Text style={styles.insideTxt}> 7000</Text> {STRINGS.STEPS.TEXT} </Text>
+                <Text style={styles.heading} >{STRINGS.STEPS.HEADING}<Text style={styles.insideTxt}> {totalSteps}</Text> {STRINGS.STEPS.TEXT} </Text>
                 <View style={styles.container}>
                     <CircularProgress
-                        value={70}
+                        value={totalSteps}
                         inActiveStrokeColor={COLORS.SECONDARY.WHITE}
                         progressValueColor={'black'}
                         valueSuffix={'%'}
@@ -32,7 +43,7 @@ function Steps() {
                     <View style={styles.iconContainer}>{ICONS.COMMUNITY({ height: 20, width: 20 })}</View>
                     <Text style={styles.textContainer}>{STRINGS.STEPS.PROGESSTXT}</Text>
                 </View>
-                <DetailsCard calNum="1300" calText="Cal Burned" goalNum='10000' goalText="daily goal" />
+                <DetailsCard calNum="1300" calText="Cal Burned" goalNum={stepsGoal} goalText="daily goal" />
                 <View style={{ backgroundColor: 'white', marginBottom: 20, borderRadius: 20 }}>
                     <Text style={styles.text}>{STRINGS.STEPS.LINETXT}</Text>
                     <LineChart
@@ -68,3 +79,17 @@ function Steps() {
 
 
 export default Steps
+
+
+
+
+
+
+
+
+
+
+       
+        
+      
+

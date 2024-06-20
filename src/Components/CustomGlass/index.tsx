@@ -5,6 +5,7 @@ import { styles } from "./style";
 interface GlassProps {
     isFilled: boolean;
     onPress: (isFilled: boolean) => void; // Function to handle press
+    disable:boolean
 }
 
 interface IconSize {
@@ -17,7 +18,7 @@ const iconSize: IconSize = {
     width: 42,
 };
 
-const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress }) => {
+const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress,disable }) => {
     const [filled, setFilled] = useState<boolean>(isFilled);
 
     const handlePress = () => {
@@ -28,7 +29,7 @@ const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress }) => {
     return (
 
         <View style={styles.container}>
-            <TouchableOpacity onPress={handlePress} >
+            <TouchableOpacity  onPress={handlePress} >
                 {filled ? (
                     ICONS.GLASSFILLED(iconSize)
                 ) : (

@@ -4,9 +4,16 @@ import { HomeScreenProps } from "../../../Constants/navigation";
 import { ICONS } from "../../../Constants/icons";
 import { STRINGS } from "../../../Constants/strings";
 import CustomCard from "../../../Components/CustomCard";
+import { useAppSelector } from "../../../Redux/Store";
 import { styles } from "./style";
 function Home({navigation}:HomeScreenProps){
-   const nutrition=()=>navigation.navigate('Nutrition')  
+   const { totalSteps,
+        nutrition,
+        dailyGlass,
+        goals: { stepsGoal, totalNutrition, totalGlasses },
+      } = useAppSelector((state) => state.Health.data);
+      const { id } = useAppSelector((state) => state.User.data);
+   const nutritions=()=>navigation.navigate('Nutrition')  
    const water =()=> navigation.navigate('WaterIntake')
    const steps =()=> navigation.navigate('DailySteps')  
 
@@ -19,9 +26,9 @@ function Home({navigation}:HomeScreenProps){
             <Text style={styles.text2}>{STRINGS.HOME.TEXT2}</Text>
            </TouchableOpacity>
            </View>
-           <CustomCard title="Nutrition" percentage={80} point='850 cal / 1200 cal' icon={ICONS.FASHION} onPress={nutrition}/>
-           <CustomCard title="Water" percentage={22} point='3 / 8 glasses' icon={ICONS.FASHION} onPress={water}/>
-           <CustomCard title="Daily Steps" percentage={70} point='7000 steps/ 10000 steps' icon={ICONS.FASHION} onPress={steps}/>
+           <CustomCard title="Nutrition" percentage={80} point={`${nutrition} cal / ${totalNutrition} cal`}  icon={ICONS.FASHION} onPress={nutritions}/>
+           <CustomCard title="Water" percentage={22} point={`${dailyGlass} / ${totalGlasses} glasses`} icon={ICONS.FASHION} onPress={water}/>
+           <CustomCard title="Daily Steps" percentage={70} point={` ${totalSteps} steps/ ${stepsGoal} steps`} icon={ICONS.FASHION} onPress={steps}/>
       </SafeAreaView>
     )
 }
