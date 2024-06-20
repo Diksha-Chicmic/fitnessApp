@@ -5,6 +5,7 @@ import { Dimensions } from "react-native";
 import { COLORS, SIZES } from "../../../Constants/commonStyles";
 import Details from "../../../Components/CustomDetails";
 import DietDataList from "../../../Components/ModalDetails ";
+import { useAppSelector } from "../../../Redux/Store";
 import { STRINGS } from "../../../Constants/strings";
 import { styles } from "./style";
 
@@ -21,11 +22,13 @@ const chartConfig = {
     color: (opacity = 1) => `rgba(114,101,227, ${opacity})`,
 };
 function Nutrition() {
+    const {nutrition}= useAppSelector((state)=>state.Health.data);
+
     return (
 
         <SafeAreaView>
             <ScrollView>
-                <Text style={styles.heading}> {STRINGS.NUTRITION.HEADING} <Text style={styles.text}>850 </Text>{STRINGS.NUTRITION.TEXT}</Text>
+                <Text style={styles.heading}> {STRINGS.NUTRITION.HEADING} <Text style={styles.text}>{nutrition} </Text>{STRINGS.NUTRITION.TEXT}</Text>
                 <View style={styles.container}>
                     <ProgressChart
                         data={data}

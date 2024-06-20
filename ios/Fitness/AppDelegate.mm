@@ -13,7 +13,7 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
-  [[RCTAppleHealthKit new] initializeBackgroundObservers:bridge];
+  
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
