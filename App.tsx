@@ -12,6 +12,8 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Provider } from "react-redux";
 import { store, persistor } from './src/Redux/Store';
 import { PersistGate } from "redux-persist/integration/react";
+import {SheetProvider} from 'react-native-actions-sheet';
+import './src/Constants/sheet'
 // GoogleSignin.configure(); 
 function App(): React.JSX.Element {
 
@@ -26,7 +28,9 @@ function App(): React.JSX.Element {
 
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+      <SheetProvider>
         <RootNavigator />
+        </SheetProvider>
       </PersistGate>
     </Provider>
 

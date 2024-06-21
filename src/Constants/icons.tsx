@@ -30,6 +30,11 @@ import YellowSmile  from '../Assets/Svgs/yellowSmile.svg'
 import EmptyGlass from '../Assets/Svgs/EmptyGlass.svg'
 import FilledGlass from '../Assets/Svgs/filledGlass.svg'
 import Plus from '../Assets/Svgs/plus.svg'
+import Heart from '../Assets/Svgs/heart.svg'
+import Comment from '../Assets/Svgs/comment.svg'
+import Camera from '../Assets/Svgs/camera.svg'
+import AddImage from '../Assets/Svgs/add-image.svg'
+import AddPhoto from '../Assets/Svgs/add-photo.svg'
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
@@ -89,6 +94,11 @@ export const ICONS = {
     EMPTYGLASS:(params: iconProps) => EmptyGlass({ ...iconStyle({ ...params }) }),
     GLASSFILLED:(params: iconProps) => FilledGlass({ ...iconStyle({ ...params }) }),
     PLUS:(params: iconProps) => Plus({ ...iconStyle({ ...params }) }),
+    COMMENT:(params: iconProps) => Comment({ ...iconStyle({ ...params }) }),
+    HEART:(params: iconProps) => Heart({ ...iconStyle({ ...params }) }),
+    CAMERA:(params: iconProps) => Camera({ ...iconStyle({ ...params }) }),
+    ADDIMAGE:(params: iconProps) => AddImage({ ...iconStyle({ ...params }) }),
+    ADDPHOTO:(params: iconProps) => AddPhoto({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={

@@ -6,6 +6,7 @@ import Steps from "../Screens/MainScreens/Steps";
 import Water from "../Screens/MainScreens/Water";
 import Nutrition from "../Screens/MainScreens/Nutrition ";
 import Home from "../Screens/MainScreens/Home";
+import PostDetails from "../Components/PostDetails";
 import { homeStackParamList } from "../Constants/navigation";
 import { COLORS } from "../Constants/commonStyles";
 
@@ -31,6 +32,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Nutrition" component={Nutrition} />
       <Stack.Screen name="DailySteps" component={Steps} />
       <Stack.Screen name="WaterIntake" component={Water} />
+      <Stack.Screen name="PostDetails" component={PostDetails}/>
     </Stack.Navigator>
   );
 };
