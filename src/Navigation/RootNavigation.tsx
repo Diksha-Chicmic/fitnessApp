@@ -108,9 +108,9 @@ const androidHealthSetup = async () => {
   if (initializing) return null; 
   return (
     <NavigationContainer>
-      {/* <AppNavigator /> */}
+      <AppNavigator />
       {/* <FirstNav/> */}
-      {user ? <FirstNav/> : < AppNavigator/>}
+      {/* {user ? <FirstNav/> : < AppNavigator/>} */}
     </NavigationContainer>
   );
 };
