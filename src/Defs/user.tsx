@@ -1,3 +1,5 @@
+import { Timestamp } from "@react-native-firebase/firestore";
+
  export interface User{
     id: string | null;
    //  firstName: string | null;
@@ -15,11 +17,31 @@
    totalSteps: number,
    dailyGlass:number,
    nutrition:number,
-   currentTime:any,
+   currentTime:Timestamp,
    goals:{
       totalGlasses:number,
       stepsGoal:string,
       totalNutrition:number,
    }
 
+ };
+
+
+ export type Post = {
+   photo: string;
+   caption: string;
+   createdOn: Timestamp;
+   userId: string;
+   userName: string;
+   userPhoto: string;
+   likedByUsersId: Array<string>;
+   comments: Array<Comment>;
+   postId?: string;
+ };
+ 
+ export type Comment = {
+   userName: string;
+   userPhoto: string;
+   comment: string;
+   createdOn: Timestamp;
  };

@@ -3,17 +3,18 @@ import firestore, { Timestamp } from "@react-native-firebase/firestore";
 // import "react-native-get-random-values";
 import storage from "@react-native-firebase/storage";
 
-import { User } from "../Defs/user";
+import { User,Post,Comment } from "../Defs/user";
 
 export const firebaseDB = {
   collections: {
     users: "users",
+    posts:"posts"
   },
   documents: {
-    users: {
-      byId:'byID',
-      byID: "byIDS",
-    },
+    users: {},
+    post:{
+      allIds:'allIds'
+    }
   },
 };
 
@@ -67,8 +68,25 @@ export const storeUserData = async (
       return null;
     }
   };
-  
 
+
+  export const storePostComment = async (postId: string, comment: Comment) => {
+    await firestore()
+      .collection(firebaseDB.collections.posts)
+      .doc(postId)
+      .update({
+        comments: firestore.FieldValue.arrayUnion(comment),
+      });
+  };
+  
+  export const getPost = async (postId: string) => {
+    const snapshot = await firestore()
+      .collection(firebaseDB.collections.posts)
+      .doc(postId)
+      .get();
+    console.log("post data", snapshot.data());
+    return snapshot.data();
+  };
 
 
 

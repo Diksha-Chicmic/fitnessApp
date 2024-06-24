@@ -51,25 +51,19 @@ export const styles = StyleSheet.create({
   },
   input :{
       backgroundColor:'white',
-     // marginTop:'2%',
-    
-     
-      //color:COLORS.SECONDARY.GREY,
+
       paddingTop:'3.2%',
       fontSize:SIZES.font11,
       borderTopColor:COLORS.SECONDARY.LIGHTGREY,
       borderTopWidth:2,
-      position:'absolute',
+     
      
       bottom:0,
       width:screenWidth,
       paddingHorizontal:'8%',
-      paddingVertical:'10%'
+      paddingVertical:'8%'
   },
   commentsList: {
-      
-      flex:1,
-      justifyContent:'space-evenly'
       
     },
     inputText:{
