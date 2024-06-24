@@ -12,9 +12,11 @@ declare module 'react-native-actions-sheet' {
             icon3?:React.ReactNode,
             title:string,
             placeholderText:string,
-            icon1Press:()=>void,
-            icon2Press:()=>void,
-            icon3Press:()=>void
+            icon1Press:(h:any)=>void,
+            icon2Press:(h:any)=>void,
+            icon3Press:()=>void,
+            onPost?:(image: string | null, caption: string)=>void,
+            onComment? :(comment:string)=>void 
         };
       }>;
     }

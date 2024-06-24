@@ -57,6 +57,12 @@ export const styles = StyleSheet.create({
    },
    icon:{
     paddingHorizontal:8
-   }
+   },
+   selectedImage: {
+    width: '80%',
+    height: 200,
+    marginVertical: 16,
+    borderRadius: 8,
+  },
   
   });
