@@ -13,6 +13,8 @@ import AddPreferences from "../Screens/AddPrefences";
 import AddInterest from "../Screens/AddInterest";
 import AddGender from "../Screens/AddGender";
 import ReadyToGo from "../Screens/ReadToGo";
+import AddFirstName from "../Screens/AddFirstName";
+import AddLastName from "../Screens/AddLastName";
 const Stack = createNativeStackNavigator<onboardingStackParamList>();
 
 
@@ -24,6 +26,8 @@ const FirstNav = () => {
       >
         <Stack.Screen  name={NAVIGATION.LANDING} component={LandingPage} />
         <Stack.Screen  name={NAVIGATION.SIGNIN} component={SignIn} />
+        <Stack.Screen  name={NAVIGATION.ADDFIRSTNAME} component={AddFirstName} />
+        <Stack.Screen  name={NAVIGATION.ADDLASTNAME} component={AddLastName} />
         <Stack.Screen name={NAVIGATION.ADDEMAIL} component={AddEmail}/>
         <Stack.Screen name={NAVIGATION.ADDPASSWORD} component ={AddPassword}/>
         <Stack.Screen name={NAVIGATION.ADDFINGERPRINT} component={AddFingerprint}/>

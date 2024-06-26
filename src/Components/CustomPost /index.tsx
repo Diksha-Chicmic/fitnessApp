@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
-import { Text, View, Image, StyleSheet, Dimensions, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 import { IMAGES } from '../../Constants/images';
 import { ICONS } from '../../Constants/icons';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
-import { PostScreenProps } from '../../Constants/navigation';
+import { addLikes } from '../../utils/userhandle';
 import { styles } from './style';
 
 interface PostProps {
-  image?: string;
+  image?: string;  // URL of the post image
+  profilePic?: string | null;  // URL of the user's profile picture
   name?: string;
   time?: string;
   caption?: string;
   likes?: number;
   comments?: number;
   parentStyle?: StyleProp<ViewStyle>;
+  postId:string;
   onPress?: () => void;
 }
 
-const screenWidth = Dimensions.get('screen').width;
-
-const PostScreen: React.FC<PostProps> = ({ image, name, time, caption, likes = 0, comments = 0, parentStyle, onPress }) => {
+const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, caption, likes, comments, parentStyle, onPress }) => {
   const [iconColor, setIconColor] = useState(COLORS.PRIMARY.DARKGREY);
-  const navigation = useNavigation<PostScreenProps['navigation']>();
+  const [likesCount, setLikesCount] = useState<number>(likes || 0);
 
-  const handlePress = () => {
+  const handlePress = async () => {
     setIconColor(prevColor =>
       prevColor === COLORS.PRIMARY.DARKGREY ? COLORS.PRIMARY.PURPLE : COLORS.PRIMARY.DARKGREY
+    );
+    setLikesCount(prevCount =>
+      iconColor === COLORS.PRIMARY.DARKGREY ? prevCount + 1 : prevCount - 1
     );
   };
 
   return (
     <View style={[styles.conatiner, parentStyle]}>
       <View style={styles.direction}>
-        <Image source={IMAGES.LANDING_PAGE} style={styles.profile} />
+        <Image source={profilePic ? { uri: profilePic } : IMAGES.LANDING_PAGE} style={styles.profile} />
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.time}>{time}</Text>
@@ -45,7 +47,7 @@ const PostScreen: React.FC<PostProps> = ({ image, name, time, caption, likes = 0
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.direction}>
             {ICONS.HEART({ height: 18, width: 18, color: iconColor })}
-            <Text style={styles.text}>{likes}</Text>
+            <Text style={styles.text}>{likesCount}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={onPress}>
@@ -60,71 +62,3 @@ const PostScreen: React.FC<PostProps> = ({ image, name, time, caption, likes = 0
 };
 
 export default PostScreen;
-
-
-
-
-// import React, { useState } from 'react';
-// import { Text, View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
-// import { ICONS } from '../../Constants/icons';
-// import { COLORS } from '../../Constants/commonStyles';
-// import { PostScreenProps } from '../../Constants/navigation';
-// import { IMAGES } from '../../Constants/images';
-// import { styles } from './style';
-
-// interface PostProps {
-//   image?: string | number; // Adjusted type for image prop
-//   name?: string;
-//   time?: string;
-//   caption?: string;
-//   likes?: number;
-//   comments?: number;
-//   parentStyle?: React.ViewStyle; // Updated to React.ViewStyle for clarity
-// }
-
-// const PostScreen: React.FC<PostProps> = ({ image, name, time, caption, likes, comments, parentStyle }) => {
-//   const [iconColor, setIconColor] = useState(COLORS.PRIMARY.DARKGREY);
-//   const navigation = useNavigation<PostScreenProps['navigation']>();
-
-//   const handlePress = () => {
-//     setIconColor(prevColor =>
-//       prevColor === COLORS.PRIMARY.DARKGREY ? COLORS.PRIMARY.PURPLE : COLORS.PRIMARY.DARKGREY
-//     );
-//   };
-
-//   const handleCommentPress = () => {
-//     navigation.push('PostDetails');
-//     console.log('Navigating to PostDetails screen...');
-//   };
-
-//   return (
-//     <View style={[styles.container, parentStyle]}>
-//       <View style={styles.direction}>
-//         <Image source={IMAGES.LANDING_PAGE} style={styles.profile} />
-//         <View style={styles.textContainer}>
-//           <Text style={styles.name}>{name}</Text>
-//           <Text style={styles.time}>{time}</Text>
-//         </View>
-//       </View>
-//       <Text style={styles.caption}>{caption}</Text>
-//       <Image source={{ uri: image }} style={styles.postImage} />
-//       <View style={styles.iconContainer}>
-//         <TouchableOpacity onPress={handlePress}>
-//           <View style={styles.direction}>
-//             {ICONS.HEART({ height: 18, width: 18, color: iconColor })}
-//             <Text style={styles.text}>{likes}</Text>
-//           </View>
-//         </TouchableOpacity>
-//         <TouchableOpacity onPress={handleCommentPress}>
-//           <View style={styles.direction}>
-//             {ICONS.COMMENT({ height: 18, width: 18, color: COLORS.PRIMARY.DARKGREY })}
-//             <Text style={styles.text}>{comments}</Text>
-//           </View>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default PostScreen;

@@ -5,11 +5,12 @@ import { CompositeScreenProps } from "@react-navigation/native";
 
 
 export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', 
-ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',}
+ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',
+ADDFIRSTNAME:'AddFirstName', ADDLASTNAME:'AddLastName'}
 
  = 
 { LANDING: 'LandingPage', SIGNIN: 'SignIn',ONBOARDING:'Onboarding', ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', 
-ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo' ,}
+ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo',ADDFIRSTNAME:'AddFirstName', ADDLASTNAME:'AddLastName'}
 
 
 export type authNavigationList={
@@ -59,6 +60,8 @@ export type rootStackParamList = {
 export type onboardingStackParamList = {
     LandingPage: undefined;
     SignIn: undefined;
+    AddFirstName:undefined
+    AddLastName:undefined
     AddEmail:undefined
     AddPassword:undefined
     AddFingerprint:undefined
@@ -108,6 +111,12 @@ onboardingStackParamList,
 export type ReadyToGoProps=NativeStackScreenProps<
 onboardingStackParamList,
 "ReadyToGo">
+export type FirstNameProps=NativeStackScreenProps<
+onboardingStackParamList,
+"AddFirstName">
+export type LastNameProps=NativeStackScreenProps<
+onboardingStackParamList,
+"AddLastName">
 
 export type homeStackParamList = {
   HomeNavigator: undefined;

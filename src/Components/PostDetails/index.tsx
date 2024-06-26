@@ -1,46 +1,29 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SheetManager } from 'react-native-actions-sheet';
+import firestore, { Timestamp } from '@react-native-firebase/firestore';
+import { useAppSelector } from '../../Redux/Store';
+import { Comment } from '../../Defs/user';
 import PostScreen from '../CustomPost ';
 import { IMAGES } from '../../Constants/images';
 import { styles } from './style';
 import { ICONS } from '../../Constants/icons';
-
-interface Comment {
-  id: string;
-  name: string;
-  time: string;
-  text: string;
-}
-
-interface Post {
-  id: number;
-  image: string | null;
-  caption: string;
-}
-
-const commentsData = [
-  { id: '1', name: 'Diksha', time: '6 minutes', text: 'Nice' },
-  { id: '2', name: 'Amit', time: '10 minutes', text: 'Great post!' },
-  { id: '3', name: 'Ravi', time: '15 minutes', text: 'Very informative.' },
-  { id: '4', name: 'Priya', time: '20 minutes', text: 'Loved it!' },
-  { id: '5', name: 'Kiran', time: '25 minutes', text: 'Thanks for sharing.' },
-  { id: '6', name: 'Sonia', time: '30 minutes', text: 'Interesting read.' },
-  { id: '7', name: 'Rohit', time: '35 minutes', text: 'Awesome!' },
-  { id: '8', name: 'Anjali', time: '40 minutes', text: 'Well written.' },
-  { id: '9', name: 'Neha', time: '45 minutes', text: 'Good job!' },
-  { id: '10', name: 'Arjun', time: '50 minutes', text: 'Nice article.' },
-  { id: '11', name: 'Suresh', time: '55 minutes', text: 'I enjoyed this.' },
-  { id: '12', name: 'Meena', time: '1 hour', text: 'Keep it up!' },
-];
+import { getPost, storePostComment } from '../../utils/userhandle';
 
 const PostDetails = ({ route }) => {
   const { post } = route.params;
-  const [comments, setComments] = React.useState<Comment[]>(commentsData);
+  const [comments, setComments] = React.useState<Comment[]>([]);
+  const { id: userId, photo: userPhoto, firstName, lastName } = useAppSelector(
+    (state) => state.User.data
+  );
 
+  React.useEffect(()=>{
+      getPost(post.postId)
+  },[])
+ 
+  console.log('post is ',post);
   // Handle comment button press
-  const handleCommentPress = () => {
-    console.log('Open comment sheet');
+  const handleCommentPress =  () => {
     SheetManager.show('comment-sheet', {
       payload: {
         title: 'Comment',
@@ -51,16 +34,23 @@ const PostDetails = ({ route }) => {
         icon1Press: () => console.log('icon1 press'),
         icon2Press: () => console.log('icon2 press'),
         icon3Press: () => console.log('icon3 press'),
-        onComment: (commentText: string) => {
+        onComment: async (commentText: string) => {
           const newComment: Comment = {
-            id: String(comments.length + 1), // Generate unique ID for the new comment
-            name: 'User', // Assuming current user's name
-            time: 'Just now', // Assuming the comment was just posted
-            text: commentText,
+            id: String(comments.length + 1), 
+            userName: firstName+" "+lastName, 
+            createdOn: Timestamp.fromDate(new Date()), 
+            comment: commentText,
+            Photo:userPhoto
           };
-          setComments([newComment, ...comments]); // Add new comment to the beginning of the array
-          console.log('Comment posted:', newComment);
-          SheetManager.hide('comment-sheet'); // Dismiss the action sheet after posting comment
+          try{
+            await storePostComment(post.postId,newComment);
+          }
+          catch(e){
+            console.log('eee',e)
+          }
+          setComments((prevComments) => [newComment, ...prevComments]);
+       
+          SheetManager.hide('comment-sheet'); 
         },
       },
     });
@@ -69,13 +59,14 @@ const PostDetails = ({ route }) => {
   return (
     <View style={styles.container}>
       <PostScreen
-        image={post.image}
-        name="User"
-        time="Just now"
+        image={post.photo}
+        name={firstName + " " + lastName}
+        time="Just Now"
         caption={post.caption}
-        likes={0} // Placeholder for likes
-        comments={comments.length} // Display total comments count
-        parentStyle={styles.parent}
+        likes={0}
+        comments={comments.length}
+        parentStyle={styles.parent} 
+        postId={post.postId}        //profilePic={userPhoto}
       />
 
       <Text style={styles.heading}>Comments</Text>
@@ -86,11 +77,11 @@ const PostDetails = ({ route }) => {
               <View style={styles.direction}>
                 <Image source={IMAGES.LANDING_PAGE} style={styles.profile} />
                 <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.time}>{item.time}</Text>
+                  <Text style={styles.name}>{item.userName}</Text>
+                  <Text style={styles.time}>{item.createdOn.toDate().toLocaleString()}</Text>
                 </View>
               </View>
-              <Text style={styles.commentText}>{item.text}</Text>
+              <Text style={styles.commentText}>{item.comment}</Text>
             </View>
           ))}
         </View>
@@ -104,7 +95,3 @@ const PostDetails = ({ route }) => {
 };
 
 export default PostDetails;
-
-
-
-

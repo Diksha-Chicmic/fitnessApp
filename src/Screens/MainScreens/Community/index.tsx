@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary, launchCamera, ImageLibraryOptions, CameraOptions } from 'react-native-image-picker';
 import PostScreen from '../../../Components/CustomPost ';
@@ -9,15 +9,14 @@ import { ICONS } from '../../../Constants/icons';
 import { SheetManager } from 'react-native-actions-sheet';
 import AddStory from '../../../Components/AddStory';
 import { styles } from './style';
-interface Post {
-  id: number;
-  image: string | null;
-  caption: string;
-}
+import { useAppSelector } from '../../../Redux/Store';
+import { getAllPost, getPost } from '../../../utils/userhandle';
+import { Post } from '../../../Defs/user';
+
 
 function Community({ navigation }) {
   const [posts, setPosts] = useState<Post[]>([]);
-
+  const {firstName,lastName,photo}= useAppSelector((state)=>state.User.data)
   const openImagePicker = async (callback: (uri: string) => void) => {
     const options: ImageLibraryOptions = {
       mediaType: 'photo',
@@ -38,6 +37,10 @@ function Community({ navigation }) {
     }
   };
 
+  useEffect(()=> {
+getAllPost().then(val => setPosts(val));
+  },[])
+
   const handleCommentPress = () => {
     SheetManager.show('comment-sheet', {
       payload: {
@@ -55,6 +58,7 @@ function Community({ navigation }) {
             setPosts([...posts, newPost]);
           }
         }
+        
       }
     });
   };
@@ -78,8 +82,9 @@ function Community({ navigation }) {
         {posts.map((post, index) => (
           <PostScreen
             key={index}
-            image={post.image}
-            name="User"
+            image={post.photo}
+            postId={post.postId!}
+            name={firstName+" "+lastName}
             time="Just now"
             caption={post.caption}
             likes={0}
