@@ -1,4 +1,4 @@
-import CustomComment from "../Components/CustomComment";
+import CustomComment from "../Components/CustomSheet";
 import {registerSheet,SheetDefinition} from 'react-native-actions-sheet';
 
 registerSheet('comment-sheet', CustomComment);

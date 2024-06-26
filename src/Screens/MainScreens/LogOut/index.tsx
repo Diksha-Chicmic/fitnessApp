@@ -1,13 +1,16 @@
-import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import React, { useEffect } from "react";
+import { View } from "react-native";
+import auth from "@react-native-firebase/auth";
+import { styles } from "./style";
 
-function LogOut(){
-    return(
-        <SafeAreaView>
-           <Text> LOGOUT SCREEN</Text>
-        </SafeAreaView>
-    )
-}
+const LogOut = () => {
+  useEffect(() => {
+    auth().signOut();
+  }, []);
+  return (
+    <View style={styles.conatiner}>
+    </View>
+  );
+};
 
-
-export default LogOut
+export default LogOut;

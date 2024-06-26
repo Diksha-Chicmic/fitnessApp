@@ -2067,6 +2067,8 @@ PODS:
   - React-Mapbuffer (0.74.1):
     - glog
     - React-debug
+  - react-native-get-random-values (1.11.0):
+    - React-Core
   - react-native-image-picker (7.1.2):
     - DoubleConversion
     - glog
@@ -2372,6 +2374,11 @@ PODS:
   - RNGoogleSignin (12.2.0):
     - GoogleSignIn (~> 7.1)
     - React-Core
+  - RNNotifee (7.8.2):
+    - React-Core
+    - RNNotifee/NotifeeCore (= 7.8.2)
+  - RNNotifee/NotifeeCore (7.8.2):
+    - React-Core
   - RNPermissions (4.1.5):
     - React-Core
   - RNReanimated (3.12.0):
@@ -2456,6 +2463,7 @@ DEPENDENCIES:
   - React-jsitracing (from `../node_modules/react-native/ReactCommon/hermes/executor/`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
+  - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-notifications (from `../node_modules/react-native-notifications`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -2493,6 +2501,7 @@ DEPENDENCIES:
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
+  - "RNNotifee (from `../node_modules/@notifee/react-native`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -2591,6 +2600,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   React-Mapbuffer:
     :path: "../node_modules/react-native/ReactCommon"
+  react-native-get-random-values:
+    :path: "../node_modules/react-native-get-random-values"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-notifications:
@@ -2665,6 +2676,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-google-signin/google-signin"
+  RNNotifee:
+    :path: "../node_modules/@notifee/react-native"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -2731,6 +2744,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 3de522f8f794dccd3c54af9160dc992ee65bd494
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: c5844bf3c2206f5475c0fc2340a89b049ea23c97
+  react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
   react-native-image-picker: 8b791a2bec6da84ca7d8cbcad30da159d6dd6da4
   react-native-notifications: 4601a5a8db4ced6ae7cfc43b44d35fe437ac50c4
   react-native-safe-area-context: b01d8f42d4e62a7be5a3e69fd332e0c7e67584c7
@@ -2769,6 +2783,7 @@ SPEC CHECKSUMS:
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGestureHandler: 20a4307fd21cbff339abfcfa68192f3f0a6a518b
   RNGoogleSignin: ab87aa33c006c3a5c6a7f049f3643412efe94015
+  RNNotifee: 8e2d3df3f0e9ce8f5d1fe4c967431138190b6175
   RNPermissions: 294531ede5a64d1528463e88fffef05675842042
   RNReanimated: 967ae35616ef948658afa75d24595d4584051540
   RNScreens: 30249f9331c3b00ae7cb7922e11f58b3ed369c07
