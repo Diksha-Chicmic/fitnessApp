@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary, launchCamera, ImageLibraryOptions, CameraOptions } from 'react-native-image-picker';
+import firestore from "@react-native-firebase/firestore";
 import PostScreen from '../../../Components/CustomPost ';
 import { SIZES } from '../../../Constants/commonStyles';
 import { CommunityProps } from '../../../Constants/navigation';
@@ -10,18 +11,20 @@ import { SheetManager } from 'react-native-actions-sheet';
 import AddStory from '../../../Components/AddStory';
 import { styles } from './style';
 import { useAppSelector } from '../../../Redux/Store';
-import { getAllPost, getPost } from '../../../utils/userhandle';
+import Story from '../../../Components/CustomStory ';
 import { Post } from '../../../Defs/user';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 function Community({ navigation }) {
   const [posts, setPosts] = useState<Post[]>([]);
   const {firstName,lastName,photo}= useAppSelector((state)=>state.User.data)
+  const [storyUpdateTrigger, setStoryUpdateTrigger] = useState<number>(0);
   const openImagePicker = async (callback: (uri: string) => void) => {
     const options: ImageLibraryOptions = {
       mediaType: 'photo',
     };
-    let response = await launchImageLibrary(options);
+    let response:any = await launchImageLibrary(options);
     if (!response.didCancel && response.assets && response.assets.length > 0) {
       callback(response.assets[0].uri);
     }
@@ -31,17 +34,31 @@ function Community({ navigation }) {
     const options: CameraOptions = {
       mediaType: 'photo',
     };
-    let response = await launchCamera(options);
+    let response:any= await launchCamera(options);
     if (!response.didCancel && response.assets && response.assets.length > 0) {
       callback(response.assets[0].uri);
     }
   };
 
-  useEffect(()=> {
-getAllPost().then(val => setPosts(val));
-  },[])
 
-  const handleCommentPress = () => {
+  useEffect(() => {
+    const unsubscribe = firestore()
+      .collection('posts')
+      .onSnapshot(snapshot => {
+        const data = snapshot.docs.map(doc => doc.data() as Post);
+        setPosts(data);
+      }, error => {
+        console.log('Error getting posts: ', error);
+      });
+    return () => unsubscribe();
+  }, []);
+  const handleStoryAdded = () => {
+    setStoryUpdateTrigger(storyUpdateTrigger + 1); // Trigger to re-fetch stories
+    console.log('story',storyUpdateTrigger);
+
+  };
+
+  const handlePost = () => {
     SheetManager.show('comment-sheet', {
       payload: {
         title: 'Post',
@@ -53,10 +70,6 @@ getAllPost().then(val => setPosts(val));
         icon2Press: (callback) => openImagePicker(callback),
         icon3Press: () => console.log('icon3 pressed'),
         onPost: (image, caption) => {
-          if (image) {
-            const newPost = { id: posts.length, image, caption };
-            setPosts([...posts, newPost]);
-          }
         }
         
       }
@@ -66,33 +79,34 @@ getAllPost().then(val => setPosts(val));
   const handlePostPress = (post: Post) => {
     navigation.navigate('PostDetails', { post });
   };
-
   return (
     <SafeAreaView>
-      <ScrollView>
-        <View style={styles.parent}>
-          <View style={styles.direction}>
+         <View style={styles.parent}>
+          <View style={[styles.direction,]}>
             <Text style={styles.heading}>Community</Text>
-            <TouchableOpacity onPress={handleCommentPress}>
+            <TouchableOpacity onPress={handlePost}>
               {ICONS.FEMALE({ height: 20, width: 20 })}
             </TouchableOpacity>
           </View>
-          <AddStory />
+          <View style={{flexDirection:'row',marginVertical:'5%'}}> 
+          <AddStory onStoryAdded={handleStoryAdded} />
+            <Story key={storyUpdateTrigger} />
+          </View>
+         
         </View>
-        {posts.map((post, index) => (
-          <PostScreen
+        <FlatList data={posts} renderItem={({item: post,index}) => {
+        console.log(post.userName);
+        return  <PostScreen
             key={index}
             image={post.photo}
             postId={post.postId!}
-            name={firstName+" "+lastName}
-            time="Just now"
+            name={post.userName}
+            time={post.createdOn.toDate().toLocaleString()}
             caption={post.caption}
             likes={0}
             comments={0}
             onPress={() => handlePostPress(post)}
-          />
-        ))}
-      </ScrollView>
+          />}} />
     </SafeAreaView>
   );
 }
@@ -100,6 +114,9 @@ getAllPost().then(val => setPosts(val));
 
 
 export default Community;
+
+
+
 
 
 

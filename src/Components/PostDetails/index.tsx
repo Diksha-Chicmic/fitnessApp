@@ -12,17 +12,30 @@ import { getPost, storePostComment } from '../../utils/userhandle';
 
 const PostDetails = ({ route }) => {
   const { post } = route.params;
+
   const [comments, setComments] = React.useState<Comment[]>([]);
   const { id: userId, photo: userPhoto, firstName, lastName } = useAppSelector(
     (state) => state.User.data
   );
 
-  React.useEffect(()=>{
-      getPost(post.postId)
-  },[])
- 
+  // React.useEffect(()=>{
+  //     getPost(post.postId)
+  // },[])
+  React.useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const postData = await getPost(post.postId)
+      } catch (error) {
+        console.log('Error fetching post:', error);
+      }
+    };
+
+    fetchPost();
+  }, [post.postId]);
   console.log('post is ',post);
-  // Handle comment button press
+
+  
+
   const handleCommentPress =  () => {
     SheetManager.show('comment-sheet', {
       payload: {
@@ -60,8 +73,8 @@ const PostDetails = ({ route }) => {
     <View style={styles.container}>
       <PostScreen
         image={post.photo}
-        name={firstName + " " + lastName}
-        time="Just Now"
+        name={post.userName}
+        time={post.createdOn.toDate().toLocaleString()}
         caption={post.caption}
         likes={0}
         comments={comments.length}

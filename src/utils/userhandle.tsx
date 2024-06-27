@@ -37,7 +37,7 @@ export const storeUserData = async (
     userCredential: FirebaseAuthTypes.UserCredential
   ) => {
     try {
-      const userEmail:any  = user.email; // Assuming user has email field
+      const userEmail:any  = user.email;
   
       console.log(user, 'its a user detail out');
       await firestore()
@@ -91,7 +91,7 @@ export const storeUserData = async (
  
   export const storePostComment = async (postId: string, comment: Comment) => {
     try{
-      console.log('comments ')
+      console.log('comments')
     await firestore()
       .collection(firebaseDB.collections.posts)
       .doc(postId)
