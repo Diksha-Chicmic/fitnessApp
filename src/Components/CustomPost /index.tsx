@@ -10,7 +10,7 @@ interface PostProps {
   image?: string;  // URL of the post image
   profilePic?: string | null;  // URL of the user's profile picture
   name?: string;
-  time?: string;
+  time?: any;
   caption?: string;
   likes?: number;
   comments?: number;
@@ -31,6 +31,8 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
       iconColor === COLORS.PRIMARY.DARKGREY ? prevCount + 1 : prevCount - 1
     );
   };
+  // console.log(name)
+ // console.log('ksjdje',name)
 
   return (
     <View style={[styles.conatiner, parentStyle]}>
@@ -42,7 +44,7 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
         </View>
       </View>
       <Text style={styles.cap}>{caption}</Text>
-      {image && <Image source={{ uri: image }} style={styles.post} />}
+      <Image source={{ uri: image }} style={styles.post} />
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.direction}>

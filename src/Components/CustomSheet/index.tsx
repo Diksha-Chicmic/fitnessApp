@@ -13,12 +13,12 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [caption, setCaption] = useState<string>('');
 
-  const {firstName,lastName,id} = useAppSelector((state)=> state.User.data)
+  const {firstName,lastName,id,photo} = useAppSelector((state)=> state.User.data)
 
   const handlePress = async () => {
 
     if (props.payload?.onPost) {
-      props.payload.onPost(selectedImage, caption);
+      // props.payload.onPost(selectedImage, caption);
       const newPost = {
         postId: uuidv4(),
         photo: selectedImage,
@@ -27,7 +27,8 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
         userName: firstName + " " + lastName,
         createdOn: new Date(),
         likedByUsersId: '',
-        comments: ''
+        comments: '',
+        //userPhoto:photo
       };
       try{
         await storePost(newPost);

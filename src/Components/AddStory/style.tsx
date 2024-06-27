@@ -10,7 +10,7 @@ export const styles= StyleSheet.create({
      borderWidth:1,
      height:screenWidth/7,
      width:screenWidth/7,
-     marginVertical:'5%'
+     marginVertical:'16%'
     },
     icon:{
         flex:1,

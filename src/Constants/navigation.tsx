@@ -2,7 +2,8 @@ import { DrawerScreenProps } from "@react-navigation/drawer";
 import { CompositeNavigationProp } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { CompositeScreenProps } from "@react-navigation/native";
-
+import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+import { StoryData } from "../Defs/user";
 
 export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', 
 ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',
@@ -124,8 +125,10 @@ export type homeStackParamList = {
   WaterIntake: undefined;
   DailySteps: undefined;
   PostDetails:undefined;
+  StoriesScreen: { allStoryData: Array<StoryData>; index: number };
   // PostScreen: { postId: string };
 };
+export type AppNavigationProps = NativeStackNavigationProp<homeStackParamList>;
 export type NutritionProps = NativeStackScreenProps<
   homeStackParamList,
   "Nutrition"

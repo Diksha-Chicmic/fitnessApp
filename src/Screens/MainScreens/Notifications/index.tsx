@@ -1,40 +1,43 @@
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { SafeAreaView, Text, Button } from "react-native";
-import notifee from '@notifee/react-native';
+import notifee from "@notifee/react-native";
 
+const App = () => {
+  async function onTriggerHandler() {
+    await notifee.displayNotification({
+      id: "1234",
+      title: `New notification`,
+      body: "Greetings! How are you faring today?",
+    });
+  }
 
-function Notifications(){
-    async function onDisplayNotification() {
-        // Request permissions (required for iOS)
-        await notifee.requestPermission()
-    
-        // Create a channel (required for Android)
-        const channelId = await notifee.createChannel({
-          id: 'default',
-          name: 'Default Channel',
-        });
-    
-        // Display a notification
-        await notifee.displayNotification({
-          title: 'Notification Title',
-          body: 'Main body content of the notification',
-          android: {
-            channelId,
-            smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-            // pressAction is needed if you want the notification to open the app when pressed
-            pressAction: {
-              id: 'default',
-            },
-          },
-        });
-    return(
-        <SafeAreaView>
-            <Text>Screen</Text>
-           <Button title="Display Notification" onPress={() => onDisplayNotification()} />
-        </SafeAreaView>
-    )
-}
-}
+  return (
+    <View style={styles.body}>
+      <TouchableOpacity style={styles.button} onPress={onTriggerHandler}>
+        <Text style={styles.btn_text}>Greet!</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
+export default App;
 
-export default Notifications
+const styles = StyleSheet.create({
+  body: {
+    backgroundColor: "black",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    width: 200,
+    backgroundColor: "hotpink",
+    padding: 20,
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  btn_text: {
+    fontSize: 20,
+    color: "white",
+  },
+});

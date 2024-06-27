@@ -46,3 +46,11 @@ export type Comment = {
   comment: string;
   createdOn: Timestamp;
 };
+
+
+export type StoryData = {
+  stories: [{ storyUrl: string; storyType: string }];
+  userName: string;
+  userPhoto: string;
+  storyByUserId: string;
+};
