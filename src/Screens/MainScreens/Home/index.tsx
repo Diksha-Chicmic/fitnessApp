@@ -12,7 +12,8 @@ function Home({navigation}:HomeScreenProps){
         dailyGlass,
         goals: { stepsGoal, totalNutrition, totalGlasses },
       } = useAppSelector((state) => state.Health.data);
-      const { id } = useAppSelector((state) => state.User.data);
+      const { id, firstName, lastName } = useAppSelector((state) => state.User.data);
+      const userName= firstName
    const nutritions=()=>navigation.navigate('Nutrition')  
    const water =()=> navigation.navigate('WaterIntake')
    const steps =()=> navigation.navigate('DailySteps')  
@@ -20,7 +21,7 @@ function Home({navigation}:HomeScreenProps){
     return(
         <SafeAreaView >
             <View style={styles.container}>
-           <Text style={styles.heading}> {STRINGS.HOME.HEADING} </Text>
+           <Text style={styles.heading}> {STRINGS.HOME.HEADING} {userName} </Text>
            <Text style={styles.text}>  {STRINGS.HOME.TEXT} </Text>
            <TouchableOpacity>
             <Text style={styles.text2}>{STRINGS.HOME.TEXT2}</Text>

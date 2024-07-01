@@ -17,33 +17,42 @@ const iconSize = {
 
 const AddStory = ({ onStoryAdded }:any) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { id: userId, firstName, lastName, photo: userPhoto } = useAppSelector((state) => state.User.data);
-
+  const { id: userId, firstName, lastName, photo: user_photo } = useAppSelector((state) => state.User.data);
   const addStoryToFirestore = async (imageUri: string | undefined) => {
-    const storyData = {
-      userId,
-      userName: firstName + " " + lastName,
-      userPhoto,
-      stories: [
-        {
-          storyId: uuidv4(),
-          storyImage: imageUri,
-          createdOn: Timestamp.fromDate(new Date()),
-        }
-      ],
-    };
- console.log(storyData);
     try {
-      console.log('stored stories in firebase')
+      // Fetch existing stories for the user
+      const userDoc = await firestore().collection('stories').doc(userId!).get();
+      const existingStories = userDoc.exists ? userDoc.data()?.stories || [] : [];
+  
+      // Prepare new story data
+      const newStory = {
+        story_id: uuidv4(),
+        story_image: imageUri,
+        createdOn: Timestamp.fromDate(new Date()),
+      };
+       console.log('new story data',newStory);
+      // Update or add the new story to the existing stories array
+      const updatedStories = [...existingStories, newStory];
+  
+      // Store updated stories back to Firestore
       await firestore()
         .collection('stories')
         .doc(userId!)
-        .set(storyData, { merge: true });
+        .set({ 
+          userId,
+          user_name: firstName + " " + lastName,
+          user_photo,
+          stories: updatedStories,
+        });
+    console.log('existingStories',existingStories )
+      // Trigger the callback to notify that a story has been added
       onStoryAdded();
     } catch (error) {
       console.log('Error adding story: ', error);
     }
   };
+  
+
 
   const openImagePicker = async () => {
     const options: ImageLibraryOptions = {

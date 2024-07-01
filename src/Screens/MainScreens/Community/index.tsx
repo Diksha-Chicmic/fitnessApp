@@ -95,7 +95,6 @@ function Community({ navigation }) {
          
         </View>
         <FlatList data={posts} renderItem={({item: post,index}) => {
-        console.log(post.userName);
         return  <PostScreen
             key={index}
             image={post.photo}
@@ -104,7 +103,7 @@ function Community({ navigation }) {
             time={post.createdOn.toDate().toLocaleString()}
             caption={post.caption}
             likes={0}
-            comments={0}
+            comments={post.comments.length}
             onPress={() => handlePostPress(post)}
           />}} />
     </SafeAreaView>

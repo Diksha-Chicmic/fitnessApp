@@ -5,6 +5,7 @@ import { ICONS } from '../../Constants/icons';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
 import { addLikes } from '../../utils/userhandle';
 import { styles } from './style';
+import { useAppSelector } from '../../Redux/Store';
 
 interface PostProps {
   image?: string;  // URL of the post image
@@ -22,7 +23,7 @@ interface PostProps {
 const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, caption, likes, comments, parentStyle, onPress }) => {
   const [iconColor, setIconColor] = useState(COLORS.PRIMARY.DARKGREY);
   const [likesCount, setLikesCount] = useState<number>(likes || 0);
-
+  const {photo:userPhoto }= useAppSelector((state)=>state.User.data)
   const handlePress = async () => {
     setIconColor(prevColor =>
       prevColor === COLORS.PRIMARY.DARKGREY ? COLORS.PRIMARY.PURPLE : COLORS.PRIMARY.DARKGREY
@@ -31,8 +32,7 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
       iconColor === COLORS.PRIMARY.DARKGREY ? prevCount + 1 : prevCount - 1
     );
   };
-  // console.log(name)
- // console.log('ksjdje',name)
+ 
 
   return (
     <View style={[styles.conatiner, parentStyle]}>
