@@ -7,6 +7,7 @@ import { styles } from './style';
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from 'uuid';
 import firestore, { Timestamp } from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 import { useAppSelector } from '../../Redux/Store';
 
 const iconSize = {
@@ -14,45 +15,51 @@ const iconSize = {
   width: 40,
   color: COLORS.PRIMARY.PURPLE,
 };
-
-const AddStory = ({ onStoryAdded }:any) => {
+interface AddStoryProps {
+  onStoryAdded: () => void;
+}
+const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { id: userId, firstName, lastName, photo: user_photo } = useAppSelector((state) => state.User.data);
-  const addStoryToFirestore = async (imageUri: string | undefined) => {
+
+  const uploadImageToStorage = async (imageUri:string) => {
+    const imageName = uuidv4();
+    const reference = storage().ref(`stories/${userId}/${imageName}`);
+    await reference.putFile(imageUri);
+    const url = await reference.getDownloadURL();
+    return url;
+  };
+
+  const addStoryToFirestore = async (imageUri:string) => {
     try {
-      // Fetch existing stories for the user
+      const imageUrl = await uploadImageToStorage(imageUri);
+      console.log('image url  is ',imageUrl, )
       const userDoc = await firestore().collection('stories').doc(userId!).get();
       const existingStories = userDoc.exists ? userDoc.data()?.stories || [] : [];
-  
-      // Prepare new story data
+
       const newStory = {
         story_id: uuidv4(),
-        story_image: imageUri,
+        story_image: imageUrl,
         createdOn: Timestamp.fromDate(new Date()),
       };
-       console.log('new story data',newStory);
-      // Update or add the new story to the existing stories array
+     console.log('nnnn story', newStory)
       const updatedStories = [...existingStories, newStory];
-  
-      // Store updated stories back to Firestore
+ 
       await firestore()
         .collection('stories')
         .doc(userId!)
-        .set({ 
+        .set({
           userId,
           user_name: firstName + " " + lastName,
           user_photo,
           stories: updatedStories,
         });
-    console.log('existingStories',existingStories )
-      // Trigger the callback to notify that a story has been added
+
       onStoryAdded();
     } catch (error) {
       console.log('Error adding story: ', error);
     }
   };
-  
-
 
   const openImagePicker = async () => {
     const options: ImageLibraryOptions = {
@@ -111,82 +118,3 @@ const AddStory = ({ onStoryAdded }:any) => {
 export default AddStory;
 
 
-
-
-
-// import React, {useState} from 'react'
-// import { Text, View, TouchableOpacity, Modal, StyleSheet,Dimensions} from "react-native";
-// import { launchCamera,launchImageLibrary,CameraOptions,ImageLibraryOptions } from 'react-native-image-picker';
-// import { ICONS } from "../../Constants/icons";
-// import { COLORS } from '../../Constants/commonStyles';
-// import { styles } from './style';
-
-//  const iconSize={
-//     height:40,
-//     width:40,
-//     color:COLORS.PRIMARY.PURPLE
-//  }
-// const AddStory =()=>{
-//     const [modalVisible, setModalVisible] = useState(false);
-//     const openImagePicker = async () => {
-//         const options: ImageLibraryOptions = {
-//           mediaType: 'photo',
-//         };
-//         let response = await launchImageLibrary(options);
-//         if (response.didCancel) {
-//           console.log('User cancelled image picker');
-//         } else {
-//           let imageUri = response.assets![0].uri;
-//         //  setSelectedImage(imageUri);
-//           console.log(imageUri);
-//         }
-//       };
-    
-//       const openCamera = async () => {
-//         const options: CameraOptions = {
-//           mediaType: 'photo',
-//         };
-//         let response = await launchCamera(options);
-//         if (response.didCancel) {
-//           console.log('User cancelled image picker');
-//         } else {
-//           let imageUri = response.assets![0].uri;
-//          // setSelectedImage(imageUri);
-//           console.log(imageUri);
-//         }
-//       };
-    
-//     return (
-//     <View>
-//         <TouchableOpacity style={styles.story} onPress={() => setModalVisible(true)}>
-//             <View style={styles.icon}>{ICONS.PLUS({height:20,width:20})}</View>
-//         </TouchableOpacity>
-//         <Modal
-//         animationType="slide"
-//         transparent={true}
-//         visible={modalVisible}
-//         onRequestClose={() => {
-//         setModalVisible(!modalVisible);
-//         }}>
-//             <TouchableOpacity
-//           style={styles.modalBackground}
-//           activeOpacity={1}
-//           onPressOut={() => setModalVisible(false)}
-//         >
-//           <View style={styles.modalContainer}>
-//             <TouchableOpacity style={styles.modalButton} onPress={openImagePicker}>
-             
-//               <View>{ICONS.ADDIMAGE(iconSize)}</View>
-//             </TouchableOpacity>
-//             <TouchableOpacity style={styles.modalButton} onPress={openCamera}>
-//             <View>{ICONS.ADDPHOTO(iconSize)}</View>
-//             </TouchableOpacity>
-//           </View>
-//         </TouchableOpacity>
-//         </Modal>
-//     </View>
-//     )
-// }
-
-
-// export default AddStory
