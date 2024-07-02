@@ -35,6 +35,7 @@ import Comment from '../Assets/Svgs/comment.svg'
 import Camera from '../Assets/Svgs/camera.svg'
 import AddImage from '../Assets/Svgs/add-image.svg'
 import AddPhoto from '../Assets/Svgs/add-photo.svg'
+import Plate from '../Assets/Svgs/plate.svg'
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
@@ -99,6 +100,7 @@ export const ICONS = {
     CAMERA:(params: iconProps) => Camera({ ...iconStyle({ ...params }) }),
     ADDIMAGE:(params: iconProps) => AddImage({ ...iconStyle({ ...params }) }),
     ADDPHOTO:(params: iconProps) => AddPhoto({ ...iconStyle({ ...params }) }),
+    PLATE:(params: iconProps) => Plate({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={
