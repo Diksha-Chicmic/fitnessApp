@@ -1,43 +1,50 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import notifee from "@notifee/react-native";
-
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React,{useEffect} from "react";
+import notifee ,{ AndroidImportance }from "@notifee/react-native";
+import { COLORS, SIZES } from "../../../Constants/commonStyles";
+import CustomNotification from "../../../Components/CustomNotifications";
 const App = () => {
+  useEffect(() => {
+    async function requestPermissions() {
+      await notifee.requestPermission();
+    }
+
+    async function createChannel() {
+      await notifee.createChannel({
+        id: "default",
+        name: "Default Channel",
+        importance: AndroidImportance.HIGH,
+      });
+    }
+
+    requestPermissions();
+    createChannel();
+  }, []);
   async function onTriggerHandler() {
     await notifee.displayNotification({
       id: "1234",
       title: `New notification`,
-      body: "Greetings! How are you faring today?",
+      body: "here the new notiifcations",
     });
   }
 
   return (
-    <View style={styles.body}>
-      <TouchableOpacity style={styles.button} onPress={onTriggerHandler}>
-        <Text style={styles.btn_text}>Greet!</Text>
-      </TouchableOpacity>
-    </View>
+    <View style={{flex:1,backgroundColor:COLORS.PRIMARY.DIMGREY}}>
+       <Text style={styles.heading}>Notifications</Text>
+       <CustomNotification/>
+       <CustomNotification/>
+  </View>
   );
 };
 
 export default App;
 
 const styles = StyleSheet.create({
-  body: {
-    backgroundColor: "black",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    width: 200,
-    backgroundColor: "hotpink",
-    padding: 20,
-    alignItems: "center",
-    borderRadius: 20,
-  },
-  btn_text: {
-    fontSize: 20,
-    color: "white",
+  heading:{
+    fontSize:SIZES.font24,
+    fontWeight:'bold',
+    marginLeft:'5%',
+    marginVertical:'10%',
+  
   },
 });

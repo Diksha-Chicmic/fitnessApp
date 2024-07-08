@@ -7,12 +7,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import rootReducer,{RootReducer} from '../Reducers/root'
 
-
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
   }
-
   const persistedReducer = persistReducer<RootState>(persistConfig, rootReducer);
 
   export const store = configureStore({
@@ -28,3 +26,6 @@ const persistConfig = {
 
   export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
+
+
+export default store;

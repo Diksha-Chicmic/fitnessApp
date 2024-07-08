@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+import notifee from "@notifee/react-native";
 import { IMAGES } from '../../Constants/images';
 import { ICONS } from '../../Constants/icons';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
@@ -8,8 +9,8 @@ import { styles } from './style';
 import { useAppSelector } from '../../Redux/Store';
 
 interface PostProps {
-  image?: string;  // URL of the post image
-  profilePic?: string | null;  // URL of the user's profile picture
+  image?: string;  
+  profilePic?: string | null;  
   name?: string;
   time?: any;
   caption?: string;
@@ -25,12 +26,18 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
   const [likesCount, setLikesCount] = useState<number>(likes || 0);
   const {photo:userPhoto }= useAppSelector((state)=>state.User.data)
   const handlePress = async () => {
+    await notifee.displayNotification({
+      id: "1234",
+      title: `New notification`,
+      body: "Greetings! How are you faring today?",
+    });
     setIconColor(prevColor =>
       prevColor === COLORS.PRIMARY.DARKGREY ? COLORS.PRIMARY.PURPLE : COLORS.PRIMARY.DARKGREY
     );
     setLikesCount(prevCount =>
       iconColor === COLORS.PRIMARY.DARKGREY ? prevCount + 1 : prevCount - 1
     );
+    
   };
  
 

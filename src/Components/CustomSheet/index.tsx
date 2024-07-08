@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import ActionSheet, { ActionSheetRef, SheetProps } from 'react-native-actions-sheet';
+import notifee from "@notifee/react-native";
 import '../../Constants/sheet';
 import { styles } from './style';
 import { storePost } from '../../utils/userhandle';
@@ -32,6 +33,11 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
       };
       try{
         await storePost(newPost);
+        await notifee.displayNotification({
+          id: "1234",
+          title: `New notification`,
+          body: "Your post posted successfully",
+        });
       }
       catch(e){
         console.log('eee',e)

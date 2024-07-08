@@ -10,6 +10,7 @@ export interface User {
   gender: "male" | "female" | null;
   preferences: Array<{ text: string; selected: boolean }> | null;
   interests: Array<string> | null;
+  healthData:Array<any> |null
 }
 
 export interface Health {
@@ -20,7 +21,7 @@ export interface Health {
   currentTime: any,
   goals: {
     totalGlasses: number,
-    stepsGoal: string,
+    stepsGoal: number,
     totalNutrition: number,
   }
 

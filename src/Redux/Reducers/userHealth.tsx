@@ -12,10 +12,11 @@ const initialState: initial = {
         totalSteps: 0,
         dailyGlass: 0,
         nutrition: 0,
-        currentTime: Timestamp.now(),
+       // currentTime: Timestamp.now(),
+       currentTime: Timestamp.now().toDate().getTime(),
         goals: {
             totalGlasses: 8,
-            stepsGoal: '10000',
+            stepsGoal: 10000,
             totalNutrition: 120,
         }
 
@@ -51,3 +52,4 @@ const healthSlice = createSlice({
 
 export const { updateHealthData, resetHealthData } = healthSlice.actions;
 export default healthSlice.reducer;
+

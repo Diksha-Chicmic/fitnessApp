@@ -3,17 +3,14 @@ import { SafeAreaView, Text, View, ScrollView } from "react-native";
 import { ProgressChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { COLORS, SIZES } from "../../../Constants/commonStyles";
+import { getPercentage } from "../../../utils/common";
 import Details from "../../../Components/CustomDetails";
-import DietDataList from "../../../Components/ModalDetails ";
+import DietDataList from "../../../Components/DietDataList";
 import { useAppSelector } from "../../../Redux/Store";
 import { STRINGS } from "../../../Constants/strings";
 import { styles } from "./style";
 
 const screenWidth = Dimensions.get("window").width;
-const data = {
-    labels: ["Protein", "Carb", "Fat"], // optional
-    data: [0.63, 0.3, 0.27]
-};
 const chartConfig = {
     backgroundGradientFrom: COLORS.SECONDARY.GREY,
     backgroundGradientFromOpacity: 0,
@@ -21,9 +18,35 @@ const chartConfig = {
     backgroundGradientToOpacity: 0.1,
     color: (opacity = 1) => `rgba(114,101,227, ${opacity})`,
 };
+
+
 function Nutrition() {
     const {nutrition}= useAppSelector((state)=>state.Health.data);
+    const {data: dailyMeals} = useAppSelector(state => state.Dishes);
+      const statsData = Object.values(dailyMeals)
+    .flat()
+    .reduce(
+      (acc, val) => ({
+        calories: Math.ceil(val.calories + acc.calories),
+        carbs: Math.ceil(val.carbs + acc.carbs),
+        fat: Math.ceil(val.fat + acc.fat),
+        protein: Math.ceil(val.protein + acc.protein),
+      }),
+      {
+        calories: 0,
+        carbs: 0,
+        fat: 0,
+        protein: 0,
+      },
+    );
+    const proteinPercentage = Math.ceil(getPercentage(statsData.protein, statsData.calories)) / 100;
+    const carbsPercentage = Math.ceil(getPercentage(statsData.carbs, statsData.calories)) / 100;
+    const fatPercentage = Math.ceil(getPercentage(statsData.fat, statsData.calories)) / 100;
 
+    const data = {
+        labels: ["Protein", "Carb", "Fat"], // optional
+        data: [proteinPercentage, carbsPercentage, fatPercentage]
+    };
     return (
 
         <SafeAreaView>
@@ -40,13 +63,11 @@ function Nutrition() {
                         hideLegend={false}
                     />
                 </View>
-                <Details title='Protein' text={100} percentage={22} color={COLORS.SECONDARY.ORANGE} />
-                <Details title='Carb' text={60} percentage={30} color={COLORS.PRIMARY.PURPLE} />
-                <Details title='Fat' text={20} percentage={27} color={COLORS.SECONDARY.CYAN} borderCheck={false} />
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-
-                    <DietDataList />
-                </View>
+        
+                <Details title='Protein' text={statsData.protein} percentage={proteinPercentage*100} color={COLORS.SECONDARY.ORANGE} />
+                <Details title='Carb' text={statsData.carbs} percentage={carbsPercentage*100} color={COLORS.PRIMARY.PURPLE} />
+                <Details title='Fat' text={statsData.fat} percentage={fatPercentage*100} color={COLORS.SECONDARY.CYAN} borderCheck={false} />
+                <DietDataList />
             </ScrollView>
         </SafeAreaView>
 
@@ -56,5 +77,7 @@ function Nutrition() {
 
 
 export default Nutrition
+
+
 
 

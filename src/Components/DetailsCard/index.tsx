@@ -4,11 +4,12 @@ import { styles } from './style'
 
 interface detailsProps{
     calNum:string,
-    goalNum:string,
+    goalNum:number,
     calText:string,
-    goalText:string
+    goalText:string,
+    text?:string
 }
-const DetailsCard:React.FC<detailsProps> =({calNum,goalNum,calText,goalText})=>{
+const DetailsCard:React.FC<detailsProps> =({calNum,goalNum,calText,goalText,text})=>{
     return(
         <View style={styles.container}>
             <View style={styles.box}>
@@ -17,7 +18,7 @@ const DetailsCard:React.FC<detailsProps> =({calNum,goalNum,calText,goalText})=>{
            </View>
            <View style={styles.itemSeparator}></View>
            <View style={styles.box}>
-           <Text style={styles.title}>{goalNum}</Text>
+           <Text style={styles.title}>{goalNum} {text}</Text>
            <Text style={styles.text}>{goalText}</Text>
            </View>
         </View>

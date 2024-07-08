@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, ScrollView, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { launchImageLibrary, launchCamera, ImageLibraryOptions, CameraOptions } from 'react-native-image-picker';
+import notifee from "@notifee/react-native";
 import firestore from "@react-native-firebase/firestore";
 import PostScreen from '../../../Components/CustomPost ';
 import { SIZES } from '../../../Constants/commonStyles';
@@ -58,7 +59,8 @@ function Community({ navigation }) {
 
   };
 
-  const handlePost = () => {
+  const handlePost = async () => {
+   
     SheetManager.show('comment-sheet', {
       payload: {
         title: 'Post',
@@ -70,14 +72,16 @@ function Community({ navigation }) {
         icon2Press: (callback) => openImagePicker(callback),
         icon3Press: () => console.log('icon3 pressed'),
         onPost: (image, caption) => {
+  
         }
         
       }
     });
   };
 
-  const handlePostPress = (post: Post) => {
+  const handlePostPress = async (post: Post) => {
     navigation.navigate('PostDetails', { post });
+   
   };
   return (
     <SafeAreaView>
