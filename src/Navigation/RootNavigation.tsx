@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import AppleHealthKit, { HealthKitPermissions } from 'react-native-health'
@@ -11,7 +11,7 @@ import { User } from "../Defs/user";
 import { Platform } from "react-native";
 import { useAppDispatch } from "../Redux/Store";
 import { updateHealthData } from "../Redux/Reducers/userHealth";
-
+import { updateUser } from "../Redux/Reducers/currentUser";
 
 // ios permissions 
 const permissions = {
@@ -29,20 +29,25 @@ const options = {
   scopes: [Scopes.FITNESS_ACTIVITY_READ, Scopes.FITNESS_ACTIVITY_WRITE],
 };
 
-
-
-
-
-
 const RootNavigator = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
   const dispatch= useAppDispatch();
 
-  function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
+  // function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  // }
+   const onAuthStateChanged = useCallback(
+        (userN: FirebaseAuthTypes.User | null) => {
+          setUser(userN);
+          dispatch(updateUser({id: userN === null ? undefined : userN.uid}));
+          if (initializing) {
+            setInitializing(false);
+          }
+        },
+        [dispatch, initializing],
+      );
 
   
 const androidHealthSetup = async () => {
@@ -56,7 +61,7 @@ const androidHealthSetup = async () => {
     if (!GoogleFit.isAuthorized) {
       await GoogleFit.authorize(options);
       console.log('not authorised')
-      dispatch(updateHealthData({ hasPremission: true })); // check for if user denies the permissions later in settings
+      dispatch(updateHealthData({ hasPremission: true }));
     }
     const today = date.today();
     const stepRes = await GoogleFit.getDailySteps(today);
@@ -79,9 +84,12 @@ const androidHealthSetup = async () => {
   } catch (e) {
     console.log("Error encountered - ", e);
   }
+
+ 
 };
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //  const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  const subscriber = auth().onAuthStateChanged(onAuthStateChanged)
     if(Platform.OS !== "ios"){
        androidHealthSetup();
     }else{
@@ -114,7 +122,3 @@ const androidHealthSetup = async () => {
 };
 
 export default RootNavigator;
-
-
-
-

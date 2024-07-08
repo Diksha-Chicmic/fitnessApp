@@ -1,31 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, View, StyleSheet } from "react-native";
 import CircularProgress from 'react-native-circular-progress-indicator';
-import {LineChart, } from "react-native-gifted-charts";
+import { LineChart, } from "react-native-gifted-charts";
 import { Dimensions } from "react-native";
 import { COLORS } from "../../../Constants/commonStyles";
 import { useAppSelector } from "../../../Redux/Store";
-import { date } from "../../../utils/common";
 import DetailsCard from "../../../Components/DetailsCard";
-import PerformanceD from "../../../Components/PerformanceDetail";
-import { ICONS } from "../../../Constants/icons";
 import { STRINGS } from "../../../Constants/strings";
+import { date, checkWeek, getPercentage, weekday } from "../../../utils/common";
+import { getHealthData } from "../../../utils/userhandle";
+import { ICONS } from "../../../Constants/icons";
 import { styles } from "./style";
-
+import { Timestamp } from "@react-native-firebase/firestore";
+import PerformanceDetails from "../../../Components/CustomPerformance ";
 const screenWidth = Dimensions.get("window").width;
 
 
 const data = [{ value: 10 }, { value: 30 }, { value: 60 }, { value: 40 }, { value: 9 }, { value: 50 }, { value: 12 }]
 
 function Steps() {
-
     const today = date.today();
-    const { totalSteps,
-            nutrition,
-            goals: { stepsGoal, totalNutrition },
-          } = useAppSelector((state) => state.Health.data);
-          const { id } = useAppSelector((state) => state.User.data);
-    
+    const { totalSteps, nutrition, goals: { stepsGoal, totalNutrition }, } = useAppSelector((state) => state.Health.data);
+    const { id } = useAppSelector((state) => state.User.data);
+    const [rating, setRating] = useState<{
+        best: { value: number; week: string };
+        worst: { value: number; week: string };
+    }>();
+    useEffect(() => {
+        getHealthData(id!)
+            .then(healthData => {
+                if (healthData) {
+                    const filteredData = healthData.filter(val =>
+                        checkWeek(Timestamp.fromMillis(val.currentDate.seconds * 1000).toDate(), today,),
+                    );
+                    const bestWaterIntakeDay = filteredData.reduce(
+                        (acc, val) => {
+                            const currentDate = Timestamp.fromMillis(val.currentDate.seconds * 1000,).toDate();
+                            if (Math.ceil(getPercentage(val.totalSteps, val.goals.stepsGoal) / 10,) >= acc.value) {
+                                return {
+                                    value: Math.ceil(getPercentage(val.totalSteps, val.goals.stepsGoal) / 10,),
+                                    week: weekday[currentDate.getDay()],
+                                };
+                            }
+                            return acc;
+                        }, { value: -Infinity, week: '' },
+                    );
+                    const worstWaterIntakeDay = filteredData.reduce(
+                        (acc, val) => {
+                            const currentDate = Timestamp.fromMillis(val.currentDate.seconds * 1000,).toDate();
+                            console.log(weekday[currentDate.getDay()], currentDate);
+                            if (Math.ceil(getPercentage(val.totalSteps, val.goals.stepsGoal) / 10,) <= acc.value) {
+                                return {
+                                    value: Math.ceil(
+                                        getPercentage(val.totalSteps, val.goals.stepsGoal) / 10,
+                                    ),
+                                    week: weekday[currentDate.getDay()],
+                                };
+                            }
+                            return acc;
+                        }, { value: +Infinity, week: '', },
+                    );
+                    setRating({ best: bestWaterIntakeDay, worst: worstWaterIntakeDay });
+                }
+            })
+            .catch(e =>
+                console.log('error encounterd in getting user health info', e),
+            );
+    }, [id, today]);
+
+
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -38,8 +82,8 @@ function Steps() {
                         valueSuffix={'%'}
                         radius={70}
                         activeStrokeColor={COLORS.PRIMARY.PURPLE}
-                        progressValueStyle={styles.progress} 
-                        />
+                        progressValueStyle={styles.progress}
+                    />
                     <View style={styles.iconContainer}>{ICONS.COMMUNITY({ height: 20, width: 20 })}</View>
                     <Text style={styles.textContainer}>{STRINGS.STEPS.PROGESSTXT}</Text>
                 </View>
@@ -54,7 +98,7 @@ function Steps() {
                         color="#F7A608"
                         yAxisOffset={1}
                         initialSpacing={0}
-                        width={screenWidth/1.13}
+                        width={screenWidth / 1.13}
                         data={data}
                         hideOrigin
                         areaChart
@@ -71,7 +115,23 @@ function Steps() {
 
                     />
                 </View>
-                <PerformanceD />
+                {/* {rating === undefined || rating?.best.value === -Infinity ? null : ( */}
+                <PerformanceDetails
+                    icon={ICONS.YELLOWSMILE({ height: 20, width: 20, color: 'orange' })}
+                    title="Best Performance"
+                    text={rating?.best.week ?? 'No Data'}
+                    quant={rating?.best.value ?? 0}
+                    border={true}
+                />
+                {/* )} */}
+                {/* {rating === undefined || rating?.worst.value === Infinity ? null : ( */}
+                <PerformanceDetails
+                    icon={ICONS.REDSMILE({ height: 20, width: 20 })}
+                    title="Worst Performance"
+                    text={rating?.worst.week ?? 'No data'}
+                    quant={rating?.worst.value ?? 0}
+                />
+                {/* )} */}
             </ScrollView>
         </SafeAreaView>
     )
@@ -89,7 +149,7 @@ export default Steps
 
 
 
-       
-        
-      
+
+
+
 

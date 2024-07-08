@@ -7,7 +7,7 @@ interface Details {
   quant: number,
   text: string,
   icon: React.ReactNode,
-  border:boolean
+  border?:boolean
 };
 
 const PerformanceDetails: React.FC<Details> = ({ title, quant, text, icon,border }) => {

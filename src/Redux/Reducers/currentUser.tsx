@@ -12,7 +12,8 @@ const initialState: { data: User & { password: string } } = {
         gender: null,
         preferences: null,
         interests: null,
-        password: ""
+        password: "",
+        healthData:[]
 
     },
 

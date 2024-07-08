@@ -1,18 +1,15 @@
-// libs
 import React, {useRef} from 'react';
 import {TouchableOpacity, View, ScrollView, Alert, Text, StyleSheet} from 'react-native';
-
-// custom
 import CustomButton from '../CustomButton';
 import { ICONS } from '../../Constants/icons';
 import DishSelector from '../DishesSelector';
 // import FoodSelector from '../FoodSelector';
-// import {
-//   DailyMeals,
-//   Meal,
-//   updateAllMealData,
-// } from '../../../Redux/Reducers/dailyMeal';
-// import {useAppDispatch} from '../../../Redux/Store';
+import {
+  DailyMeals,
+  Meal,
+  updateAllMealData,
+} from '../../Redux/Reducers/dishes'
+ import {useAppDispatch} from '../../Redux/Store'
 import ItemSelector from '../DishItemsSelector ';
 import foodData from '../../Constants/foodData';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
@@ -35,10 +32,7 @@ export type MealsSelected = {
  foodData:any
 };
 const ChooseFood = ({setModalFalse}:any) => {
-  // redux use
-  //const dispatch = useAppDispatch();
-
-  // ref use
+  const dispatch = useAppDispatch();
   const mealsSelected = useRef<MealsSelected>({
     mealTime: {
       snack: false,
@@ -87,7 +81,7 @@ const ChooseFood = ({setModalFalse}:any) => {
     console.log(count, 'count is')
       console.log('dt array', dtArray);
       console.log('breakfast array', dtArray.breakfast)
-   // dispatch(updateAllMealData(dtArray));
+    dispatch(updateAllMealData(dtArray));
     setModalFalse();
   };
   return (

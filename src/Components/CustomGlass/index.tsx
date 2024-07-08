@@ -29,7 +29,7 @@ const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress,disable }) => {
     return (
 
         <View style={styles.container}>
-            <TouchableOpacity  onPress={handlePress} >
+            <TouchableOpacity  onPress={handlePress} disabled={disable}>
                 {filled ? (
                     ICONS.GLASSFILLED(iconSize)
                 ) : (
@@ -38,6 +38,7 @@ const CustomGlass: React.FC<GlassProps> = ({ isFilled, onPress,disable }) => {
                         <View style={styles.iconBox}>{ICONS.PLUS({ height: 15, width: 15 })}</View>
                     </>
                 )}
+        
             </TouchableOpacity>
         </View>
 
