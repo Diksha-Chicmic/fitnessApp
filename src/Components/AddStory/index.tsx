@@ -20,7 +20,7 @@ interface AddStoryProps {
 }
 const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { id: userId, firstName, lastName, photo: user_photo } = useAppSelector((state) => state.User.data);
+  const { id: userId, firstName, lastName, photo: userPhoto } = useAppSelector((state) => state.User.data);
 
   const uploadImageToStorage = async (imageUri:string) => {
     const imageName = uuidv4();
@@ -51,7 +51,7 @@ const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
         .set({
           userId,
           user_name: firstName + " " + lastName,
-          user_photo,
+          user_image:userPhoto,
           stories: updatedStories,
         });
 

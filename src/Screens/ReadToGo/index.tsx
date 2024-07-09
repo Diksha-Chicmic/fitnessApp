@@ -18,7 +18,7 @@ const iconStyle={
 }
 const ReadyToGo=({navigation}:ReadyToGoProps)=>{
     const { data: { password, ...user }, } = useAppSelector((state) => state.User);
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
     console.log(user);
     const handlePress = async () => {
         try {
@@ -26,22 +26,23 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
             const userCredentials = await createUser(user.email, password);
             console.log(userCredentials, 'user Credentails');
       
-            // const reference = storage().ref(
-            //   "media/" + userCredentials?.user.uid + "/" + "photo"
-            // );
-            // console.log(reference, 'reference ');
+            const reference = storage().ref(
+              "media/" + userCredentials?.user.uid + "/" + "photo"
+            );
+            console.log(reference, 'reference ');
       
-            // await reference.putFile(user.photo!);
+            await reference.putFile(user.photo!);
       
-            // const url = await storage().ref(
-            //   "media/" + userCredentials?.user.uid + "/" + "photo"
-            // ).getDownloadURL();
-            // console.log(url, "the url is ");
+            const url = await storage().ref(
+              "media/" + userCredentials?.user.uid + "/" + "photo"
+            ).getDownloadURL();
+            console.log(url, "the url is ");
       
-            // dispatch(updateUser({ photo: url }));
+            dispatch(updateUser({ photo: url }));
       
             if (userCredentials !== undefined) {
               user.id = userCredentials.user.uid;
+              user.photo=url;
               
               await storeUserData(user, userCredentials);
               console.log(user, ' user details ')
@@ -67,7 +68,4 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
 }
 
 export default ReadyToGo
-function dispatch(arg0: { payload: Partial<import("../../Defs/user").User & { password: string; }>; type: "User/updateUser"; }) {
-  throw new Error("Function not implemented.");
-}
 
