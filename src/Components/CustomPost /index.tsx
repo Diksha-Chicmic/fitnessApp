@@ -44,7 +44,7 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
   return (
     <View style={[styles.conatiner, parentStyle]}>
       <View style={styles.direction}>
-        <Image source={profilePic ? { uri: profilePic } : null} style={styles.profile} />
+        <Image source={profilePic ? { uri: profilePic } : IMAGES.LANDING_PAGE} style={styles.profile} />
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.time}>{time}</Text>

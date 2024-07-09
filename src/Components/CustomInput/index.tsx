@@ -10,7 +10,7 @@ interface InputProps{
     onChangeText: (text: string) => void,
     maxLength?: number,
     type: 'name' | 'email',
-    value?: string
+    value: string
     placeholderTextColor?: string,
     parentStyle?:StyleProp<ViewStyle>,
     secureText?:boolean

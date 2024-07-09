@@ -12,10 +12,7 @@ import PostDetails from "../Components/PostDetails";
 import { homeStackParamList } from "../Constants/navigation";
 import { COLORS } from "../Constants/commonStyles";
 import { ICONS } from "../Constants/icons";
-import EditProfile from "../Screens/MainScreens/EditProfile";
 import ChooseFood from "../Components/AddDishes";
-import Feedback from "../Screens/MainScreens/Feeback";
-import AboutUs from "../Screens/MainScreens/AboutUs";
 const Stack = createNativeStackNavigator<homeStackParamList>();
 
 
@@ -62,9 +59,6 @@ const AppNavigator = () => {
           <Stack.Screen name="DailySteps" component={Steps} />
           <Stack.Screen name="WaterIntake" component={Water} />
           <Stack.Screen name="PostDetails" component={PostDetails} />
-          <Stack.Screen name="EditProfile" component={EditProfile}/>
-          <Stack.Screen name="Feedback" component={Feedback}/>
-          <Stack.Screen name="AboutUs" component={AboutUs}/>
         </Stack.Navigator>
   
         <Modal

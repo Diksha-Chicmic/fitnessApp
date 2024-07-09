@@ -6,12 +6,12 @@ const initialState: { data: User & { password: string } } = {
         id: null,
         firstName: null,
         lastName: null,
-        email: '',
+        email: null,
         finger: null,
         photo: null,
         gender: null,
-        preferences: [],
-        interests: [],
+        preferences: null,
+        interests: null,
         password: "",
         healthData:[]
 
@@ -23,13 +23,8 @@ export const currentUserSlice = createSlice({
     name: 'User',
     initialState,
     reducers: {
-        updateImage(state, action:PayloadAction<string>) {
-            state.data.photo = action.payload;
-            console.log(state.data.photo,"image updated")
-        },
         updateUser(state, action: PayloadAction<Partial<User & { password: string }>>) {
             state.data = { ...state.data, ...action.payload };
-            console.log('usdfnisdugnvdiungviudni',state.data)
         },
         removeUser(state) {
             state.data = initialState.data;
@@ -37,5 +32,5 @@ export const currentUserSlice = createSlice({
     }
 })
 
-export const { updateUser, removeUser,updateImage } = currentUserSlice.actions;
+export const { updateUser, removeUser } = currentUserSlice.actions;
 export default currentUserSlice.reducer;

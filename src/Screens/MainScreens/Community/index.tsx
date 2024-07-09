@@ -101,7 +101,6 @@ function Community({ navigation }) {
         <FlatList data={posts} renderItem={({item: post,index}) => {
         return  <PostScreen
             key={index}
-            profilePic={post.userPhoto}
             image={post.photo}
             postId={post.postId!}
             name={post.userName}
