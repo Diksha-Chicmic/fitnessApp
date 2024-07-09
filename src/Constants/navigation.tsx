@@ -126,9 +126,6 @@ export type homeStackParamList = {
   DailySteps: undefined;
   PostDetails:undefined;
   StoriesScreen: { allStoryData: Array<StoryData>; index: number };
-  EditProfile:undefined;
-  Feedback:undefined
-  AboutUs:undefined
   // PostScreen: { postId: string };
 };
 export type AppNavigationProps = NativeStackNavigationProp<homeStackParamList>;
@@ -151,16 +148,4 @@ export type DailyStepsProps = NativeStackScreenProps<
 export type PostScreenProps = NativeStackScreenProps<
   homeStackParamList,
   "PostDetails"
->;
-export type EditScreenProps = NativeStackScreenProps<
-  homeStackParamList,
-  "EditProfile"
->;
-export type FeedbackScreenProps = NativeStackScreenProps<
-  homeStackParamList,
-  "Feedback"
->;
-export type AboutUsScreenProps = NativeStackScreenProps<
-  homeStackParamList,
-  "AboutUs"
 >;

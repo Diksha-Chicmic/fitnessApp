@@ -12,7 +12,7 @@ const Settings: React.FC<SettingsProps> = ({ title, onPress, toggle = false }) =
     const [isSwitch, setIsSwitch] = useState<boolean>(false)
     return (
 
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             {toggle ? (
                 <View style={[ styles.toggleStyles,isSwitch ? null: { borderColor: COLORS.SECONDARY.LIGHTGREY,},]}>

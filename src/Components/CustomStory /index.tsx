@@ -5,6 +5,7 @@ import InstaStory, { IUserStory } from 'react-native-insta-story';
 import { useNavigation } from "@react-navigation/native";
 import { COLORS } from "../../Constants/commonStyles";
 import { AppNavigationProps } from "../../Constants/navigation";
+import { StoryData } from "../../utils/common";
 import { IMAGES } from "../../Constants/images";
 import { useAppSelector } from '../../Redux/Store';
 

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, SafeAreaView, FlatList, Alert } from "react-native";
 import SelectInterest from "../../Components/SelectInterest";
-import { INTERESETS } from "../../Constants/interestData";
 import { ICONS } from "../../Constants/icons";
 import CustomButton from "../../Components/CustomButton";
 import { STRINGS } from "../../Constants/strings";
@@ -17,11 +16,20 @@ const style = {
 
 type Interest = {
     title: string,
-    icon: any,
-    selected:boolean,
-   // onPress:()=>void
+    icon: any
 };
 
+const interests: Interest[] = [
+    { title: 'Fashion', icon: ICONS.FASHION(style) },
+    { title: 'Organic', icon: ICONS.PLANT(style) },
+    { title: 'Meditation', icon: ICONS.MEDITATION(style) },
+    { title: 'Fitness', icon: ICONS.FITNESS(style) },
+    { title: 'Smoke free', icon: ICONS.NOSMOKING(style) },
+    { title: 'Sleep', icon: ICONS.SLEEP(style) },
+    { title: 'Health', icon: ICONS.HEALTH(style) },
+    { title: 'Running', icon: ICONS.RUNNING(style) },
+    { title: 'Vegan', icon: ICONS.VEGAN(style) }
+];
 
 const AddInterest = ({navigation}:AddInterestProps) => {
     const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -62,7 +70,7 @@ const AddInterest = ({navigation}:AddInterestProps) => {
         <SafeAreaView style={styles.container}>
             <Text style={styles.heading}>{STRINGS.INTEREST.HEADING}</Text>
             <FlatList
-                data={INTERESETS}
+                data={interests}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
                 contentContainerStyle={styles.interestsContainer}
