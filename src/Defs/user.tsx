@@ -4,12 +4,12 @@ export interface User {
   id: string | null;
   firstName: string | null;
   lastName: string | null;
-  email: string | null;
+  email: string;
   finger: boolean | null;
   photo: string | null;
   gender: "male" | "female" | null;
-  preferences: Array<{ text: string; selected: boolean }> | null;
-  interests: Array<string> | null;
+  preferences: Array<{ text: string; selected: boolean }> ;
+  interests: Array<string> ;
   healthData:Array<any> |null
 }
 

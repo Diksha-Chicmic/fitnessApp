@@ -24,12 +24,10 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
   const handleUpdateProfile = () => {
     if (selectedAvatar) {
       console.log(`Profile updated with avatar: ${selectedAvatar}`);
-      // Add your update profile logic here
       dispatch(updateUser({photo:selectedAvatar}))
       navigation.navigate(NAVIGATION.ADDPREFERENCES);
     } else if (selectedImage) {
       console.log(`Profile updated with image: ${selectedImage}`);
-      // Add your update profile with image logic here
       dispatch(updateUser({photo:selectedImage}))
       navigation.navigate(NAVIGATION.ADDPREFERENCES);
     } else {
@@ -107,3 +105,6 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
 };
 
 export default AddProfile;
+
+
+

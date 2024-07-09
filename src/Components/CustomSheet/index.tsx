@@ -14,7 +14,7 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [caption, setCaption] = useState<string>('');
 
-  const {firstName,lastName,id,photo} = useAppSelector((state)=> state.User.data)
+  const {firstName,lastName,id,photo:user_Photo} = useAppSelector((state)=> state.User.data)
 
   const handlePress = async () => {
 
@@ -29,7 +29,7 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
         createdOn: new Date(),
         likedByUsersId: '',
         comments: '',
-        //userPhoto:photo
+        userPhoto:user_Photo
       };
       try{
         await storePost(newPost);

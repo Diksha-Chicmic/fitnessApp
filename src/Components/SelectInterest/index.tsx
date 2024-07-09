@@ -5,7 +5,7 @@ interface SelectInterestProps {
     text: string;
     icon: React.ReactNode;
     selected: boolean;
-    onSelect: () => void;
+    onSelect?: () => void;
 }
 
 const SelectInterest: React.FC<SelectInterestProps> = ({ text, icon, selected, onSelect }) => {
