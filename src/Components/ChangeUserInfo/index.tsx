@@ -58,13 +58,13 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
         <View style={styles.genderCardsCtr}>
           <SelectGender
             text='male'
-            icon={ICONS.MALE}
+            icon={ICONS.MALE({height:40,width:40})}
             onPress={() => toggleCheckBox('male')}
             selected={selectedGender === 'male'}
           />
           <SelectGender
             text='female'
-            icon={ICONS.FEMALE}
+            icon={ICONS.FEMALE({height:40,width:40})}
             onPress={() => toggleCheckBox('female')}
             selected={selectedGender === 'female'}
           />

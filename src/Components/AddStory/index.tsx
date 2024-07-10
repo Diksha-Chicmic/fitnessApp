@@ -65,7 +65,7 @@ const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
     const options: ImageLibraryOptions = {
       mediaType: 'photo',
     };
-    let response = await launchImageLibrary(options);
+    let response: any = await launchImageLibrary(options);
     if (!response.didCancel && response.assets && response.assets.length > 0) {
       addStoryToFirestore(response.assets[0].uri);
       setModalVisible(false);
@@ -76,7 +76,7 @@ const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
     const options: CameraOptions = {
       mediaType: 'photo',
     };
-    let response = await launchCamera(options);
+    let response:any = await launchCamera(options);
     if (!response.didCancel && response.assets && response.assets.length > 0) {
       addStoryToFirestore(response.assets[0].uri);
       setModalVisible(false);

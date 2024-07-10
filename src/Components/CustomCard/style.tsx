@@ -78,10 +78,11 @@ export const styles = StyleSheet.create({
     },
     pointer: {
         position: "absolute",
-        height: 14,
-        width: 3,
-        top: 10,
+        height: '100%',
+        width: '1%',
+        top: '56%',
         backgroundColor: "black",
+        left:55
     },
 });
 

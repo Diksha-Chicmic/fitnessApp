@@ -22,7 +22,7 @@ import { styles } from './style';
   const [activeModal, setActiveModal] = useState<'userInfo' | 'preferences' | null | 'interests'>(null);
   const [photoModalVisible, setPhotoModalVisible] = useState(false);
   const { photo,firstName,lastName,email,interests,preferences,gender,id} = useAppSelector(state => state.User.data);
-  console.log(interests)
+  console.log('ooooooooo',interests)
   const setModalFalse = () => setActiveModal(null);
   const getActiveModalComp = useCallback(() => {
     if (activeModal === 'userInfo') {
@@ -36,7 +36,7 @@ import { styles } from './style';
     }
   }, [activeModal]);
   const ActiveModalComponent = getActiveModalComp();
-
+  console.log('ppppppppp',preferences)
   return (
      <View style={styles.parent}>
       <Text style={styles.cardsHeadingText}>User Info</Text>
@@ -106,7 +106,7 @@ import { styles } from './style';
               if (val.selected) {
                 return (
                   <Text key={index} style={styles.infoText}>
-                    {val.text}
+                    {val.title}
                   </Text>
                 );
               }

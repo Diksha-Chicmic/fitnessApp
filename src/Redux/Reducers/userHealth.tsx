@@ -14,6 +14,7 @@ const initialState: initial = {
         nutrition: 0,
        // currentTime: Timestamp.now(),
        currentTime: Timestamp.now().toDate().getTime(),
+       currentDate: new Date().toISOString(),
         goals: {
             totalGlasses: 8,
             stepsGoal: 10000,
@@ -42,7 +43,8 @@ const healthSlice = createSlice({
                 nutrition:0,
                 dailyGlass:0,
                 totalSteps:0,
-                currentTime:Timestamp.now()
+                currentTime:Timestamp.now(),
+                currentDate: new Date().toISOString(),
             }
            }
        }

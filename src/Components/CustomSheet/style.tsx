@@ -22,9 +22,13 @@ export const styles = StyleSheet.create({
       marginBottom: 10,
     },
     input: {
-     //flex:1,
-      padding: 10,
-      marginTop: 10,
+     flex:1,
+      paddingHorizontal: '5%',
+      marginTop: '6%',
+      width:screenWidth/1.5,
+      fontSize:SIZES.font14,
+      fontWeight:'600'
+      
     },
     button:{
        height:screenWidth/12,

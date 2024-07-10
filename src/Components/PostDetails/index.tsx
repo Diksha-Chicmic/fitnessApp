@@ -66,7 +66,7 @@ const PostDetails = ({ route }) => {
   const renderItem = ({ item }) => (
     <View key={item.id} style={styles.commentContainer}>
       <View style={styles.direction}>
-        <Image source={IMAGES.LANDING_PAGE} style={styles.profile} />
+        <Image source={{uri:userPhoto}} style={styles.profile} />
         <View>
           <Text style={styles.name}>{item.userName}</Text>
           <Text style={styles.time}>{item.createdOn.toDate().toLocaleString()}</Text>

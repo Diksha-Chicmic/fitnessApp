@@ -6,10 +6,10 @@ export interface User {
   lastName: string | null;
   email: string;
   finger: boolean | null;
-  photo: string | null;
+  photo: string ;
   gender: "male" | "female" | null;
   preferences: Array<{ text: string; selected: boolean }> ;
-  interests: Array<string> ;
+  interests: Array<{title:string,selected:boolean}> ;
   healthData:Array<any> |null
 }
 
@@ -19,6 +19,7 @@ export interface Health {
   dailyGlass: number,
   nutrition: number,
   currentTime: any,
+  currentDate:string,
   goals: {
     totalGlasses: number,
     stepsGoal: number,

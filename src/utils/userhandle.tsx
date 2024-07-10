@@ -90,7 +90,7 @@ export const storeUserData = async (
           healthData: firestore.FieldValue.arrayUnion(sendHealthData),
         });
     } catch (e) {
-      console.log(e);
+      console.log('error for storing using health data ',e);
     }
   };
   
@@ -100,7 +100,7 @@ export const storeUserData = async (
         .collection(firebaseDB.collections.users)
         .doc(uid)
         .get();
-      return snapshot.data() as Array<UserHealthDataFirebaseDb>;
+      return snapshot.get('healthData') as Array<UserHealthDataFirebaseDb>;
     } catch (e) {
       console.log(e);
     }

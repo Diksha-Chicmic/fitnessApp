@@ -1,19 +1,18 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        padding: "4%",
-        marginHorizontal:'1%'
-
-    },
-    glassBox: {
-        position: "relative"
-    },
-
-    iconBox: {
-        position: "absolute",
-        left: "32%",
-        top: "30%",
-    },
+  parent: {
+    // borderWidth: 1,
+  },
+  glassEmpty: {
+    width: 50,
+    height: 50,
+    backgroundColor: 'red',
+    transform: [{skewX: '20deg'}],
+  },
+  plusCtr: {
+    position: 'absolute',
+    left: '30%',
+    top: '30%',
+  },
 });

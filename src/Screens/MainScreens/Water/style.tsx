@@ -8,9 +8,13 @@ export const styles = StyleSheet.create({
        color:COLORS.PRIMARY.PURPLE
     },
     glassContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-       
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        columnGap: 40,
+        rowGap: 40,
+        paddingHorizontal: 30,
+        justifyContent: 'flex-start',
+        marginBottom: '5%',
     },
     warning:{
         backgroundColor:'pink',

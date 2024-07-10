@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "../../../Constants/commonStyles"
 
 export const styles = StyleSheet.create({
     container:{
-       paddingLeft:"5%",
+       
        
     },
      heading:{

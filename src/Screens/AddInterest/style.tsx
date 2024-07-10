@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SIZES } from "../../Constants/commonStyles";
+import { SIZES,COLORS } from "../../Constants/commonStyles";
 
 export const styles = StyleSheet.create({
     container: {
@@ -18,4 +18,17 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    parent: {
+        flex: 1,
+        backgroundColor: COLORS.PRIMARY.GREY,
+        alignContent: 'center',
+       // paddingTop: 48,
+      },
+      titleText: {
+        
+      },
+      flatListStyle: {
+        
+      },
+      buttonStyle: {flex: 3, alignSelf: 'center'},
 });

@@ -13,7 +13,11 @@ interface InputProps{
     value?: string
     placeholderTextColor?: string,
     parentStyle?:StyleProp<ViewStyle>,
-    secureText?:boolean
+    secureText?:boolean,
+    editable?:boolean,
+    mulitline?:boolean,
+    lines?:number
+    
 }
 const CustomInput:React.FC<InputProps> = ({
     text,
@@ -25,7 +29,10 @@ const CustomInput:React.FC<InputProps> = ({
     value,
     placeholderTextColor= '#B0B1C8',
     parentStyle,
-    secureText= false
+    secureText= false,
+    mulitline,
+    editable,
+    lines
 }) => {
     return (
         <View style={[styles.container,parentStyle]}>
@@ -43,6 +50,12 @@ const CustomInput:React.FC<InputProps> = ({
                 autoCapitalize={type === 'name' ? 'words' : 'none'}
                 maxLength={maxLength}
                 secureTextEntry={secureText}
+                numberOfLines={lines}
+                editable={editable}
+                multiline={mulitline}
+                
+
+                
                 
             />
         </View>

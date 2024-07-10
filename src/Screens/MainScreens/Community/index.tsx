@@ -15,6 +15,8 @@ import { useAppSelector } from '../../../Redux/Store';
 import Story from '../../../Components/CustomStory ';
 import { Post } from '../../../Defs/user';
 import { FlatList } from 'react-native-gesture-handler';
+import PostDetails from '../../../Components/PostDetails';
+import { PostScreenProps } from '../../../Constants/navigation';
 
 
 function Community({ navigation }) {
@@ -58,6 +60,9 @@ function Community({ navigation }) {
     console.log('story',storyUpdateTrigger);
 
   };
+  // const moveToPostDetails=()=>{
+  //   navigation.navigate('PostDetails')
+  // }
 
   const handlePost = async () => {
    
@@ -98,8 +103,12 @@ function Community({ navigation }) {
           </View>
          
         </View>
+        
         <FlatList data={posts} renderItem={({item: post,index}) => {
-        return  <PostScreen
+
+        return(
+        <TouchableOpacity onPress={()=>handlePostPress(post)}>  
+        <PostScreen
             key={index}
             profilePic={post.userPhoto}
             image={post.photo}
@@ -109,8 +118,11 @@ function Community({ navigation }) {
             caption={post.caption}
             likes={0}
             comments={post.comments.length}
-            onPress={() => handlePostPress(post)}
-          />}} />
+           // onPress={() => handlePostPress(post)}
+          />
+          </TouchableOpacity>)}} 
+          />
+          
     </SafeAreaView>
   );
 }

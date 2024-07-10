@@ -1,30 +1,36 @@
 import React from 'react';
-import {FlatList, ListRenderItem, View,Text,StyleSheet} from 'react-native';
+import {FlatList, ListRenderItem, View,Text} from 'react-native';
+import { styles } from './style';
 import SelectInterest from '../SelectInterest';
 import CustomButton from '../CustomButton';
-import { useAppSelector } from '../../Redux/Store';
+import { useAppDispatch, useAppSelector } from '../../Redux/Store';
+import { INTERESETS } from '../../Constants/interestData';
+// import {ChangeUserInterestsProps} from './type';
 import firestore from '@react-native-firebase/firestore';
 import { firebaseDB } from '../../utils/userhandle';
-import { SIZES ,COLORS} from '../../Constants/commonStyles';
-import { INTERESETS } from '../../Constants/interestData';
+import { updateUser } from '../../Redux/Reducers/currentUser';
 
-
+const renderItem: ListRenderItem<{
+  title: string;
+  icon: React.ReactNode;
+  selected: boolean;
+}> = ({item}) => <SelectInterest item={item} />;
 export interface ChangeUserInterestsProps{
-    setModalFalse:()=>void
+  setModalFalse:()=>void
 }
-
-const renderItem: ListRenderItem<{ title: string; icon: React.ReactNode; selected: boolean; }> = ({ item }) => (
-    <SelectInterest text={item.title} icon={item.icon} selected={item.selected} onSelect={() => {}} />
-  );
-  
-const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({ setModalFalse }) => {
+const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({
+  setModalFalse,
+}) => {
   const {interests, id} = useAppSelector(state => state.User.data);
-
+  const dispatch= useAppDispatch()
+    console.log('iiiiiiiii',interests)
   const interestDataWithIcons = interests.map((val, index) => ({
     ...val,
     icon: INTERESETS[index].icon,
   }));
+  
 
+  // functions
   const handleSubmitChange = async () => {
     await firestore()
       .collection(firebaseDB.collections.users)
@@ -35,17 +41,19 @@ const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({ setModalFalse
           return {selected, title};
         }),
       });
+   dispatch(updateUser({interests:interestDataWithIcons}))
     setModalFalse();
   };
 
   return (
     <View style={styles.parent}>
-    <Text style={{fontSize:SIZES.font24,fontWeight:'bold',textAlign:'center'}}>Change Interest</Text>
+       <Text style={styles.title}>Change Interests</Text>
       <View style={styles.flatListCtr}>
         <FlatList
-          data={INTERESETS}
+          data={interestDataWithIcons}
           renderItem={renderItem}
           numColumns={3}
+         // style={styles.flatListStyle}
         />
       </View>
       <View style={styles.customButtonCtr}>
@@ -54,20 +62,8 @@ const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({ setModalFalse
     </View>
   );
 };
-export const styles = StyleSheet.create({
-    parent: {
-      flex: 1,
-      backgroundColor: COLORS.PRIMARY.DIMGREY,
-    },
-    flatListCtr: {
-      flex: 4,
-      marginVertical:'15%',
-      marginLeft:'-4%'
-    },
-    customButtonCtr: {
-      flex: 1,
-      alignItems: 'center',
-      paddingTop: '10%',
-    },
-});
+
 export default ChangeUserInterests;
+
+
+

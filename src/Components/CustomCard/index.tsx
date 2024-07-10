@@ -14,13 +14,8 @@ import { COLORS } from '../../Constants/commonStyles';
 const iconSize = { width: 24, height: 24 };
 
 
-const CustomCard:React.FC<CardProps> = ({
-    title,
-    onPress,
-    percentage,
-    icon,
-    point,
-}) => {
+const CustomCard:React.FC<CardProps> = ({ title,onPress,percentage,icon,point,}) => {
+
     const button = {
         style: {
             backgroundColor: "#F4DCDC",
@@ -65,7 +60,7 @@ const CustomCard:React.FC<CardProps> = ({
                     <View style={styles.yellowContainer}></View>
                     <View style={styles.greenContainer}></View>
                 </View>
-                <View style={[styles.pointer,  {left: `${percentage}%` }]}></View>
+                <View style={[styles.pointer,]}></View>
             </View>
             </TouchableOpacity>
         </View>

@@ -27,12 +27,16 @@ function Steps() {
         worst: { value: number; week: string };
     }>();
     useEffect(() => {
+        console.log('Diksha useffect')
         getHealthData(id!)
             .then(healthData => {
+                console.log('healthData firebase',healthData)
                 if (healthData) {
+                    console.log('inside if ' )
                     const filteredData = healthData.filter(val =>
                         checkWeek(Timestamp.fromMillis(val.currentDate.seconds * 1000).toDate(), today,),
                     );
+                    console.log('filtered Data', filteredData);
                     const bestWaterIntakeDay = filteredData.reduce(
                         (acc, val) => {
                             const currentDate = Timestamp.fromMillis(val.currentDate.seconds * 1000,).toDate();
@@ -43,7 +47,7 @@ function Steps() {
                                 };
                             }
                             return acc;
-                        }, { value: -Infinity, week: '' },
+                        }, { value: 0, week: '' },
                     );
                     const worstWaterIntakeDay = filteredData.reduce(
                         (acc, val) => {
@@ -58,7 +62,7 @@ function Steps() {
                                 };
                             }
                             return acc;
-                        }, { value: +Infinity, week: '', },
+                        }, { value: 0, week: '', },
                     );
                     setRating({ best: bestWaterIntakeDay, worst: worstWaterIntakeDay });
                 }
@@ -115,7 +119,7 @@ function Steps() {
 
                     />
                 </View>
-                {/* {rating === undefined || rating?.best.value === -Infinity ? null : ( */}
+                {rating === undefined || rating?.best.value === -Infinity ? null : (
                 <PerformanceDetails
                     icon={ICONS.YELLOWSMILE({ height: 20, width: 20, color: 'orange' })}
                     title="Best Performance"
@@ -123,15 +127,15 @@ function Steps() {
                     quant={rating?.best.value ?? 0}
                     border={true}
                 />
-                {/* )} */}
-                {/* {rating === undefined || rating?.worst.value === Infinity ? null : ( */}
+                 )} 
+                {rating === undefined || rating?.worst.value === Infinity ? null : ( 
                 <PerformanceDetails
                     icon={ICONS.REDSMILE({ height: 20, width: 20 })}
                     title="Worst Performance"
                     text={rating?.worst.week ?? 'No data'}
                     quant={rating?.worst.value ?? 0}
                 />
-                {/* )} */}
+                )}
             </ScrollView>
         </SafeAreaView>
     )
