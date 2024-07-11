@@ -1,7 +1,7 @@
 import { Timestamp } from "@react-native-firebase/firestore";
 
 export interface User {
-  id: string | null;
+  id: string;
   firstName: string | null;
   lastName: string | null;
   email: string;
@@ -10,7 +10,8 @@ export interface User {
   gender: "male" | "female" | null;
   preferences: Array<{ text: string; selected: boolean }> ;
   interests: Array<{title:string,selected:boolean}> ;
-  healthData:Array<any> |null
+  healthData:Array<any> |null;
+  notifications: NotificationsData;
 }
 
 export interface Health {
@@ -55,4 +56,14 @@ export type StoryData = {
   userName: string;
   userPhoto: string;
   storyByUserId: string;
+};
+
+
+export type NotificationsData = Array<NotificationData>;
+export type NotificationData = {
+  userId: string;
+  message: string;
+  createdOn: string;
+  isUnread: boolean;
+  isShownViaPushNotification: boolean;
 };

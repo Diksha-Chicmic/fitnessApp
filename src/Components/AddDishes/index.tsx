@@ -3,7 +3,6 @@ import {TouchableOpacity, View, ScrollView, Alert, Text, StyleSheet} from 'react
 import CustomButton from '../CustomButton';
 import { ICONS } from '../../Constants/icons';
 import DishSelector from '../DishesSelector';
-// import FoodSelector from '../FoodSelector';
 import {
   DailyMeals,
   Meal,
@@ -13,7 +12,7 @@ import {
 import ItemSelector from '../DishItemsSelector ';
 import foodData from '../../Constants/foodData';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
-// import {foodData} from '../../../Constants/commonConstants';
+import { MealsSelected, ChoosedishesProps} from './types';
 
 const size = {
   width: 40,
@@ -21,17 +20,7 @@ const size = {
   
 };
 
-export type MealsSelected = {
-  mealTime: {
-    snack: boolean;
-    breakfast: boolean;
-    lunch: boolean;
-    dinner: boolean;
-  };
- // foodData: Array<Meal>;
- foodData:any
-};
-const ChooseFood = ({setModalFalse}:any) => {
+const ChooseFood:React.FC<ChoosedishesProps> = ({setModalFalse}) => {
   const dispatch = useAppDispatch();
   const mealsSelected = useRef<MealsSelected>({
     mealTime: {
@@ -43,7 +32,6 @@ const ChooseFood = ({setModalFalse}:any) => {
     foodData: [],
   });
 
-  // functions
   const handleSubmit = () => {
     const dtArray: any = {
       breakfast: [],

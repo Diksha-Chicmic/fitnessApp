@@ -4,7 +4,6 @@ import { TouchableOpacity } from "react-native";
 import { authNavigationList } from "../../Constants/navigation";
 import { ICONS } from "../../Constants/icons";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-//import { styles } from "./styles";
 
 const CustomDrawer = () => {
   const navigation = useNavigation<DrawerNavigationProp<authNavigationList>>();

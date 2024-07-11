@@ -3,12 +3,7 @@ import { Text, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { COLORS } from "../../Constants/commonStyles";
 import { styles } from "./style";
-
-interface SelectPreferencesProps {
-  text: string;
-  selected: boolean;
-  onToggle: () => void;
-}
+import { SelectPreferencesProps } from "./types";
 
 const SelectPreferences: React.FC<SelectPreferencesProps> = ({ text, selected, onToggle }) => {
   const [isSelected, setIsSelected] = useState<boolean>(selected);

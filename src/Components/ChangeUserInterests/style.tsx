@@ -7,14 +7,13 @@ export const styles = StyleSheet.create({
       backgroundColor: COLORS.PRIMARY.DIMGREY,
     },
     flatListCtr: {
-      flex: 4,
-      marginVertical:'15%',
+      flex: 5,
+      marginVertical:'10%',
       marginLeft:'-4%'
     },
     customButtonCtr: {
-      flex: 1,
-      alignItems: 'center',
-      paddingTop: '10%',
+     alignItems: 'center',
+      paddingTop: '3%',
     },
     title: {
             fontSize: SIZES.font24,

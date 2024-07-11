@@ -1,16 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
 import { styles } from './style';
-interface Details {
-  title: string,
-  quant: number,
-  text: string,
-  icon: React.ReactNode,
-  border?:boolean
-};
-
-const PerformanceDetails: React.FC<Details> = ({ title, quant, text, icon,border }) => {
+import { DetailsProps } from './types';
+const PerformanceDetails: React.FC<DetailsProps> = ({ title, quant, text, icon,border }) => {
   return (
     <View>
     <View style={styles.container}>

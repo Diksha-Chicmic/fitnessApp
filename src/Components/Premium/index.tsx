@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { COLORS, SIZES } from "../../Constants/commonStyles";
+import { SelectPreferencesProps } from "./types";
 
-interface SelectPreferencesProps {
-  text?: number;
-  textY?:string
-  selected?: boolean;
-  onToggle?: () => void;
-}
 
 const Settings: React.FC<SelectPreferencesProps> = ({ text, selected, onToggle ,textY}) => {
   const [isSelected, setIsSelected] = useState<boolean>(false);

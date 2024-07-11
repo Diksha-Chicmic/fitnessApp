@@ -3,17 +3,18 @@ import { User } from "../../Defs/user";
 
 const initialState: { data: User & { password: string } } = {
     data: {
-        id: null,
+        id: '',
         firstName: null,
         lastName: null,
         email: '',
         finger: null,
-        photo: null,
+        photo: '',
         gender: null,
         preferences: [],
         interests: [],
         password: "",
-        healthData:[]
+        healthData:[],
+        notifications: [],
 
     },
 

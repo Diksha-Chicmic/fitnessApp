@@ -4,7 +4,7 @@ import ActionSheet, { ActionSheetRef, SheetProps } from 'react-native-actions-sh
 import notifee from "@notifee/react-native";
 import '../../Constants/sheet';
 import { styles } from './style';
-import { storePost } from '../../utils/userhandle';
+import { sendNotification, storePost } from '../../utils/userhandle';
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from 'uuid';
 import { useAppSelector } from '../../Redux/Store';
@@ -36,11 +36,15 @@ const CustomSheet = (props: SheetProps<"commnet-sheet">) => {
       };
       try{
         await storePost(newPost);
-        await notifee.displayNotification({
-          id: "1234",
-          title: `New notification`,
-          body: "Your post posted successfully",
-        });
+        const notification = {
+          userId: id!, 
+          message: 'your post posted successfully',
+          isUnread: true,
+          isShownViaPushNotification: false
+        };
+  
+        
+        await sendNotification(notification, id!);
       }
       catch(e){
         console.log('eee',e)

@@ -1,14 +1,7 @@
 import { View, TouchableOpacity, Text, StyleProp, ViewStyle } from "react-native";
 import { styles } from "./style";
 import React from "react";
-interface ButtonProps{
-
-        onPress: () => void,
-        title: string,
-        colour?: string
-        parentStyle?: StyleProp<ViewStyle>;
-
-}
+import { ButtonProps } from "./types";
 const CustomButton:React.FC<ButtonProps>=({
     onPress,
     title,

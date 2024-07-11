@@ -11,6 +11,7 @@ import Home from "../Screens/MainScreens/Home";
 import LogOut from "../Screens/MainScreens/LogOut";
 import Notifications from "../Screens/MainScreens/Notifications";
 import SettingScreen from "../Screens/MainScreens/Settings";
+import CustomDrawerRight from "../Components/CustomRightDrawer";
 
 const iconSize = {
   width: 25,
@@ -31,9 +32,9 @@ const AuthNavigator = () => {
   const headerLeft = () => {
     return <CustomDrawer/>;
   };
-  // const headerRight = () => {
-  //   return <CustomDrawerRight />;
-  // };
+  const headerRight = () => {
+    return <CustomDrawerRight />;
+  };
 
   return (
     <Drawer.Navigator initialRouteName="Home"
@@ -53,7 +54,7 @@ const AuthNavigator = () => {
       <Drawer.Screen name="Home" component={Home}
         options={{
          drawerIcon: drawerIcon(ICONS.HOME),
-        //  headerRight,
+          headerRight,
            headerStyle: {
             backgroundColor: COLORS.PRIMARY.GREY,
             height: 145,

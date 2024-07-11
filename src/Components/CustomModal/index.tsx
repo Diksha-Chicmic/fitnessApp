@@ -2,11 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { ICONS } from "../../Constants/icons";
 import { styles } from './style';
-type Icon = {
-  height: number;
-  width: number;
-  color: string;
-};
+
 interface ViewProps{
   title?: string,
   items?: Array<string>,
@@ -14,7 +10,7 @@ interface ViewProps{
   status?: Array<string>,
   onClose?: () => void
 }
-const iconSize: Icon = {
+const iconSize = {
   height: 25,
   width: 25,
   color: 'grey',

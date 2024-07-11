@@ -3,13 +3,7 @@ import React from 'react';
 import {StyleProp, View, ViewStyle} from 'react-native';
 import Modal from 'react-native-modal';
 import { styles } from './style';
-export type WithModalProps = {
-    modalVisible: boolean;
-    setModalFalse: () => void;
-    children: React.ReactElement | null;
-    parentStyle?: StyleProp<ViewStyle>;
-    barShown?: boolean;
-  };
+import { WithModalProps } from './types';
 const WithModal: React.FC<WithModalProps> = ({
   modalVisible,
   children,

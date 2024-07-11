@@ -2,12 +2,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { COLORS } from "../../Constants/commonStyles";
 import { styles } from "./style";
-interface GenderProps{
-    text: string,
-    icon: any,
-    selected: boolean,
-    onPress: () => void
-}
+import { GenderProps } from "./type";
 const SelectGender:React.FC<GenderProps> = ({
     text,
     icon,

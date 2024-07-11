@@ -8,10 +8,8 @@ import { firebaseDB } from '../../utils/userhandle';
 import { SIZES ,COLORS} from '../../Constants/commonStyles';
 import { PREEFENCES } from '../../Constants/preferencesData';
 import { updateUser } from '../../Redux/Reducers/currentUser';
+import { ChangeUserPreferenceProps } from './types';
 
-export interface ChangeUserPreferenceProps{
-    setModalFalse:()=>void
-}
 
 
   
@@ -81,6 +79,7 @@ export const styles = StyleSheet.create({
     flatListStyle: {
     //   ...SPACING.mt3,
     //   ...SPACING.mh1,
+    marginVertical:1
     },
     flatListCtr: {
       flex: 5,

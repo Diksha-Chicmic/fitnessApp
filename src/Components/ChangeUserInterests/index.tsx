@@ -5,19 +5,16 @@ import SelectInterest from '../SelectInterest';
 import CustomButton from '../CustomButton';
 import { useAppDispatch, useAppSelector } from '../../Redux/Store';
 import { INTERESETS } from '../../Constants/interestData';
-// import {ChangeUserInterestsProps} from './type';
 import firestore from '@react-native-firebase/firestore';
 import { firebaseDB } from '../../utils/userhandle';
 import { updateUser } from '../../Redux/Reducers/currentUser';
-
+import { ChangeUserInterestsProps } from './types';
 const renderItem: ListRenderItem<{
   title: string;
   icon: React.ReactNode;
   selected: boolean;
 }> = ({item}) => <SelectInterest item={item} />;
-export interface ChangeUserInterestsProps{
-  setModalFalse:()=>void
-}
+
 const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({
   setModalFalse,
 }) => {
@@ -53,7 +50,6 @@ const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({
           data={interestDataWithIcons}
           renderItem={renderItem}
           numColumns={3}
-         // style={styles.flatListStyle}
         />
       </View>
       <View style={styles.customButtonCtr}>

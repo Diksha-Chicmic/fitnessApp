@@ -9,15 +9,13 @@ import { v4 as uuidv4 } from 'uuid';
 import firestore, { Timestamp } from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import { useAppSelector } from '../../Redux/Store';
-
+import { AddStoryProps } from './types';
 const iconSize = {
   height: 40,
   width: 40,
   color: COLORS.PRIMARY.PURPLE,
 };
-interface AddStoryProps {
-  onStoryAdded: () => void;
-}
+
 const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { id: userId, firstName, lastName, photo: userPhoto } = useAppSelector((state) => state.User.data);

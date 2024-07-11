@@ -9,8 +9,7 @@ import { IMAGES } from '../../Constants/images';
 import { styles } from './style';
 import { ICONS } from '../../Constants/icons';
 import { getPost, storePostComment } from '../../utils/userhandle';
-import "react-native-get-random-values";
-import { v4 as uuidv4 } from 'uuid';
+
 
 const PostDetails = ({ route }) => {
   const { post } = route.params;

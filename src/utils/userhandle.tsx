@@ -4,7 +4,7 @@ import firestore, { Timestamp } from "@react-native-firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
 import storage from "@react-native-firebase/storage";
 
-import { User,Post,Comment,Health } from "../Defs/user";
+import { User,Post,Comment,Health, NotificationData } from "../Defs/user";
 
 export const firebaseDB = {
   collections: {
@@ -19,7 +19,6 @@ export const firebaseDB = {
   },
 };
 
-// user
 export const createUser = async (email: string, password: string) => {
   try {
     const userCredential: FirebaseAuthTypes.UserCredential = await auth().createUserWithEmailAndPassword(
@@ -30,6 +29,16 @@ export const createUser = async (email: string, password: string) => {
   } catch (e) {
     console.log("error creating user", e);
   }
+};
+
+
+export type UserFromFirebaseDb = Omit<
+  Omit<Omit<User, 'createdOn'>, 'notifications'>,
+  'healthData'
+> & {
+  createdOn: Timestamp;
+  notifications: Array<NotificationDataFirebaseDB>;
+  healthData: Array<Omit<Health, 'currentDate'> & {currentDate: Timestamp}>;
 };
 export const storeUserData = async (
     user: User,
@@ -70,7 +79,7 @@ export const storeUserData = async (
       return null;
     }
   };
-  // health data 
+  
   export type UserHealthDataFirebaseDb = Omit<Health, 'currentDate'> & {
     currentDate: Timestamp;
   };
@@ -172,54 +181,47 @@ export const storeUserData = async (
       });
   };
 
-
-
-//   export type UserFromFirebaseDb = Omit<
-//   Omit<Omit<User, 'createdOn'>, 'notifications'>,
-//   'healthData'
-// > & {
-//   createdOn: Timestamp;
-//   notifications: Array<NotificationDataFirebaseDB>;
-//   healthData: Array<Omit<HealthData, 'currentDate'> & {currentDate: Timestamp}>;
-// };
-// export const storeUserData = async (
-//   user: Omit<User, 'createdOn'>,
-//   userId: FirebaseAuthTypes.UserCredential['user']['uid'],
-// ) => {
-//   try {
-//     const userDataToSend: Omit<User, 'createdOn'> & {
-//       createdOn: Timestamp;
-//     } = {
-//       ...user,
-//       createdOn: Timestamp.fromDate(new Date()),
-//     };
-//     await firestore().collection('users').doc(userId).set(userDataToSend);
-//     console.log('User added!');
-//   } catch (e) {
-//     console.log('error storing User data - ', e);
-//   }
-// };
-
-// export type UserHealthDataFirebaseDb = Omit<HealthData, 'currentDate'> & {
-//   currentDate: Timestamp;
-// };
-// export const storeUserHealthData = async (
-//   healthData: HealthData,
-//   uid: FirebaseAuthTypes.UserCredential['user']['uid'],
-// ) => {
-//   try {
-//     const sendHealthData: UserHealthDataFirebaseDb = {
-//       ...healthData,
-//       currentDate: Timestamp.fromDate(new Date()),
-//     };
-//     await firestore()
-//       .collection(firebaseDB.collections.users)
-//       .doc(uid)
-//       .update({
-//         healthData: firestore.FieldValue.arrayUnion(sendHealthData),
-//       });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+  export type NotificationDataFirebaseDB = Omit<NotificationData, 'createdOn'> & {
+    createdOn: Timestamp;
+  };
+  export const sendNotification = async (
+    notification: Omit<NotificationData, 'createdOn'>,
+    sendToUserId: string,
+  ) => {
+    try {
+      console.log('notification sent to ', sendToUserId);
+  
+      const notificationToSend: NotificationDataFirebaseDB = {
+        ...notification,
+        createdOn: Timestamp.fromDate(new Date()),
+      };
+  
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(sendToUserId)
+        .update({
+          notifications: firestore.FieldValue.arrayUnion(notificationToSend),
+        });
+    } catch (e) {
+      console.log('error with sending notifications ', e);
+    }
+  };
+  
+  export const updateNotificationReadStatus = async (
+    userId: string,
+    newNotificationArray: Array<NotificationDataFirebaseDB>,
+  ) => {
+    try {
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(userId)
+        .update({
+          notifications: newNotificationArray,
+        });
+      console.log('notifications read status updated to ', newNotificationArray);
+    } catch (e) {
+      console.log('error with getting stories ', e);
+    }
+  };
+  
 

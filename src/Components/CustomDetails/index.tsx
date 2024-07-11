@@ -1,15 +1,7 @@
 import { Text, View, StyleSheet } from "react-native";
 import { styles } from "./style";
 import React from "react";
-
-
-interface DetailsProps{
-  color:string,
-  title:string,
-  text:number,
-  percentage:number,
-  borderCheck?:boolean
-}
+import { DetailsProps } from "./types";
 
 const Details:React.FC<DetailsProps> =({
     color,

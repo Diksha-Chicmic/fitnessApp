@@ -1,50 +1,62 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React,{useEffect} from "react";
-import notifee ,{ AndroidImportance }from "@notifee/react-native";
-import { COLORS, SIZES } from "../../../Constants/commonStyles";
-import CustomNotification from "../../../Components/CustomNotifications";
-const App = () => {
+import React, {useEffect, useState} from 'react';
+import {View, FlatList, Pressable, Text, TouchableOpacity} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import CustomNotification from '../../../Components/CustomNotifications';
+import { firebaseDB, NotificationDataFirebaseDB, updateNotificationReadStatus, } from '../../../utils/userhandle';
+import {useAppSelector} from '../../../Redux/Store';
+import { getTimePassed } from '../../../utils/common';
+import { styles } from './style';
+const Notifications: React.FC = () => {
+  
+  const [notificationsData, setNotificationsData] = useState<Array<NotificationDataFirebaseDB>>();
+  const {id} = useAppSelector(state => state.User.data);
   useEffect(() => {
-    async function requestPermissions() {
-      await notifee.requestPermission();
-    }
-
-    async function createChannel() {
-      await notifee.createChannel({
-        id: "default",
-        name: "Default Channel",
-        importance: AndroidImportance.HIGH,
+    const unsubscribe = firestore()
+      .collection(firebaseDB.collections.users)
+      .doc(id)
+      .onSnapshot(snapshot => {
+        const data: Array<NotificationDataFirebaseDB> = snapshot.get('notifications');
+        console.log('uuuuu', data)
+        setNotificationsData(data);
       });
-    }
-
-    requestPermissions();
-    createChannel();
-  }, []);
-  async function onTriggerHandler() {
-    await notifee.displayNotification({
-      id: "1234",
-      title: `New notification`,
-      body: "here the new notiifcations",
-    });
-  }
+    return () => unsubscribe();
+   },[id]);
 
   return (
-    <View style={{flex:1,backgroundColor:COLORS.PRIMARY.DIMGREY}}>
-       <Text style={styles.heading}>Notifications</Text>
-       <CustomNotification/>
-       <CustomNotification/>
-  </View>
+    <View
+      style={styles.container}
+      >
+      <View style={styles.box}>
+        <View>
+          <Text style={styles.heading}> Notifications </Text>
+          <Text style={styles.text}>{`${
+              notificationsData?.filter(val => val.isUnread === true).length
+            } unread Notifications`}</Text>
+        </View>
+      
+      </View>
+
+      <View style={styles.NotiCnt}>
+        <FlatList
+          data={notificationsData?.slice().reverse()}
+          style={styles.list}
+          renderItem={({item}) => (
+            <CustomNotification
+              check={item.isUnread}
+              text={item.message}
+              time={getTimePassed(item.createdOn.seconds * 1000)}
+              userId={item.userId}
+            />
+          )}
+        />
+         
+      </View>
+    </View>
   );
 };
 
-export default App;
+export default Notifications;
 
-const styles = StyleSheet.create({
-  heading:{
-    fontSize:SIZES.font24,
-    fontWeight:'bold',
-    marginLeft:'5%',
-    marginVertical:'10%',
-  
-  },
-});
+
+
+

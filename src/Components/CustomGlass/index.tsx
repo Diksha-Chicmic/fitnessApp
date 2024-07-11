@@ -2,17 +2,9 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import { ICONS } from '../../Constants/icons';
 import { styles } from './style';
-export type CustomGlassProps = {
-    isFilled: boolean;
-    handleFilled: () => void;
-    handleEmpty: () => void;
-};
+import { CustomGlassProps } from './types';
 
-const CustomGlass = ({
-  isFilled,
-  handleFilled,
-  handleEmpty,
-}: CustomGlassProps) => {
+const CustomGlass = ({isFilled,handleFilled,handleEmpty,}: CustomGlassProps) => {
   return (
     <View style={styles.parent}>
       {isFilled ? (

@@ -2,20 +2,9 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { COLORS } from '../../Constants/commonStyles';
+import { MealsSelected,DishSelectorProps } from './types';
 import {styles} from './style';
-export type MealsSelected = {
-    mealTime: {
-      snack: boolean;
-      breakfast: boolean;
-      lunch: boolean;
-      dinner: boolean;
-    };
-  };
-export interface DishSelectorProps{
-    title:string,
-    mealTime: MealsSelected['mealTime'];
 
-}
 const DishSelector: React.FC<DishSelectorProps> = ({title, mealTime}) => {
   const [isChecked, setIsChecked] = useState(false);
   const handleOnPress = () => {

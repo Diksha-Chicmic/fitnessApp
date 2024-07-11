@@ -2,12 +2,9 @@ import React, { useState } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import ToggleSwitch from 'toggle-switch-react-native'
 import { COLORS, SIZES } from '../../Constants/commonStyles'
+import { SettingsProps } from './types'
 import { styles } from './style'
-export interface SettingsProps {
-    title: string,
-    onPress?: () => void,
-    toggle?: boolean
-}
+
 const Settings: React.FC<SettingsProps> = ({ title, onPress, toggle = false }) => {
     const [isSwitch, setIsSwitch] = useState<boolean>(false)
     return (

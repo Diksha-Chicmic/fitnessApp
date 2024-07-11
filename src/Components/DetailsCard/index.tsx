@@ -1,14 +1,8 @@
 import React from 'react'
 import {Text,View} from 'react-native'
 import { styles } from './style'
+import { detailsProps } from './types'
 
-interface detailsProps{
-    calNum:string,
-    goalNum:number,
-    calText:string,
-    goalText:string,
-    text?:string
-}
 const DetailsCard:React.FC<detailsProps> =({calNum,goalNum,calText,goalText,text})=>{
     return(
         <View style={styles.container}>

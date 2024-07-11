@@ -10,10 +10,9 @@ import { useAppSelector } from '../../Redux/Store';
 import firestore from '@react-native-firebase/firestore';
 import { firebaseDB } from '../../utils/userhandle';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
+import { ChangeUserInfoProps } from './types';
+import { styles } from './style';
 
-export interface ChangeUserInfoProps{
-    setModalFalse:()=>void 
-}
 const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
   const {gender, id} = useAppSelector(state => state.User.data);
   const [selectedGender, setSelectedGender] = useState<User['gender'] | null>(gender);
@@ -24,7 +23,6 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
     setSelectedGender(gender);
   };
 
-  // functions
   const handleSubmitChange = async () => {
     console.log('submit')
     if (firstName !== '' && lastName !== '') {
@@ -37,12 +35,11 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
           lastName,
           gender,
         });
-       // console.log(firstName)
       setModalFalse();
     }
   };
   return (
-    <View style={styles.parent}>
+    <View style={styles.container}>
        <Text style={{fontSize:SIZES.fontH1}}>Edit User Info</Text>
       <CustomInput
         text="First Name"
@@ -54,8 +51,8 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
         type='name'
         onChangeText={setLastName}
       />
-      <View style={styles.genderCtr}>
-        <View style={styles.genderCardsCtr}>
+      <View style={styles.box}>
+        <View style={styles.box2}>
           <SelectGender
             text='male'
             icon={ICONS.MALE({height:40,width:40})}
@@ -78,25 +75,4 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
   );
 };
 
-export const styles = StyleSheet.create({
-  parent: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: COLORS.PRIMARY.DIMGREY,
-    paddingHorizontal: 16,
-    borderRadius: 10,
-  },
-  genderCtr: {
-    flexDirection: 'row',
-    marginTop: 38,
-  },
-  genderCardsCtr: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-  },
-  customTextInputStyle: {
-    textAlign: 'center',
-  },
-});
 export default ChangeUserInfo;

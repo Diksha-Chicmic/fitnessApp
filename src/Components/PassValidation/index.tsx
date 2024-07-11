@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { styles } from './style';
-
-interface PassInpProps{
-    length: boolean,
-    number: boolean,
-    uppercase: boolean
-}
+import { PassInpProps } from './types';
 const PassInputCheck:React.FC<PassInpProps> = ({
     length,
     number,

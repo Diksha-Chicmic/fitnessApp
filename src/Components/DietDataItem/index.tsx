@@ -5,10 +5,7 @@ import { ICONS } from '../../Constants/icons';
 import { useAppSelector,useAppDispatch } from '../../Redux/Store';
 import { Meal,resetMealDataItems } from '../../Redux/Reducers/dishes';
 import { styles } from './style';
-export type DietDataItemProps = {
-    item: Array<Meal>;
-    timeOfMeal: string;
-  };
+import { DietDataItemProps } from './types';
 const DietDataItem = ({item, timeOfMeal}: DietDataItemProps) => {
   // redux use
   const dispatch = useAppDispatch();

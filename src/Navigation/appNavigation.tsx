@@ -16,7 +16,7 @@ import EditProfile from "../Screens/MainScreens/EditProfile";
 import ChooseFood from "../Components/AddDishes";
 import Feedback from "../Screens/MainScreens/Feeback";
 import AboutUs from "../Screens/MainScreens/AboutUs";
-
+import notifee ,{ AndroidImportance }from "@notifee/react-native";
 import { updateHealthData,resetHealthData } from "../Redux/Reducers/userHealth";
 import { updateUser } from "../Redux/Reducers/currentUser";
 import { firebaseDB, storeUserHealthData } from "../utils/userhandle";
@@ -24,6 +24,7 @@ import { date } from "../utils/common";
 import AppleHealthKit, { HealthKitPermissions } from 'react-native-health'
 import { Timestamp } from "@react-native-firebase/firestore";
 import firestore from '@react-native-firebase/firestore';
+import { getUserData,updateNotificationReadStatus } from "../utils/userhandle";
 const Stack = createNativeStackNavigator<homeStackParamList>();
 
 
@@ -42,7 +43,31 @@ const AppNavigator = () => {
     const {id} = useAppSelector(state => state.User.data);
     const {data:healthData} = useAppSelector(state => state.Health);
     const dispatch = useAppDispatch();
-  
+    async function onDisplayNotification(message: string) {
+      // Request permissions (required for iOS)
+      await notifee.requestPermission();
+    
+      // Create a channel (required for Android)
+      const channelId = await notifee.createChannel({
+        id: 'default',
+        name: 'Default Channel',
+        vibration: true,
+      });
+    
+      // Display a notification
+      await notifee.displayNotification({
+        title: 'Notification',
+        body: message,
+        android: {
+          channelId,
+          // smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+          // pressAction is needed if you want the notification to open the app when pressed
+          pressAction: {
+            id: 'default',
+          },
+        },
+      });
+    }
     if (
       new Date().toDateString() !==
       new Date(healthData.currentDate).toDateString()
@@ -52,6 +77,7 @@ const AppNavigator = () => {
     }
   
     useEffect(() => {
+      
       if (Platform.OS === 'ios') {
         const startDate = date.getStartOfDay(new Date()).toISOString(); // Start of the current day
         const endDate = date.today().toISOString();
@@ -84,44 +110,46 @@ const AppNavigator = () => {
           .onSnapshot((snapshot: { data: () => any; }) => {
             const userData = snapshot.data();
             if (userData) {
-              // updateNotificationReadStatus(
+              //  updateNotificationReadStatus(
               //   id,
-              //   userData.notifications.map(val => {
-              //     if (val.isShownViaPushNotification === false) {
-              //       getUserData(val.userId).then(uD => {
-              //         setTimeout(
-              //           onDisplayNotification,
-              //           500,
-              //           uD.firstName + ' ' + uD.lastName + ' ' + val.message,
-              //         );
-              //       });
+              //  userData.notifications.map(val => {
+              //      if (val.isShownViaPushNotification === false) {
+              //        getUserData(val.userId).then(uD=> {
+              //         console.log(uD, 'udddd')
+              //        setTimeout(
+              //            onDisplayNotification,
+              //          500,
+              //            uD.firstName + ' ' + uD.lastName + ' ' + val.message,
+              //          );
+              //        });
               //       return {
-              //         ...val,
+              //          ...val,
               //         isShownViaPushNotification: true,
-              //       };
+              //        };
               //     }
               //     return {
               //       ...val,
-              //     };
-              //   }),
-              // );
+              //      };
+              //    }),
+              //  );
               dispatch(
                 updateUser({
                   ...userData,
                   healthData: userData.healthData.map((val: { currentDate: { seconds: number; }; }) => ({
                     ...val,
-                    currentDate: Timestamp.fromMillis(
-                      val.currentDate.seconds * 1000,
-                    )
+                    // currentDate: Timestamp.fromMillis(
+                    //   val.currentDate.seconds * 1000,
+                    // )
+                    //   .toDate()
+                    //   .toISOString(),
+                    currentDate: new Date(val.currentDate.seconds * 1000).toISOString(),
+                  })),
+                  notifications: userData.notifications.map((val: { createdOn: { seconds: number; }; }) => ({
+                    ...val,
+                    createdOn: Timestamp.fromMillis(val.createdOn.seconds * 1000)
                       .toDate()
                       .toISOString(),
                   })),
-                 // notifications: userData.notifications.map((val: { createdOn: { seconds: number; }; }) => ({
-                  //  ...val,
-                   // createdOn: Timestamp.fromMillis(val.createdOn.seconds * 1000)
-                    //  .toDate()
-                     // .toISOString(),
-                 // })),
                 }),
               );
             }

@@ -3,7 +3,7 @@ import { COLORS, SIZES } from "../../../Constants/commonStyles"
 
 export const styles = StyleSheet.create({
     container:{
-       
+        marginHorizontal:'5%'
        
     },
      heading:{
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
      text:{
          fontSize:SIZES.font11,
          paddingVertical:"2%",
-         width:'70%',
+         //width:'70%',
          
         
      },
@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
          color:COLORS.PRIMARY.PURPLE,
          fontSize:SIZES.font13,
          fontWeight:'bold',
-         paddingVertical:"5%"
+         paddingVertical:"5%",
+
      }
  })

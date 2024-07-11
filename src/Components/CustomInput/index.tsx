@@ -2,23 +2,8 @@ import { TextInput, View,StyleProp,TextStyle,ViewStyle } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { styles } from "./style";
 import React from "react";
+import { InputProps } from "./types";
 
-interface InputProps{
-    text: string,
-    icon?: any,
-    hasError?: boolean,
-    onChangeText: (text: string) => void,
-    maxLength?: number,
-    type: 'name' | 'email',
-    value?: string
-    placeholderTextColor?: string,
-    parentStyle?:StyleProp<ViewStyle>,
-    secureText?:boolean,
-    editable?:boolean,
-    mulitline?:boolean,
-    lines?:number
-    
-}
 const CustomInput:React.FC<InputProps> = ({
     text,
     icon,
