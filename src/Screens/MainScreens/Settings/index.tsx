@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
 import { EditScreenProps } from "../../../Constants/navigation";
 import Settings from "../../../Components/CustomSetting";
-import { SIZES } from "../../../Constants/commonStyles";
+import { COLORS, SIZES } from "../../../Constants/commonStyles";
 function SettingScreen({navigation}:EditScreenProps){
     const moveToEditScreen=()=>{
         navigation.navigate('EditProfile')
@@ -28,8 +28,9 @@ function SettingScreen({navigation}:EditScreenProps){
 
 const styles= StyleSheet.create({
     container:{
-       marginHorizontal:10,
-       flex:1
+      //marginHorizontal:10,
+       flex:1,
+       backgroundColor:COLORS.PRIMARY.GREY
     },
     heading:{
         fontSize:SIZES.font24,

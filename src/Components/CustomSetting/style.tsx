@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         paddingHorizontal:10,
         marginVertical:1,
+        marginHorizontal:'3%'
     },
     text: {
         fontSize: SIZES.font13,
