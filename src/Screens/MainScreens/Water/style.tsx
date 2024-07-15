@@ -39,5 +39,8 @@ export const styles = StyleSheet.create({
         margin:'5%'
 
         
+    },
+    parent:{
+        backgroundColor:COLORS.PRIMARY.GREY
     }
 });

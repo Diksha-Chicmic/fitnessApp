@@ -21,7 +21,7 @@ function Home({navigation}:HomeScreenProps){
    const waterPercentage = (dailyGlass / totalGlasses) * 100;
    const stepsPercentage = (totalSteps / stepsGoal) * 100;
     return(
-        <SafeAreaView >
+        <SafeAreaView style={styles.parent} >
             <View style={styles.container}>
            <Text style={styles.heading}> {STRINGS.HOME.HEADING} {userName} </Text>
            <Text style={styles.text}>  {STRINGS.HOME.TEXT} </Text>

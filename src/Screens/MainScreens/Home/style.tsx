@@ -24,5 +24,8 @@ export const styles = StyleSheet.create({
          fontWeight:'bold',
          paddingVertical:"5%",
 
+     },
+     parent:{
+        backgroundColor:COLORS.PRIMARY.GREY
      }
  })

@@ -18,11 +18,11 @@ const iconSize = {
 
 const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { id: userId, firstName, lastName, photo: userPhoto } = useAppSelector((state) => state.User.data);
+  const { id: user_id, firstName, lastName, photo: userPhoto } = useAppSelector((state) => state.User.data);
 
   const uploadImageToStorage = async (imageUri:string) => {
     const imageName = uuidv4();
-    const reference = storage().ref(`stories/${userId}/${imageName}`);
+    const reference = storage().ref(`stories/${user_id}/${imageName}`);
     await reference.putFile(imageUri);
     const url = await reference.getDownloadURL();
     return url;
@@ -32,7 +32,7 @@ const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
     try {
       const imageUrl = await uploadImageToStorage(imageUri);
       console.log('image url  is ',imageUrl, )
-      const userDoc = await firestore().collection('stories').doc(userId!).get();
+      const userDoc = await firestore().collection('stories').doc(user_id!).get();
       const existingStories = userDoc.exists ? userDoc.data()?.stories || [] : [];
 
       const newStory = {
@@ -45,9 +45,9 @@ const AddStory:React.FC<AddStoryProps> = ({ onStoryAdded }) => {
  
       await firestore()
         .collection('stories')
-        .doc(userId!)
+        .doc(user_id!)
         .set({
-          userId,
+          user_id,
           user_name: firstName + " " + lastName,
           user_image:userPhoto,
           stories: updatedStories,

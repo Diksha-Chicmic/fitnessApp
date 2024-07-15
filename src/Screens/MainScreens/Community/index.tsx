@@ -60,9 +60,7 @@ function Community({ navigation }) {
     console.log('story',storyUpdateTrigger);
 
   };
-  // const moveToPostDetails=()=>{
-  //   navigation.navigate('PostDetails')
-  // }
+ 
 
   const handlePost = async () => {
    
@@ -89,7 +87,7 @@ function Community({ navigation }) {
    
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
          <View style={styles.parent}>
           <View style={[styles.direction,]}>
             <Text style={styles.heading}>Community</Text>

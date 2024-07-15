@@ -49,7 +49,7 @@ function Nutrition() {
     };
     return (
 
-        <SafeAreaView>
+        <SafeAreaView style={styles.parent}>
             <ScrollView>
                 <Text style={styles.heading}> {STRINGS.NUTRITION.HEADING} <Text style={styles.text}>{nutrition} </Text>{STRINGS.NUTRITION.TEXT}</Text>
                 <View style={styles.container}>

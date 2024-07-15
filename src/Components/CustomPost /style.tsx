@@ -21,16 +21,16 @@ export const styles = StyleSheet.create({
         width: screenWidth / 9.2,
         borderRadius: 50,
         marginRight: '4%',
-        borderWidth:1
+       
     },
     cap: {
         marginVertical: '4%',
-        fontWeight: '400'
+        fontWeight: '400',
+        fontSize:SIZES.font13
     },
     post: {
         height: screenWidth / 1.8,
         width: screenWidth / 1.2,
-        borderWidth: 1,
         borderRadius: 10
     },
     iconContainer: {
@@ -40,7 +40,8 @@ export const styles = StyleSheet.create({
     text: {
         paddingHorizontal: '3%',
         paddingVertical: '1%',
-        color:COLORS.SECONDARY.GREY
+        color:COLORS.SECONDARY.GREY,
+        
     },
     time:{
         color:COLORS.SECONDARY.GREY,

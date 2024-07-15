@@ -80,7 +80,7 @@ const Water: React.FC = () => {
       };
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.parent}>
             <Text style={styles.heading}>{STRINGS.WATER.HEADING} <Text style={styles.text}>{dailyGlass} glass{dailyGlass !== 1 ? "es" : ""}</Text>{STRINGS.WATER.TEXT}</Text>
             <View style={styles.glassContainer}>
             {glassess.map((val, i) => {

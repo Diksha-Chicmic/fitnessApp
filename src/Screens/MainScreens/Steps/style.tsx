@@ -35,6 +35,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center', 
         justifyContent: 'center', 
         marginTop: '3%'
+    },
+    parent:{
+        backgroundColor:COLORS.PRIMARY.GREY
     }
 })
 

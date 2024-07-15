@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { SIZES } from "../../../Constants/commonStyles";
+import { SIZES,COLORS } from "../../../Constants/commonStyles";
 
 
 export const styles = StyleSheet.create({
     heading: {
       fontSize: SIZES.font18,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     direction: {
       flexDirection: 'row',
@@ -14,5 +14,9 @@ export const styles = StyleSheet.create({
     parent: {
       marginHorizontal: '6%',
       justifyContent: 'center',
+    
+    },
+    container:{
+      backgroundColor:COLORS.PRIMARY.GREY
     }
   });

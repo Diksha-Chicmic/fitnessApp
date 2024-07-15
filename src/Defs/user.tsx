@@ -67,3 +67,11 @@ export type NotificationData = {
   isUnread: boolean;
   isShownViaPushNotification: boolean;
 };
+export type Meal = {
+  name: string;
+  carbs: number;
+  fat: number;
+  protein: number;
+  calories: number;
+  serving_size_g: number;
+};

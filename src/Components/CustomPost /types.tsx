@@ -2,7 +2,7 @@ import { StyleProp,ViewStyle } from "react-native";
 
 export interface PostProps {
     image?: string;  
-    profilePic?: string | null;  
+    profilePic?: string ;  
     name?: string;
     time?: any;
     caption?: string;

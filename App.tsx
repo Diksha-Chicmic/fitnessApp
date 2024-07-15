@@ -14,7 +14,12 @@ import { store, persistor } from './src/Redux/Store';
 import { PersistGate } from "redux-persist/integration/react";
 import {SheetProvider} from 'react-native-actions-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { RealmProvider } from '@realm/react';
 import './src/Constants/sheet'
+import { UserDb } from './src/DbModels /user';
+import { PostDb } from './src/DbModels /post';
+import { StoryDb, AllStoryDb } from './src/DbModels /story';
+import { MealsDb,ItemsDb } from './src/DbModels /meals';
 // GoogleSignin.configure(); 
 function App(): React.JSX.Element {
 
@@ -26,6 +31,7 @@ function App(): React.JSX.Element {
 
 
   return (
+    // <RealmProvider schema={[UserDb,PostDb,StoryDb,AllStoryDb,MealsDb,ItemsDb]}>
 <GestureHandlerRootView style={{ flex: 1 }}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -35,6 +41,7 @@ function App(): React.JSX.Element {
       </PersistGate>
     </Provider>
     </GestureHandlerRootView>
+    // </RealmProvider>
 
   );
 }

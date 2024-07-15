@@ -14,5 +14,8 @@ export const styles= StyleSheet.create({
     container:{
        marginVertical:'6%',
        
+    },
+    parent:{
+      backgroundColor:COLORS.PRIMARY.GREY
     }
 })

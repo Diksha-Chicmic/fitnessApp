@@ -75,7 +75,7 @@ function Steps() {
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.parent}>
             <ScrollView>
                 <Text style={styles.heading} >{STRINGS.STEPS.HEADING}<Text style={styles.insideTxt}> {totalSteps}</Text> {STRINGS.STEPS.TEXT} </Text>
                 <View style={styles.container}>

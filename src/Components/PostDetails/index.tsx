@@ -62,10 +62,11 @@ const PostDetails = ({ route }) => {
     });
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }:any) => (
     <View key={item.id} style={styles.commentContainer}>
       <View style={styles.direction}>
         <Image source={{uri:userPhoto}} style={styles.profile} />
+       
         <View>
           <Text style={styles.name}>{item.userName}</Text>
           <Text style={styles.time}>{item.createdOn.toDate().toLocaleString()}</Text>
@@ -86,6 +87,7 @@ const PostDetails = ({ route }) => {
         comments={comments.length}
         parentStyle={styles.parent}
         postId={post.postId}
+        profilePic={userPhoto}
       />
 
       <Text style={styles.heading}>Comments</Text>

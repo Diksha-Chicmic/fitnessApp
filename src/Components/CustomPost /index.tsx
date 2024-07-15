@@ -17,7 +17,7 @@ import { PostProps } from './types';
 const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, caption, likes, comments, parentStyle, onPress,postId }) => {
 
 
-const [iconColor, setIconColor] = useState(COLORS.PRIMARY.DARKGREY);
+const [iconColor, setIconColor] = useState(COLORS.SECONDARY.GREY);
 const [likesCount, setLikesCount] = useState<number>(likes || 0);
 const { firstName, lastName, photo: userPhoto , id} = useAppSelector((state) => state.User.data);
 const [postComments, setPostComments] = useState<Comment[]>([]);
@@ -26,10 +26,10 @@ useEffect(() => {
   const fetchPost = async () => {
     try {
       const postData = await getPost(postId);
-      console.log(postData,'postdata')
-      setPostComments(postData.comments || []);
+      console.log('fetching ',postData,'postdata')
+      setPostComments(postData!.comments || []);
       //setPost(postData);
-      setPost(postData.userId)
+      setPost(postData!.userId)
     } catch (error) {
       console.log('Error fetching post:', error);
     }
@@ -38,7 +38,6 @@ useEffect(() => {
 }, [postId]);
 console.log(post);
 
-console.log('hurr',postId,'wuuiruir')
 const handlePress = async () => {
  const notification = {
   userId: id!, 
@@ -48,10 +47,10 @@ const handlePress = async () => {
 };
  await sendNotification(notification, post);
   setIconColor(prevColor =>
-    prevColor === COLORS.PRIMARY.DARKGREY ? COLORS.PRIMARY.PURPLE : COLORS.PRIMARY.DARKGREY
+    prevColor === COLORS.SECONDARY.GREY ? COLORS.PRIMARY.PURPLE : COLORS.SECONDARY.GREY
   );
   setLikesCount(prevCount =>
-    iconColor === COLORS.PRIMARY.DARKGREY ? prevCount + 1 : prevCount - 1
+    iconColor === COLORS.SECONDARY.GREY ? prevCount + 1 : prevCount - 1
   );
 };
 
@@ -106,13 +105,13 @@ const handleCommentPress = () => {
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.direction}>
-            {ICONS.HEART({ height: 18, width: 18, color: iconColor })}
+            {ICONS.HEART({ height: 20, width: 20, color: iconColor })}
             <Text style={styles.text}>{likesCount}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCommentPress}>
           <View style={styles.direction}>
-            {ICONS.COMMENT({ height: 18, width: 18, color: COLORS.PRIMARY.DARKGREY })}
+            {ICONS.COMMENT({ height: 20, width: 20, color: COLORS.SECONDARY.GREY })}
             <Text style={styles.text}>{comments}</Text>
           </View>
         </TouchableOpacity>

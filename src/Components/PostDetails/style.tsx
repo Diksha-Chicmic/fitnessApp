@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     width: screenWidth / 11.2,
     borderRadius: 50,
     marginRight: '4%',
-    borderWidth: 1,
+  
   },
   name: {
     fontWeight: 'bold',
