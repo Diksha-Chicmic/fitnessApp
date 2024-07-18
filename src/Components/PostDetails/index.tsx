@@ -9,6 +9,7 @@ import { IMAGES } from '../../Constants/images';
 import { styles } from './style';
 import { ICONS } from '../../Constants/icons';
 import { getPost, storePostComment } from '../../utils/userhandle';
+import { getTimePassed } from '../../utils/common';
 
 
 const PostDetails = ({ route }) => {
@@ -44,10 +45,9 @@ const PostDetails = ({ route }) => {
         icon3Press: () => console.log('icon3 press'),
         onComment: async (commentText: string) => {
           const newComment: Comment = {
-           // id: uuidv4(),
             userName: `${firstName} ${lastName}`,
             createdOn: Timestamp.fromDate(new Date()),
-            comment: commentText,
+            comment: commentText.trimStart(),
             Photo: userPhoto
           };
           try {
@@ -69,7 +69,7 @@ const PostDetails = ({ route }) => {
        
         <View>
           <Text style={styles.name}>{item.userName}</Text>
-          <Text style={styles.time}>{item.createdOn.toDate().toLocaleString()}</Text>
+          <Text style={styles.time}>{getTimePassed(item.createdOn.seconds * 1000)}</Text>
         </View>
       </View>
       <Text style={styles.commentText}>{item.comment}</Text>
@@ -81,7 +81,7 @@ const PostDetails = ({ route }) => {
       <PostScreen
         image={post.photo}
         name={post.userName}
-        time={post.createdOn.toDate().toLocaleString()}
+        time={getTimePassed(post.createdOn.seconds * 1000)}
         caption={post.caption}
         likes={0}
         comments={comments.length}
@@ -94,7 +94,6 @@ const PostDetails = ({ route }) => {
       <FlatList
         data={comments}
         renderItem={renderItem}
-       // keyExtractor={(item) => item.id}
       />
 
       <TouchableOpacity style={styles.input} onPress={handleCommentPress}>

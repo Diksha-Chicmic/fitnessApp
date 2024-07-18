@@ -2,8 +2,8 @@ import { Timestamp } from "@react-native-firebase/firestore";
 
 export interface User {
   id: string;
-  firstName: string | null;
-  lastName: string | null;
+  firstName: string ;
+  lastName: string ;
   email: string;
   finger: boolean | null;
   photo: string ;

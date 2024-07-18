@@ -3,22 +3,20 @@ import {ObjectSchema, Realm} from 'realm';
 
 export class UserDb extends Realm.Object{
     id!:string;
-    fullName?:string;
+    firstName?:string;
     lastName?:string;
-    email?:string;
     fingerprint?:string;
-    interests?: Array<{title:string,selected:boolean}>;
-    preferences?:Array<{text:string, selected:boolean}>;
+    interests?: UserInterestDb[];
+    preferences?:UserPreferencesDb[];
     photo?:string;
     gender?:'male' | 'female' | null;
   public static schema :ObjectSchema={
-    name:'UserDb',
+    name:'UserData',
     properties:{
        id:'string',
-       fullName:'string',
+       firstName:'string',
        lastName:'string',
        gender:'string',
-       email:'string',
        photo:{
         type:'string',
         optional:true

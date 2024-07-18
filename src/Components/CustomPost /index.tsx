@@ -21,6 +21,7 @@ const [iconColor, setIconColor] = useState(COLORS.SECONDARY.GREY);
 const [likesCount, setLikesCount] = useState<number>(likes || 0);
 const { firstName, lastName, photo: userPhoto , id} = useAppSelector((state) => state.User.data);
 const [postComments, setPostComments] = useState<Comment[]>([]);
+const [isLoading,setIsLoading]= useState<boolean>(true);
 const [post,setPost]=useState<string>('');
 useEffect(() => {
   const fetchPost = async () => {

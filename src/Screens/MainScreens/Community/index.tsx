@@ -14,14 +14,18 @@ import { styles } from './style';
 import { useAppSelector } from '../../../Redux/Store';
 import Story from '../../../Components/CustomStory ';
 import { Post } from '../../../Defs/user';
+import CustomLoading from '../../../Components/CustomLoading';
 import { FlatList } from 'react-native-gesture-handler';
 import PostDetails from '../../../Components/PostDetails';
 import { PostScreenProps } from '../../../Constants/navigation';
+import { getTimePassed } from '../../../utils/common';
 
 
 function Community({ navigation }) {
   const [posts, setPosts] = useState<Post[]>([]);
-  const {firstName,lastName,photo}= useAppSelector((state)=>state.User.data)
+  const [isLoading,setIsLoading]= useState<boolean>(true);
+  const {firstName,lastName,photo,id}= useAppSelector((state)=>state.User.data)
+  console.log('khsg',id);
   const [storyUpdateTrigger, setStoryUpdateTrigger] = useState<number>(0);
   const openImagePicker = async (callback: (uri: string) => void) => {
     const options: ImageLibraryOptions = {
@@ -50,8 +54,10 @@ function Community({ navigation }) {
       .onSnapshot(snapshot => {
         const data = snapshot.docs.map(doc => doc.data() as Post);
         setPosts(data);
+        setIsLoading(false)
       }, error => {
         console.log('Error getting posts: ', error);
+        setIsLoading(false)
       });
     return () => unsubscribe();
   }, []);
@@ -74,9 +80,7 @@ function Community({ navigation }) {
         icon1Press: (callback) => openCamera(callback),
         icon2Press: (callback) => openImagePicker(callback),
         icon3Press: () => console.log('icon3 pressed'),
-        onPost: (image, caption) => {
-  
-        }
+        onPost: (image, caption) => {} 
         
       }
     });
@@ -101,25 +105,28 @@ function Community({ navigation }) {
           </View>
          
         </View>
-        
-        <FlatList data={posts} renderItem={({item: post,index}) => {
-
-        return(
-        <TouchableOpacity onPress={()=>handlePostPress(post)}>  
-        <PostScreen
-            key={index}
-            profilePic={post.userPhoto}
-            image={post.photo}
-            postId={post.postId!}
-            name={post.userName}
-            time={post.createdOn.toDate().toLocaleString()}
-            caption={post.caption}
-            likes={0}
-            comments={post.comments.length}
-           // onPress={() => handlePostPress(post)}
-          />
-          </TouchableOpacity>)}} 
-          />
+        {isLoading ? (
+        <CustomLoading />
+      ) : (
+        <FlatList
+          data={posts}
+          renderItem={({ item: post, index }) => (
+            <TouchableOpacity key={index} onPress={() => handlePostPress(post)}>
+              <PostScreen
+                profilePic={post.userPhoto}
+                image={post.photo}
+                postId={post.postId!}
+                name={post.userName}
+                time={getTimePassed(post.createdOn.seconds * 1000)}
+                caption={post.caption}
+                likes={0}
+                comments={post.comments.length}
+              />
+            </TouchableOpacity>
+          )}
+          keyExtractor={(post, index) => index.toString()}
+        />
+      )}
           
     </SafeAreaView>
   );

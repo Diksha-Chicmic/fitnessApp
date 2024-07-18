@@ -6,10 +6,11 @@ import { STRINGS } from "../../Constants/strings";
 import { NAVIGATION,ReadyToGoProps } from "../../Constants/navigation";
 import { styles } from "./style";
 import { useAppDispatch, useAppSelector } from "../../Redux/Store";
-import { createUser, storeUserData } from "../../utils/userhandle";
-
+import { createUser, storeUserData, sendNotification} from "../../utils/userhandle";
 import storage from "@react-native-firebase/storage";
 import { updateUser } from "../../Redux/Reducers/currentUser";
+import { resetHealthData } from "../../Redux/Reducers/userHealth";
+import { resetMealData } from "../../Redux/Reducers/dishes";
 
 const iconStyle={
     width:35,
@@ -23,9 +24,10 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
     const handlePress = async () => {
         try {
           if (user.email !== null && password !== "") {
+            dispatch(resetMealData())
             const userCredentials = await createUser(user.email, password);
             console.log(userCredentials, 'user Credentails');
-      
+             dispatch(resetHealthData())
             const reference = storage().ref(
               "media/" + userCredentials?.user.uid + "/" + "photo"
             );
@@ -43,8 +45,17 @@ const ReadyToGo=({navigation}:ReadyToGoProps)=>{
             if (userCredentials !== undefined) {
               user.id = userCredentials.user.uid;
               user.photo=url;
+              user.healthData=[];
+              user.notifications=[];
+              
               
               await storeUserData(user, userCredentials);
+              await sendNotification({
+                message:'You have successfully registered on a FitnessApp!',
+                userId:'App',
+                isUnread: true,
+                isShownViaPushNotification: false,
+              }, userCredentials.user.uid)
               console.log(user, ' user details ')
             }
           }

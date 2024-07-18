@@ -4,4 +4,5 @@ export type NotificationProps = {
   text: string;
   time: string;
   check: boolean;
+  handleDeletePressed:()=> void
 };

@@ -63,6 +63,7 @@ function SignIn({navigation}:SignInProps) {
                 value={password}
                 type="name"
                 onChangeText={setPassword}
+                secureText={true}
             />
             <PassEmptyError pass={password} formKey={form}/>
             <Text style={[styles.text, styles.customButtonParent]}>{STRINGS.SIGNIN.TEXT}</Text>
