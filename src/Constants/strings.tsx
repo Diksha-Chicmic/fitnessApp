@@ -14,7 +14,7 @@ export const STRINGS={
 
     },
     EMAIL:{
-        HEADING:'What is your Email address?',
+        HEADING:'What is your email address?',
         PLACEHOLDERTEXT:'Enter your email address'
     },
     PASSWORD:{

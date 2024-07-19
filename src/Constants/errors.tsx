@@ -79,8 +79,9 @@ const style= StyleSheet.create({
     error:{
         color:COLORS.SECONDARY.RED,
         fontSize:SIZES.font11,
-        paddingLeft:12,
-        marginTop:-5,
+       // paddingLeft:12,
+       // marginTop:-5,
+       paddingRight:70,
         marginBottom:10,
     }
 });

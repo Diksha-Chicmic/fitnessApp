@@ -4,20 +4,28 @@ import SelectGender from '../SelectGender';
 import CustomButton from '../CustomButton';
 import CustomInput from '../CustomInput';
 import { ICONS } from '../../Constants/icons';
+import { useQuery, useRealm } from '@realm/react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { STRINGS } from '../../Constants/strings';
 import { User } from '../../Defs/user';
-import { useAppSelector } from '../../Redux/Store';
+import { useAppSelector, useAppDispatch } from '../../Redux/Store';
 import firestore from '@react-native-firebase/firestore';
 import { firebaseDB } from '../../utils/userhandle';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
+import { UserDb } from '../../DbModels /user';
 import { ChangeUserInfoProps } from './types';
 import { styles } from './style';
+import { UpdateMode } from 'realm';
+import { updateUser } from '../../Redux/Reducers/currentUser';
 
 const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
-  const {gender, id} = useAppSelector(state => state.User.data);
+  const {gender, id, photo , interests,preferences} = useAppSelector(state => state.User.data);
   const [selectedGender, setSelectedGender] = useState<User['gender'] | null>(gender);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const dispatch = useAppDispatch();
+  const netInfo = useNetInfo();
+  const realm = useRealm();
 
   const toggleCheckBox = (gender: User['gender']) => {
     setSelectedGender(gender);
@@ -25,6 +33,7 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
 
   const handleSubmitChange = async () => {
     console.log('submit')
+    if(netInfo.isConnected){
     if (firstName !== '' && lastName !== '') {
         console.log('inside submit ')
       await firestore()
@@ -37,7 +46,37 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
         });
       setModalFalse();
     }
+  }else{
+    console.log('offline mode');
+    try{
+    realm.write(() => {
+      realm.create(
+        UserDb,
+        {
+          id,
+          firstName:firstName,
+          lastName:lastName,
+          gender: selectedGender,
+          photo,
+          interests,
+       preferences
+        },
+        UpdateMode.Modified 
+      );
+    });
+    console.log('Offline data updated in Realm');
+    setModalFalse();
+    console.log('ttwywg', profiles)
+  }catch(e){
+    console.log('eroor with updating data with realm',e)
+  }
+
+}
+
+  dispatch(updateUser({firstName,lastName,gender:selectedGender}))
   };
+  const profiles= useQuery(UserDb);
+  console.log('wejkhrjhwejj',profiles)
   return (
     <View style={styles.container}>
        <Text style={{fontSize:SIZES.fontH1}}>Edit User Info</Text>

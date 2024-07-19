@@ -9,12 +9,13 @@ export const styles = StyleSheet.create({
      heading:{
          fontSize:SIZES.font24,
           fontWeight:'bold',
-          paddingVertical:"5%"
+         // paddingVertical:"5%"
      },
      text:{
-         fontSize:SIZES.font11,
-         paddingVertical:"2%",
-         //width:'70%',
+         fontSize:SIZES.font13,
+         paddingVertical:"8%",
+         width:'80%',
+         
          
         
      },
@@ -22,7 +23,7 @@ export const styles = StyleSheet.create({
          color:COLORS.PRIMARY.PURPLE,
          fontSize:SIZES.font13,
          fontWeight:'bold',
-         paddingVertical:"5%",
+        paddingBottom:'8%'
 
      },
      parent:{

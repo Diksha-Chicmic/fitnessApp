@@ -35,9 +35,7 @@ export const styles = StyleSheet.create({
        width:screenWidth/4.5,
        backgroundColor:COLORS.PRIMARY.PURPLE,
        borderRadius:20,
-       marginLeft:'30%'
-    //  marginRight:'10%'
-       
+       marginLeft:'40%',
     },
     butText:{
       textAlign:'center',
@@ -46,8 +44,7 @@ export const styles = StyleSheet.create({
       fontSize:SIZES.font11,
       fontWeight:'bold'
     },
-    box:{
-      
+    box:{ 
      marginVertical:'7%',
      flexDirection:'row',
    },
@@ -60,13 +57,16 @@ export const styles = StyleSheet.create({
     left:'12%'
    },
    icon:{
-    paddingHorizontal:8
+    paddingHorizontal:'2%'
    },
    selectedImage: {
-    width: '80%',
+    width: '89%',
     height: 200,
-    marginVertical: 16,
+    marginVertical: '5%',
     borderRadius: 8,
+    marginHorizontal:'8%'
+  
   },
+ 
   
   });

@@ -69,7 +69,7 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.parent}>
       <AvatarSelector onSelect={handleAvatarSelect} />
       <Text style={styles.heading}>{STRINGS.PROFILE.HEADING}</Text>
       <Text style={styles.text}>{STRINGS.PROFILE.TEXT}</Text>

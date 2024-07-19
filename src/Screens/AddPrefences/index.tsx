@@ -58,16 +58,18 @@ const AddPreferences = ({ navigation }: AddPrefencesProps) => {
     };
 
     return (
-        <View >
+        <View style={styles.conatiner}>
             <Text style={styles.heading}>{STRINGS.PREFERENCES.HEADING}</Text>
             <Text style={styles.text}>{STRINGS.PREFERENCES.TEXT}</Text>
+            <View style={styles.box}>
             <FlatList
                 data={preferences}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 extraData={preferences}
             />
-            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handlePress} />
+            </View>
+            <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handlePress} parentStyle={styles.but}/>
         </View>
     );
 };

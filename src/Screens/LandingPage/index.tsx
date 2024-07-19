@@ -15,12 +15,12 @@ function LandingPage({ navigation }: LandingPageProps) {
         navigation.navigate(NAVIGATION.ADDFIRSTNAME)
     }
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             
                 <Text style={styles.heading}> {STRINGS.LANDING.HEADING}</Text>
                 <Text style={styles.text}>{STRINGS.LANDING.TEXT}</Text>
                 <Image source={IMAGES.LANDING_PAGE} style={styles.image} />
-                <CustomButton title="Get Started" onPress={moveToEmail} />
+                <CustomButton title="Get Started" onPress={moveToEmail} parentStyle={styles.but}/>
                 <TouchableOpacity onPress={moveToSignIn} >
                 <Text style={styles.text1}>{STRINGS.LANDING.TEXT2}
                 <Text style={styles.text2}>{STRINGS.LANDING.TEXT3}</Text>

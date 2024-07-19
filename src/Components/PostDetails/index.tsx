@@ -10,6 +10,7 @@ import { styles } from './style';
 import { ICONS } from '../../Constants/icons';
 import { getPost, storePostComment } from '../../utils/userhandle';
 import { getTimePassed } from '../../utils/common';
+import CustomLoading from '../CustomLoading';
 
 
 const PostDetails = ({ route }) => {
@@ -18,6 +19,8 @@ const PostDetails = ({ route }) => {
   const { id: userId, photo: userPhoto, firstName, lastName } = useAppSelector(
     (state) => state.User.data
   );
+
+const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -35,11 +38,11 @@ const PostDetails = ({ route }) => {
   const handleCommentPress = () => {
     SheetManager.show('comment-sheet', {
       payload: {
-        title: 'Comment',
+        title: 'Create Comment',
         placeholderText: 'Write Your comment...',
         icon1: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
-        icon2: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
-        icon3: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
+        // icon2: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
+        // icon3: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
         icon1Press: () => console.log('icon1 press'),
         icon2Press: () => console.log('icon2 press'),
         icon3Press: () => console.log('icon3 press'),
@@ -65,7 +68,11 @@ const PostDetails = ({ route }) => {
   const renderItem = ({ item }:any) => (
     <View key={item.id} style={styles.commentContainer}>
       <View style={styles.direction}>
-        <Image source={{uri:userPhoto}} style={styles.profile} />
+      {profilePicLoading && <CustomLoading size='small'/>}
+        <Image source={{uri:userPhoto}} style={styles.profile} 
+        onLoadStart={() => setProfilePicLoading(true)}
+        onLoad={() => setProfilePicLoading(false)}
+        onError={() => setProfilePicLoading(false)}/>
        
         <View>
           <Text style={styles.name}>{item.userName}</Text>

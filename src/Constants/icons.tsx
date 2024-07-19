@@ -36,7 +36,11 @@ import Camera from '../Assets/Svgs/camera.svg'
 import AddImage from '../Assets/Svgs/add-image.svg'
 import AddPhoto from '../Assets/Svgs/add-photo.svg'
 import Plate from '../Assets/Svgs/plate.svg'
-
+import Food from '../Assets/Svgs/food.svg'
+import Steps from '../Assets/Svgs/steps.svg'
+import Water from '../Assets/Svgs/water.svg'
+import CreateCommunity from '../Assets/Svgs/createCommunity.svg'
+import Premium from '../Assets/Svgs/premium.svg'
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
 import Avatar3 from '../Assets/Svgs/Avatars/avatar_3.svg'
@@ -101,6 +105,11 @@ export const ICONS = {
     ADDIMAGE:(params: iconProps) => AddImage({ ...iconStyle({ ...params }) }),
     ADDPHOTO:(params: iconProps) => AddPhoto({ ...iconStyle({ ...params }) }),
     PLATE:(params: iconProps) => Plate({ ...iconStyle({ ...params }) }),
+    WATER:(params: iconProps) => Water({ ...iconStyle({ ...params }) }),
+    STEPS:(params: iconProps) => Steps({ ...iconStyle({ ...params }) }),
+    FOOD:(params: iconProps) => Food({ ...iconStyle({ ...params }) }),
+    CREATECOMMUNITY:(params: iconProps) => CreateCommunity({ ...iconStyle({ ...params }) }),
+    PREMIUM:(params: iconProps) => Premium({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={

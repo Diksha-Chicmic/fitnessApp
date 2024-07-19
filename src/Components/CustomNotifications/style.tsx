@@ -48,4 +48,19 @@ export const styles = StyleSheet.create({
     backgroundColor: '#E1DDF5',
     borderRadius: 200,
   },
+  dltBut:{
+    backgroundColor: COLORS.SECONDARY.RED,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    width: 100,
+    marginHorizontal: 8,
+    marginVertical: 8,
+  },
+  dltText:{
+    color: COLORS.SECONDARY.WHITE,
+          fontWeight: 'bold',
+          //fontFamily: FONT_FAMILY.REGULAR,
+          fontSize: SIZES.font14,
+  }
 });

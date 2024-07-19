@@ -2,17 +2,17 @@ import { StyleSheet } from "react-native";
 import { COLORS,SIZES } from "../../Constants/commonStyles";
 export const styles=StyleSheet.create({
     conatiner:{
-       // flex:1,
+        flex:1,
         //justifyContent:'center',
        // alignItems:'center'
+       backgroundColor:COLORS.PRIMARY.GREY
     },
     heading:{
         fontSize:SIZES.font24,
         textAlign:'center',
         fontWeight:'bold',
-        marginTop:12,
         marginHorizontal:40,
-        marginVertical:12
+       marginBottom:'2%'
     },
     text:{
         color:COLORS.SECONDARY.GREY,
@@ -20,6 +20,9 @@ export const styles=StyleSheet.create({
         textAlign:'center',
 
     },
-   
+    but:{
+        marginTop:'7%'
+    },
+    box:{marginVertical:'6%'}
     
 })

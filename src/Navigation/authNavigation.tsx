@@ -72,7 +72,7 @@ const AuthNavigator = () => {
        options={{drawerIcon: drawerIcon(ICONS.SETTINGS),}}/>
 
       <Drawer.Screen name="GetPremium" component={Premium}
-        options={{ drawerIcon: drawerIcon(ICONS.PLANT),}}/>
+        options={{ drawerIcon: drawerIcon(ICONS.PREMIUM),}}/>
 
       <Drawer.Screen name="LogOut" component={LogOut}
        options={{ drawerIcon: drawerIcon(ICONS.Lock),}}/>

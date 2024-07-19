@@ -25,6 +25,7 @@ import AppleHealthKit, { HealthKitPermissions } from 'react-native-health'
 import { Timestamp } from "@react-native-firebase/firestore";
 import firestore from '@react-native-firebase/firestore';
 import { getUserData,updateNotificationReadStatus } from "../utils/userhandle";
+import WithModal from "../Components/WithModal";
 const Stack = createNativeStackNavigator<homeStackParamList>();
 
 
@@ -194,13 +195,14 @@ const AppNavigator = () => {
           <Stack.Screen name="AboutUs" component={AboutUs}/>
         </Stack.Navigator>
   
-        <Modal
-          visible={isModalVisible}
-          animationType="slide"
-          onRequestClose={closeModal}
+        <WithModal
+          modalVisible={isModalVisible}
+
+          // animationType="slide"
+          setModalFalse={closeModal}
         >
           <ChooseFood setModalFalse={closeModal} />
-        </Modal>
+        </WithModal>
       </View>
     )
 };

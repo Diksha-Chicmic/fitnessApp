@@ -6,8 +6,8 @@ export class UserDb extends Realm.Object{
     firstName?:string;
     lastName?:string;
     fingerprint?:string;
-    interests?: UserInterestDb[];
-    preferences?:UserPreferencesDb[];
+    interests?: {title:string, selected:boolean}[];
+    preferences?:{text:string, selected:boolean}[];
     photo?:string;
     gender?:'male' | 'female' | null;
   public static schema :ObjectSchema={

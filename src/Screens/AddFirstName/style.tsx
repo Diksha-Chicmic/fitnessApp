@@ -14,14 +14,16 @@ export const styles = StyleSheet.create({
       fontWeight: 'bold',
       //letterSpacing: 0.5,
       textAlign: 'center',
+      marginBottom:'5%'
       
       
     },
     input: {
       width: RFValue(230),
       textAlign: 'center',
-      marginVertical:10,
-      
+      paddingHorizontal:'10%',
+      borderRadius:10,
+      marginBottom:'20%'
     },
    
  

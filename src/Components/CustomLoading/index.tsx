@@ -2,17 +2,20 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
-const CustomLoading = () => {
+export interface LoadProps{
+ size:'large' | 'small'
+}
+const CustomLoading:React.FC<LoadProps> = ({size}) => {
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" color="#0000ff" />
+      <ActivityIndicator size={size} color="#0000ff"  />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    flex: 1,
+   // flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

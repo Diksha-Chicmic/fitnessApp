@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import {FlatList, ListRenderItem, View,Text,StyleSheet} from 'react-native';
 import SelectPreferences from '../SelectPrefences';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { useRealm } from '@realm/react';
 import CustomButton from '../CustomButton';
 import { useAppDispatch, useAppSelector } from '../../Redux/Store';
 import firestore from '@react-native-firebase/firestore';
@@ -9,16 +11,19 @@ import { SIZES ,COLORS} from '../../Constants/commonStyles';
 import { PREEFENCES } from '../../Constants/preferencesData';
 import { updateUser } from '../../Redux/Reducers/currentUser';
 import { ChangeUserPreferenceProps } from './types';
+import { UserDb } from '../../DbModels /user';
 
 
 
   
 const ChangeUserPreferences: React.FC<ChangeUserPreferenceProps> = ({ setModalFalse }) => {
  
-  const { preferences, id } = useAppSelector(state => state.User.data);
+  const { preferences, id, firstName, lastName, gender, photo,interests } = useAppSelector(state => state.User.data);
   const [preferencesData, setPreferencesData] = useState(preferences);
   const dispatch = useAppDispatch();
    console.log('preference here ', preferences);
+  const netInfo= useNetInfo();
+  const realm= useRealm();
   const togglePreference = (index: number) => {
     const newPreferences = preferencesData.map((item,i)=>{
       if(i===index){
@@ -38,11 +43,9 @@ const ChangeUserPreferences: React.FC<ChangeUserPreferenceProps> = ({ setModalFa
   );
 
   const handleSubmitChange = async () => {
-    // const updatedPreferences = preferencesData.map(val => {
-    //   const { selected, text } = val;
-    //   return { selected, text };
-    // });
-    console.log('aaaaaaaaaaa',preferencesData)
+  
+    console.log('aaaaaaaaaaa',preferencesData);
+   if(netInfo.isConnected){
     await firestore()
       .collection(firebaseDB.collections.users)
       .doc(id!)
@@ -50,10 +53,26 @@ const ChangeUserPreferences: React.FC<ChangeUserPreferenceProps> = ({ setModalFa
         preferences: preferencesData,
       });
 
-  // dispatch(updateUser(preferences:preferencesData)); // Update Redux state
-  dispatch(updateUser({ preferences: preferencesData }));
+ 
     setModalFalse();
-  };
+  }else{
+    realm.write(()=>{
+      realm.create(
+        UserDb,{
+          id:id!,
+          firstName,
+          lastName,
+          gender,
+          photo,
+          interests,
+          preferences:preferencesData
+
+        }
+      )
+    })
+    setModalFalse();
+  }
+  dispatch(updateUser({ preferences: preferencesData }));};
   return (
     <View style={styles.parent}>
     <Text style={{fontSize:SIZES.font24,fontWeight:'bold',textAlign:'center'}}>Change Preferences</Text>

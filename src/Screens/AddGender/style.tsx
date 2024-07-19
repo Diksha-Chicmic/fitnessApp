@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-       // padding: 16,
-       margin:20
+       backgroundColor:COLORS.PRIMARY.GREY
     },
     heading:{
         fontSize:SIZES.font24,
@@ -26,6 +25,6 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     button:{
-         
+         marginTop:'4%'
     }
 });

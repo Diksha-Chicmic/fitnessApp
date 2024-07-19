@@ -31,4 +31,7 @@ export const styles = StyleSheet.create({
         
       },
       buttonStyle: {flex: 3, alignSelf: 'center'},
+      but:{
+        marginTop:'2%'
+      }
 });

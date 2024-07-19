@@ -13,6 +13,7 @@ import { getPost, storePostComment } from '../../utils/userhandle';
 import "react-native-get-random-values";
 import { Timestamp } from '@react-native-firebase/firestore';
 import { PostProps } from './types';
+import CustomLoading from '../CustomLoading';
 
 const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, caption, likes, comments, parentStyle, onPress,postId }) => {
 
@@ -21,8 +22,11 @@ const [iconColor, setIconColor] = useState(COLORS.SECONDARY.GREY);
 const [likesCount, setLikesCount] = useState<number>(likes || 0);
 const { firstName, lastName, photo: userPhoto , id} = useAppSelector((state) => state.User.data);
 const [postComments, setPostComments] = useState<Comment[]>([]);
-const [isLoading,setIsLoading]= useState<boolean>(true);
 const [post,setPost]=useState<string>('');
+
+const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
+const [imageLoading, setImageLoading] = useState<boolean>(true);
+
 useEffect(() => {
   const fetchPost = async () => {
     try {
@@ -58,12 +62,12 @@ const handlePress = async () => {
 const handleCommentPress = () => {
   SheetManager.show('comment-sheet', {
     payload: {
-      title: 'Comment',
+      title: 'Create Comment',
       placeholderText: 'Write your comment...',
       icon1: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
-      icon2: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
-      icon3: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
-      icon1Press: () => console.log('icon1 press'),
+      // icon2: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
+      // icon3: ICONS.YELLOWSMILE({ height: 20, width: 20 }),
+       icon1Press: () => console.log('icon1 press'),
       icon2Press: () => console.log('icon2 press'),
       icon3Press: () => console.log('icon3 press'),
       onComment: async (commentText: string) => {
@@ -95,14 +99,22 @@ const handleCommentPress = () => {
   return (
     <View style={[styles.conatiner, parentStyle]}>
       <View style={styles.direction}>
-        <Image source={profilePic ? { uri: profilePic } : null} style={styles.profile} />
+      {profilePicLoading && <CustomLoading size='small'/>}
+        <Image source={profilePic ? { uri: profilePic } : null} style={styles.profile} 
+        onLoadStart={() => setProfilePicLoading(true)}
+          onLoad={() => setProfilePicLoading(false)}
+          onError={() => setProfilePicLoading(false)}/>
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.time}>{time}</Text>
         </View>
       </View>
       <Text style={styles.cap}>{caption}</Text>
-      <Image source={{ uri: image }} style={styles.post} />
+      {imageLoading && <CustomLoading size='large'/>}
+      <Image source={{ uri: image }} style={styles.post} 
+      onLoadStart={() => setImageLoading(true)}
+        onLoad={() => setImageLoading(false)}
+        onError={() => setImageLoading(false)}/>
       <View style={styles.iconContainer}>
         <TouchableOpacity onPress={handlePress}>
           <View style={styles.direction}>

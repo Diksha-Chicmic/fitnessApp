@@ -13,13 +13,17 @@ export const styles = StyleSheet.create({
     },
     text: {
         color: COLORS.SECONDARY.WHITE,
-        fontSize: SIZES.font14,
+        fontSize: SIZES.font15,
         fontWeight: 'bold',
+        textAlign:'center',
+    
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 40
+        marginVertical: '20%',
+     
+  
     }
 });

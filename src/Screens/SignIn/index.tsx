@@ -14,6 +14,8 @@ import { getUserData } from "../../utils/userhandle";
 import { SignInProps } from "../../Constants/navigation";
 import { styles } from "./styles";
 import { User } from "../../Defs/user";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { COLORS } from "../../Constants/commonStyles";
 
 function SignIn({navigation}:SignInProps) {
    
@@ -46,7 +48,7 @@ function SignIn({navigation}:SignInProps) {
 
     
     return (
-    
+        <KeyboardAwareScrollView style={{backgroundColor:COLORS.PRIMARY.GREY}}>
         <SafeAreaView style={styles.conatiner}>
             <CustomInput
                 text='EMAIL'
@@ -70,6 +72,7 @@ function SignIn({navigation}:SignInProps) {
             <SocialLogins />
             <CustomButton title='Continue' onPress={handlePress} />
         </SafeAreaView>
+        </KeyboardAwareScrollView>
     )
 }
 

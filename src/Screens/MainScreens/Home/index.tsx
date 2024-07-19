@@ -29,9 +29,9 @@ function Home({navigation}:HomeScreenProps){
             <Text style={styles.text2}>{STRINGS.HOME.TEXT2}</Text>
            </TouchableOpacity>
            </View>
-           <CustomCard title="Nutrition" percentage={nutritionPercentage} point={`${nutrition} cal / ${totalNutrition} cal`}  icon={ICONS.FASHION} onPress={nutritions}/>
-           <CustomCard title="Water" percentage={waterPercentage} point={`${dailyGlass} / ${totalGlasses} glasses`} icon={ICONS.FASHION} onPress={water}/>
-           <CustomCard title="Daily Steps" percentage={stepsPercentage} point={` ${totalSteps} steps/ ${stepsGoal} steps`} icon={ICONS.FASHION} onPress={steps}/>
+           <CustomCard title="Nutrition" percentage={nutritionPercentage} point={`${nutrition} cal / ${totalNutrition} cal`}  icon={ICONS.FOOD} onPress={nutritions}/>
+           <CustomCard title="Water" percentage={waterPercentage} point={`${dailyGlass} / ${totalGlasses} glasses`} icon={ICONS.WATER} onPress={water}/>
+           <CustomCard title="Daily Steps" percentage={stepsPercentage} point={` ${totalSteps} steps/ ${stepsGoal} steps`} icon={ICONS.STEPS} onPress={steps}/>
       </SafeAreaView>
     )
 }

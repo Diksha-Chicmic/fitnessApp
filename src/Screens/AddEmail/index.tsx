@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import auth from '@react-native-firebase/auth';
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
@@ -9,6 +10,7 @@ import { STRINGS } from "../../Constants/strings";
 import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
+import { COLORS } from "../../Constants/commonStyles";
 
 const AddEmail = ({navigation}:ADDEMAILInProps) => {
     const [email, setEmail] = useState<string>('');
@@ -27,6 +29,7 @@ const AddEmail = ({navigation}:ADDEMAILInProps) => {
     }
 
     return (
+        <KeyboardAwareScrollView style={{backgroundColor:COLORS.PRIMARY.GREY}}>
         <View>
         <View style={styles.container}>
             <Text style={styles.heading}>{STRINGS.EMAIL.HEADING}</Text>
@@ -39,8 +42,9 @@ const AddEmail = ({navigation}:ADDEMAILInProps) => {
             />
             <EmailValidationError email={email} formkey={form} />
             </View>
-            <CustomButton onPress={handleSubmit} title={STRINGS.BUTTON.TITLE} />
+            <CustomButton onPress={handleSubmit} title={STRINGS.BUTTON.TITLE} parentStyle={styles.but}/>
         </View>
+        </KeyboardAwareScrollView>
     )
 }
 

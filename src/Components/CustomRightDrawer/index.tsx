@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback,useState} from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
 import {DrawerNavigationProp} from '@react-navigation/drawer';
@@ -27,15 +27,16 @@ const CustomDrawerRight: React.FC = () => {
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
+
       <Image source ={{uri:photo ?? ''}} style={styles.image}/>
-      { <View
-        style={[styles.onlineStatus,!isConnected ? styles.offlineStatus : null,]}
+      { <View style={[styles.onlineStatus,!isConnected ? styles.offlineStatus : null,]}
       /> }
       {unreadNotifications() ? (
         <View style={styles.notificationCtr}>
           <Text style={styles.notificationText}>{unreadNotifications()}</Text>
         </View>
       ) : null}
+      
     </TouchableOpacity>
   );
 };

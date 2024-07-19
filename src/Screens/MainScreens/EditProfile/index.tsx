@@ -42,19 +42,20 @@ const EditProfile = () => {
             realm.create(
               UserDb,
               {
-                id,
-                photo: uri,
                 firstName,
                 lastName,
+                id,
+                photo:uri,
                 interests,
-                preferences,
-                gender
+                gender,
+                preferences
+        
               },
               UpdateMode.Modified
             );
           });
           console.log('Realm write successful');
-          dispatch(updateUser({ photo: uri }));
+          //dispatch(updateUser({ photo: uri }));
         } catch (e) {
           console.error('Error during realm write:', e);
         }
@@ -74,6 +75,7 @@ const EditProfile = () => {
       }
 
     };
+    dispatch(updateUser({ photo: uri }));
   }
 
   // const profiles = useQuery(UserDb);

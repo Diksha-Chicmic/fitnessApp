@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         fontSize: SIZES.font17,
         paddingTop: 20,
         fontWeight: '600',
-        marginBottom: 40,
+       // marginBottom: 40,
     },
  
         modalContainer: {
@@ -57,6 +57,11 @@ export const styles = StyleSheet.create({
             alignItems: 'center',
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
           },
+          parent:{
+            backgroundColor:COLORS.PRIMARY.GREY,
+            flex:1
+          },
+         
     });
     
 

@@ -10,11 +10,12 @@ export const styles = StyleSheet.create({
   heading: {
     fontSize: SIZES.fontH4,
     textAlign: 'left',
-    marginHorizontal: 16,
+    marginHorizontal: '8%',
+    fontWeight:'bold'
   },
   text: {
     textAlign: 'left',
-    marginHorizontal: 16,
+    marginHorizontal: '10%',
   },
   NotiCnt: {
     backgroundColor: 'white',
@@ -49,7 +50,7 @@ notificationsCtr: {
     position: 'absolute',
     backgroundColor: 'white',
     zIndex: 1,
-   // borderRadius: SIZES.rounding0,
+    borderRadius:10,
     right: 16,
     padding: 8,
     top: 8,

@@ -14,7 +14,7 @@ declare module 'react-native-actions-sheet' {
             placeholderText:string,
             icon1Press:(h:any)=>void,
             icon2Press:(h:any)=>void,
-            icon3Press:()=>void,
+            icon3Press?:()=>void,
             onPost?:(image: string | null, caption: string)=>void,
             onComment? :(comment:string)=>void 
         };

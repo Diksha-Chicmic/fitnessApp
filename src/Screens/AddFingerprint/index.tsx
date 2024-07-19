@@ -23,7 +23,7 @@ function AddFingerprint({ navigation }: AddFingerprintProps) {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.iconContainer}>{ICONS.FINGERPRINT(iconStyle)}</View>
             <Text style={styles.heading}>{STRINGS.FINGERPRINT.HEADING}</Text>
             <Text style={styles.text}>{STRINGS.FINGERPRINT.TEXT}</Text>

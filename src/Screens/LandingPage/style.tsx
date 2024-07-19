@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     image: {
         height: RFValue(210),
         width: RFValue(380),
-        marginVertical:20
+       // marginVertical:20
+       marginTop:'10%'
     },
     heading: {
         fontSize: SIZES.font24,
@@ -27,10 +28,19 @@ export const styles = StyleSheet.create({
         color: COLORS.SECONDARY.GREY,
         fontSize: SIZES.font14,
         textAlign: 'center',
+     marginVertical:'-30%'
     },
     text2: {
         color: COLORS.PRIMARY.PURPLE,
         marginLeft: 8, 
         fontSize: SIZES.font14,
     },
+    container:{
+        backgroundColor:COLORS.PRIMARY.GREY,
+        flex:1
+    },
+    but:{
+        marginTop:'-1%',
+    },
+  
 });

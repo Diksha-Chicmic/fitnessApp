@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View,Alert, StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import auth from '@react-native-firebase/auth';
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
@@ -9,6 +10,7 @@ import { STRINGS } from "../../Constants/strings";
 import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
+import { COLORS } from "../../Constants/commonStyles";
 
 const AddFirstName = ({navigation}:FirstNameProps) => {
     const [name, setName] = useState<string>('');
@@ -17,7 +19,7 @@ const AddFirstName = ({navigation}:FirstNameProps) => {
     const handleSubmit = () => {
         setForm(true);
         if (!name.trim()) {
-           Alert.alert('Please select a gender to continue.');
+           Alert.alert('Please enter your firstname to continue.');
             setName(' ');
         } else {
             console.log('Form submitted');
@@ -27,7 +29,7 @@ const AddFirstName = ({navigation}:FirstNameProps) => {
     }
 
     return (
-        <View>
+        <KeyboardAwareScrollView style={{backgroundColor:COLORS.PRIMARY.GREY}}>
         <View style={styles.container}>
             <Text style={styles.heading}>Write your first name</Text>
             <CustomInput
@@ -39,7 +41,7 @@ const AddFirstName = ({navigation}:FirstNameProps) => {
             />
             </View>
             <CustomButton onPress={handleSubmit} title={STRINGS.BUTTON.TITLE} />
-        </View>
+        </KeyboardAwareScrollView>
     )
 }
 

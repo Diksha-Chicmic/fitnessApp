@@ -1,12 +1,11 @@
 import React, {useRef} from 'react';
-import {View, FlatList, ListRenderItem,Text} from 'react-native';
+import {View, FlatList, ListRenderItem,Text, Alert} from 'react-native';
 import { STRINGS } from '../../Constants/strings';
 import CustomButton from '../../Components/CustomButton';
 import SelectInterest from '../../Components/SelectInterest';
 import { AddInterestProps } from '../../Constants/navigation';
 import { useAppDispatch } from '../../Redux/Store';
 import { updateUser } from '../../Redux/Reducers/currentUser';
-//import { INTERESETS } from '../../Constants/interestData';
 import { ICONS } from '../../Constants/icons';
 import { styles } from './style';
 
@@ -62,18 +61,24 @@ const AddInterests: React.FC<AddInterestProps> = ({navigation}) => {
      icon: ICONS.VEGAN(iconSizeInterests),
      selected: false},
   ]);
-   
+
   // functions
   const goToAddGender = () => {
-    const selectedItems: Array<{title: string; selected: boolean}> =
-      interestsData.current
-        .map(item => {
-          const {title, selected} = item;
-          return {title, selected};
-        })
-        .filter(val => val);
-    dispatch(updateUser({interests: selectedItems}));
-    navigation.push('AddGender');
+    const selectedItems: Array<{title: string; selected: boolean}> = interestsData.current .map(item => {
+        const {title, selected} = item;
+        return {title, selected};
+      }).filter(item => item.selected);
+    if (selectedItems.length===0) {
+      Alert.alert(
+          "Selection Required",
+          "Please select at least one interest before proceeding.",
+          [{ text: "OK" }]
+      );
+  } else {
+      console.log('add preferences');
+      dispatch(updateUser({ interests:selectedItems }));
+      navigation.push('AddGender');
+  }
   };
 
   const renderItem: ListRenderItem<{
@@ -94,6 +99,7 @@ const AddInterests: React.FC<AddInterestProps> = ({navigation}) => {
         <CustomButton
           title='Continue'
           onPress={goToAddGender}
+          parentStyle={styles.but}
         />
       </View>
     </View>

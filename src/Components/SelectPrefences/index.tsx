@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { COLORS } from "../../Constants/commonStyles";
 import { styles } from "./style";
@@ -18,6 +18,7 @@ const SelectPreferences: React.FC<SelectPreferencesProps> = ({ text, selected, o
   };
 
   return (
+    <TouchableOpacity onPress={toggleCheck}>
     <View style={styles.container}>
       <View style={styles.textView}>
         <View style={styles.innerTextContainer}>
@@ -28,11 +29,12 @@ const SelectPreferences: React.FC<SelectPreferencesProps> = ({ text, selected, o
           fillColor={COLORS.PRIMARY.PURPLE}
           unFillColor={COLORS.PRIMARY.GREY}
           innerIconStyle={{ borderColor: COLORS.PRIMARY.GREY }}
-          onPress={toggleCheck}
+          // onPress={toggleCheck}
           isChecked={isSelected}
         />
       </View>
     </View>
+    </TouchableOpacity>
   );
 };
 

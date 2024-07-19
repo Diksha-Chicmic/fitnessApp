@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Text, View,Alert, StyleSheet } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import auth from '@react-native-firebase/auth';
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
@@ -9,6 +10,7 @@ import { STRINGS } from "../../Constants/strings";
 import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
+import { COLORS } from "../../Constants/commonStyles";
 
 const AddLastName = ({navigation}:LastNameProps) => {
     const [lname, setLname] = useState<string>('');
@@ -17,7 +19,7 @@ const AddLastName = ({navigation}:LastNameProps) => {
     const handleSubmit = () => {
         setForm(true);
         if (!lname.trim()) {
-           Alert.alert('Please select a gender to continue.');
+           Alert.alert('Please enter your last name to continue.');
             setLname(' ');
         } else {
             console.log('Form submitted');
@@ -27,7 +29,7 @@ const AddLastName = ({navigation}:LastNameProps) => {
     }
 
     return (
-        <View>
+        <KeyboardAwareScrollView style={{backgroundColor:COLORS.PRIMARY.GREY}}>
         <View style={styles.container}>
             <Text style={styles.heading}>Write your last name</Text>
             <CustomInput
@@ -39,7 +41,7 @@ const AddLastName = ({navigation}:LastNameProps) => {
             />
             </View>
             <CustomButton onPress={handleSubmit} title={STRINGS.BUTTON.TITLE} />
-        </View>
+        </KeyboardAwareScrollView>
     )
 }
 

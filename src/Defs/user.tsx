@@ -43,7 +43,6 @@ export type Post = {
 };
 
 export type Comment = {
- // id:string
   userName: string;
   Photo: string | null;
   comment: string;

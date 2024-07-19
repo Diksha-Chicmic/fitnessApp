@@ -52,9 +52,14 @@ function Community({ navigation }) {
     const unsubscribe = firestore()
       .collection('posts')
       .onSnapshot(snapshot => {
-        const data = snapshot.docs.map(doc => doc.data() as Post);
-        setPosts(data);
-        setIsLoading(false)
+        // const data = snapshot.docs.map(doc => doc.data() as Post);
+        // setPosts(data);
+        // setIsLoading(false)
+        const data = snapshot.docs.map((doc) => doc.data() as Post);
+        // Sort posts by createdOn timestamp in descending order
+        const sortedData = data.sort((a, b) => b.createdOn.seconds - a.createdOn.seconds);
+        setPosts(sortedData);
+        setIsLoading(false);
       }, error => {
         console.log('Error getting posts: ', error);
         setIsLoading(false)
@@ -96,7 +101,7 @@ function Community({ navigation }) {
           <View style={[styles.direction,]}>
             <Text style={styles.heading}>Community</Text>
             <TouchableOpacity onPress={handlePost}>
-              {ICONS.FEMALE({ height: 20, width: 20 })}
+              {ICONS.CREATECOMMUNITY({ height: 20, width: 20 })}
             </TouchableOpacity>
           </View>
           <View style={{flexDirection:'row',marginVertical:'5%'}}> 
@@ -106,7 +111,7 @@ function Community({ navigation }) {
          
         </View>
         {isLoading ? (
-        <CustomLoading />
+        <CustomLoading size='large' />
       ) : (
         <FlatList
           data={posts}
@@ -124,6 +129,7 @@ function Community({ navigation }) {
               />
             </TouchableOpacity>
           )}
+          showsVerticalScrollIndicator={false}
           keyExtractor={(post, index) => index.toString()}
         />
       )}

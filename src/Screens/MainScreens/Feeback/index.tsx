@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { COLORS, SIZES } from '../../../Constants/commonStyles';
 import CustomButton from '../../../Components/CustomButton';
 import { ICONS } from '../../../Constants/icons';
@@ -17,6 +18,7 @@ const Feedback = () => {
     };
 
     return (
+        <KeyboardAwareScrollView>
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.logoContainer}>
                 {ICONS.Logo({ height: 60, width: 60 })}
@@ -37,6 +39,7 @@ const Feedback = () => {
             <Text style={styles.thank}>Thank You! 😊</Text>
             <CustomButton title="Submit" onPress={handlePress} />
         </ScrollView>
+        </KeyboardAwareScrollView>
     );
 };
 

@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
 import { useState } from "react";
@@ -10,6 +11,7 @@ import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
 import { STRINGS } from "../../Constants/strings";
 import styles from "./style";
+import { COLORS } from "../../Constants/commonStyles";
 function AddPassword({navigation}:AddPasswordProps) {
     const [password, setPassword] = useState<string>('')
     const [form,setForm]= useState<boolean>(false)
@@ -28,7 +30,8 @@ function AddPassword({navigation}:AddPasswordProps) {
         }
     };
     return (
-        <View>
+        <KeyboardAwareScrollView style={{backgroundColor:COLORS.PRIMARY.GREY}}>
+        
         <View style={styles.container}>
             <Text style={styles.heading}>{STRINGS.PASSWORD.HEADING}</Text>
             <CustomInput text={STRINGS.PASSWORD.PLACEHOLDERTEXT} value={password} type="name" onChangeText={setPassword} parentStyle={styles.input} secureText={true}/>
@@ -40,10 +43,7 @@ function AddPassword({navigation}:AddPasswordProps) {
                 number={isValidPassword.numberCheck(password)} 
                 />
             <CustomButton title={STRINGS.BUTTON.TITLE} onPress={handleClick} />
-
-
-    
-        </View>
+        </KeyboardAwareScrollView>
     )
 }
 
