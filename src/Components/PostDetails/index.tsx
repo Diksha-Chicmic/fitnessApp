@@ -8,7 +8,7 @@ import PostScreen from '../CustomPost ';
 import { IMAGES } from '../../Constants/images';
 import { styles } from './style';
 import { ICONS } from '../../Constants/icons';
-import { getPost, storePostComment } from '../../utils/userhandle';
+import { getPost, sendNotification, storePostComment } from '../../utils/userhandle';
 import { getTimePassed } from '../../utils/common';
 import CustomLoading from '../CustomLoading';
 
@@ -21,12 +21,14 @@ const PostDetails = ({ route }) => {
   );
 
 const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
-
+const [userPost,setUserPost]= useState<string>('')
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const postData = await getPost(post.postId);
-  
+        const userPost = postData!.userId;
+        console.log('sfhjejw',userPost);
+        setUserPost(userPost);
         setComments(post.comments);
       } catch (error) {
         console.log('Error fetching post:', error);
@@ -53,8 +55,15 @@ const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
             comment: commentText.trimStart(),
             Photo: userPhoto
           };
+          const notification = {
+            userId:userId, 
+            message: `commented on your post`,
+            isUnread: true,
+            isShownViaPushNotification: false
+          };
           try {
             await storePostComment(post.postId, newComment);
+            await sendNotification(notification,userPost)
             setComments((prevComments) => [newComment, ...prevComments]);
           } catch (e) {
             console.log('Error storing comment:', e);

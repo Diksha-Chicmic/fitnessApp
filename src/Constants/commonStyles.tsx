@@ -20,6 +20,13 @@ export const COLORS = {
      LIGHTGREY: "#DCDDE0",
     },
   };
+  export const FONT_FAMILY = {
+    REGULAR: 'NotoSans-Regular',
+    MEDIUM: 'NotoSans-Medium',
+    SEMI_BOLD: 'NotoSans-SemiBold',
+    BOLD: 'NotoSans-Bold',
+    EXTRA_BOLD: 'NotoSans-ExtraBold',
+  };
   const HEADER_CONST = DeviceInfo.isTablet() ? RFValue(11) : RFValue(13);
   export const SIZES = {
     icon: DeviceInfo.isTablet() ? RFValue(12) : RFValue(13),

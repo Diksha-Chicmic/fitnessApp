@@ -1,18 +1,25 @@
 import React, {useRef} from 'react';
 import {TouchableOpacity, View, ScrollView, Alert, Text, StyleSheet} from 'react-native';
+import { useRealm } from '@realm/react';
+import { useNetInfo } from '@react-native-community/netinfo';
 import CustomButton from '../CustomButton';
 import { ICONS } from '../../Constants/icons';
 import DishSelector from '../DishesSelector';
 import {
   DailyMeals,
   Meal,
+  resetMealDataItems,
   updateAllMealData,
 } from '../../Redux/Reducers/dishes'
  import {useAppDispatch} from '../../Redux/Store'
+ import { useAppSelector } from '../../Redux/Store';
 import ItemSelector from '../DishItemsSelector ';
 import foodData from '../../Constants/foodData';
 import { COLORS, SIZES } from '../../Constants/commonStyles';
 import { MealsSelected, ChoosedishesProps} from './types';
+import { storeMealData } from '../../utils/userhandle';
+import { MealsDb } from '../../DbModels /meals';
+import { UpdateMode } from 'realm';
 
 const size = {
   width: 40,
@@ -21,7 +28,12 @@ const size = {
 };
 
 const ChooseFood:React.FC<ChoosedishesProps> = ({setModalFalse}) => {
+ 
   const dispatch = useAppDispatch();
+  const {id}= useAppSelector(state=>state.User.data);
+  const {data:mealsData}= useAppSelector(state=>state.Dishes)
+  const realm= useRealm();
+  const netInfo= useNetInfo();
   const mealsSelected = useRef<MealsSelected>({
     mealTime: {
       snack: false,
@@ -65,6 +77,36 @@ const ChooseFood:React.FC<ChoosedishesProps> = ({setModalFalse}) => {
       );
     
       return;
+    }
+    if(netInfo.isConnected){
+      storeMealData(id!,{
+        breakfast:mealsData.breakfast.concat(dtArray.breakfast),
+        dinner: mealsData.dinner.concat(dtArray.dinner),
+        lunch: mealsData.lunch.concat(dtArray.lunch),
+        snack: mealsData.snack.concat(dtArray.snack),
+      })
+    }else{
+       realm.write(()=>{
+        realm.create(
+          MealsDb,
+          {
+            breakfast: mealsData.breakfast
+            .concat(dtArray.breakfast)
+            .filter(val => val),
+            dinner: mealsData.dinner.concat(dtArray.dinner).map(val => val),
+          lunch: mealsData.lunch.concat(dtArray.lunch).map(val => val),
+          snack: mealsData.snack.concat(dtArray.snack).map(val => val),
+          id: id!,
+          },
+          UpdateMode.Modified,
+        )
+       })
+        dispatch(resetMealDataItems({
+          breakfast:mealsData.breakfast.concat(dtArray.breakfast),
+          dinner: mealsData.dinner.concat(dtArray.dinner),
+          lunch: mealsData.lunch.concat(dtArray.lunch),
+          snack: mealsData.snack.concat(dtArray.snack),
+        }))
     }
     console.log(count, 'count is')
       console.log('dt array', dtArray);

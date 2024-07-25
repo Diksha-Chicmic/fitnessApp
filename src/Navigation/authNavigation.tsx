@@ -1,7 +1,7 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { authNavigationList } from "../Constants/navigation";
-import { COLORS, SIZES } from "../Constants/commonStyles";
+import { COLORS, FONT_FAMILY, SIZES } from "../Constants/commonStyles";
 import { ICONS } from "../Constants/icons";
 import { Settings, View } from "react-native";
 import CustomDrawer from "../Components/CustomDrawer/Index";
@@ -48,7 +48,7 @@ const AuthNavigator = () => {
         headerLeft,
         drawerStyle: {justifyContent:'center',},
         drawerContentContainerStyle: {top: "22%",},
-        drawerLabelStyle: { color: "black", fontSize: SIZES.font13 },
+        drawerLabelStyle: { color: "black", fontSize: SIZES.font13, fontFamily:FONT_FAMILY.REGULAR },
         drawerActiveTintColor: COLORS.PRIMARY.PURPLE,
       }} >
       <Drawer.Screen name="Home" component={Home}
@@ -57,7 +57,7 @@ const AuthNavigator = () => {
           headerRight,
            headerStyle: {
             backgroundColor: COLORS.PRIMARY.GREY,
-            height: 145,
+            height: 110,
           },
           headerShown:true,
         }}

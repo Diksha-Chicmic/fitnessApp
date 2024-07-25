@@ -1,5 +1,5 @@
 import { StyleSheet,Dimensions } from "react-native";
-import { COLORS,SIZES } from "../../Constants/commonStyles";
+import { COLORS,FONT_FAMILY,SIZES } from "../../Constants/commonStyles";
 
  const screenWidth=Dimensions.get('screen').width
 
@@ -17,9 +17,10 @@ export const styles = StyleSheet.create({
       backgroundColor: '#fff',
     },
     title: {
-      fontSize: 18,
+      fontSize: SIZES.fontH5,
       fontWeight: 'bold',
       marginBottom: 10,
+      fontFamily:FONT_FAMILY.BOLD
     },
     input: {
      flex:1,
@@ -27,7 +28,8 @@ export const styles = StyleSheet.create({
       marginTop: '6%',
       width:screenWidth/1.5,
       fontSize:SIZES.font14,
-      fontWeight:'600'
+      //fontWeight:'600',
+      fontFamily:FONT_FAMILY.SEMI_BOLD
       
     },
     button:{

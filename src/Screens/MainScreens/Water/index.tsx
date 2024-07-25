@@ -30,7 +30,7 @@ const Water: React.FC = () => {
                 if (healthData) {
                     console.log(healthData)
                     const filteredData = healthData.filter(val =>
-                        checkWeek(Timestamp.fromMillis(val.currentDate.seconds * 1000).toDate(), today,),
+                        checkWeek(Timestamp.fromMillis(val.currentDate.seconds * 1000).toDate(), today,false),
                     );
                     const bestWaterIntakeDay = filteredData.reduce(
                         (acc, val) => {
@@ -42,7 +42,7 @@ const Water: React.FC = () => {
                                 };
                             }
                             return acc;
-                        }, { value: 0, week: '' },
+                        }, { value: 0, week: 'today' },
                     );
                     const worstWaterIntakeDay = filteredData.reduce(
                         (acc, val) => {
@@ -96,7 +96,7 @@ const Water: React.FC = () => {
             </View>
      
     
-            <DetailsCard calNum="250 ml" calText="water drank" goalNum={totalGlasses} text='glassses' goalText="Daily goal" />
+            <DetailsCard calNum={dailyGlass*250} calText="water drank" goalNum={totalGlasses} text='glassses' goalText="Daily goal" />
             {totalGlasses > dailyGlass ? <View style={styles.warning}>
                 <Text style={styles.warningText}>{STRINGS.WATER.WARNTXT}</Text></View> : null}
 

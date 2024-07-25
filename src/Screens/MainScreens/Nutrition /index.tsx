@@ -42,7 +42,7 @@ function Nutrition() {
     const proteinPercentage = Math.ceil(getPercentage(statsData.protein, statsData.calories)) / 100;
     const carbsPercentage = Math.ceil(getPercentage(statsData.carbs, statsData.calories)) / 100;
     const fatPercentage = Math.ceil(getPercentage(statsData.fat, statsData.calories)) / 100;
-
+    console.log('ewjkkd',fatPercentage*100);
     const data = {
         labels: ["Protein", "Carb", "Fat"], // optional
         data: [proteinPercentage, carbsPercentage, fatPercentage]

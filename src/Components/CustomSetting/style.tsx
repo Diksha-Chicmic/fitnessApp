@@ -1,26 +1,35 @@
-import { StyleSheet } from "react-native";
-import { COLORS,SIZES } from "../../Constants/commonStyles";
+import {StyleSheet} from 'react-native';
+import { COLORS,SIZES} from '../../Constants/commonStyles';
 
 export const styles = StyleSheet.create({
-    container: {
-        borderBottomWidth: 1,
-        borderColor: COLORS.SECONDARY.GREY,
-        paddingVertical: 18,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal:10,
-        marginVertical:1,
-        marginHorizontal:'3%'
-    },
-    text: {
-        fontSize: SIZES.font13,
-        fontWeight:'400'
-    },
-    toggleStyles:{
-        borderWidth: 2,
-        borderRadius: 100,
-         borderColor: COLORS.PRIMARY.DIMGREY,
-         marginRight: 16,
-    }
-})
+  parent: {
+    borderBottomWidth: 1,
+    borderColor: COLORS.SECONDARY.GREY,
+    paddingVertical: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  headingText: {
+   // fontFamily: FONT_FAMILY.MEDIUM,
+    fontSize: SIZES.font13,
+    color: 'black',
+  },
+  switchCtr: {
+    borderWidth: 2,
+    borderRadius: 100,
+    borderColor: COLORS.PRIMARY.DIMGREY,
+    marginRight: 16,
+  },
+  switchCtrActive: {
+    borderColor: '#E8E8E8',
+  },
+  switchInnerCircle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowRadius: 3,
+    shadowColor: 'grey',
+    shadowOpacity: 0.3,
+    shadowOffset: {height: 4, width: 1},
+  },
+});

@@ -1,5 +1,6 @@
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
 import firestore, { Timestamp } from "@react-native-firebase/firestore";
+import { DailyMeals } from "../Redux/Reducers/dishes";
  import "react-native-get-random-values";
 import { v4 as uuidv4 } from 'uuid';
 import storage from "@react-native-firebase/storage";
@@ -9,13 +10,19 @@ import { User,Post,Comment,Health, NotificationData } from "../Defs/user";
 export const firebaseDB = {
   collections: {
     users: "users",
-    posts:"posts"
+    posts:"posts",
+    stories: 'stories',
+    dailyMeals: 'dailyMeals',
+    healthData: 'healthData',
   },
   documents: {
     users: {},
     post:{
       allIds:'allIds'
-    }
+    },
+    stories:{},
+    dailyMeals:{},
+    healthData:{}
   },
 };
 
@@ -224,4 +231,32 @@ export const storeUserData = async (
     }
   };
   
-
+  export const storeMealData = async (userId: string, dailyMeals: DailyMeals) => {
+    await firestore()
+      .collection(firebaseDB.collections.dailyMeals)
+      .doc(userId)
+      .set(dailyMeals);
+  };
+  export const getMealData = async (userId: string) => {
+    const val = await firestore()
+      .collection(firebaseDB.collections.dailyMeals)
+      .doc(userId)
+      .get();
+    return val.data() as DailyMeals;
+  };
+  export const storeNewUserHealthData = async (
+    userId: string,
+    healthData: Health,
+  ) => {
+    console.log('storing new health data ran');
+    try {
+      await firestore()
+        .collection(firebaseDB.collections.healthData)
+        .doc(userId)
+        .set({
+          [new Date().setHours(0, 0, 0, 0).toString()]: healthData,
+        });
+    } catch (e) {
+      console.log('errror storing new health data', e);
+    }
+  };

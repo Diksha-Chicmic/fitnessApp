@@ -107,6 +107,7 @@ const Notifications: React.FC = () => {
               style={styles.flatList}
               renderItem={({ item }) => (
                 <CustomNotification
+                key={item.createdOn.toString()}
                 check={item.isUnread}
                 text={item.message}
                 time={getTimePassed(item.createdOn.seconds * 1000)}

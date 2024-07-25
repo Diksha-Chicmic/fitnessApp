@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { COLORS,SIZES} from "../../Constants/commonStyles"
+import { COLORS,FONT_FAMILY,SIZES} from "../../Constants/commonStyles"
 
 export const styles=StyleSheet.create({
     container:{
@@ -17,10 +17,12 @@ export const styles=StyleSheet.create({
 
     },
     title:{
-        fontSize:SIZES.font14
+        fontSize:SIZES.font14,
+        fontFamily:FONT_FAMILY.REGULAR
     },
     text:{
         fontSize:SIZES.font11,
-        color:COLORS.SECONDARY.GREY
+        color:COLORS.SECONDARY.GREY,
+        fontFamily:FONT_FAMILY.REGULAR
     }
 })

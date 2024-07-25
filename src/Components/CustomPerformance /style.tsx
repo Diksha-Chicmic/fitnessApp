@@ -1,5 +1,5 @@
 import { StyleSheet ,Dimensions} from "react-native";
-import { COLORS, SIZES } from "../../Constants/commonStyles";
+import { COLORS, FONT_FAMILY, SIZES } from "../../Constants/commonStyles";
 const screenWidth= Dimensions.get('window').width;
 export const styles = StyleSheet.create({
     container: {
@@ -20,14 +20,18 @@ export const styles = StyleSheet.create({
     },
     quantText: {
       //color: COLORS.SECONDARY.GREY,
-      fontSize:SIZES.font14
+      fontSize:SIZES.font14,
+      fontFamily:FONT_FAMILY.REGULAR
     },
     text:{
         fontSize:SIZES.font11,
-        color:COLORS.SECONDARY.GREY
+        color:COLORS.SECONDARY.GREY,
+       // textAlign:'center',
     },
     title:{
-         fontSize:SIZES.font14
+         fontSize:SIZES.font14,
+        // textAlign:'center',
+        fontFamily:FONT_FAMILY.REGULAR
     },
     borderContainer:{
       borderBottomWidth:2,

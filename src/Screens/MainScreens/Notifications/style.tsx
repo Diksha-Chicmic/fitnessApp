@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { COLORS,SIZES } from '../../../Constants/commonStyles';
+import { COLORS,FONT_FAMILY,SIZES } from '../../../Constants/commonStyles';
 //import {FONT_FAMILY} from '../../../Constants/commonStyles';
 
 export const styles = StyleSheet.create({
@@ -11,11 +11,13 @@ export const styles = StyleSheet.create({
     fontSize: SIZES.fontH4,
     textAlign: 'left',
     marginHorizontal: '8%',
-    fontWeight:'bold'
+    fontWeight:'bold',
+    fontFamily:FONT_FAMILY.BOLD
   },
   text: {
     textAlign: 'left',
     marginHorizontal: '10%',
+    fontFamily:FONT_FAMILY.REGULAR
   },
   NotiCnt: {
     backgroundColor: 'white',
@@ -65,7 +67,7 @@ notificationsCtr: {
   },
   menuText: {
     color: 'black',
-   // fontFamily: FONT_FAMILY.REGULAR,
+    fontFamily: FONT_FAMILY.REGULAR,
     fontSize: SIZES.font13,
   },
   menuTextCtr: {

@@ -1,5 +1,5 @@
 import {StyleSheet,Dimensions} from 'react-native';
-import { COLORS,SIZES } from '../../Constants/commonStyles';
+import { COLORS,FONT_FAMILY,SIZES } from '../../Constants/commonStyles';
 import {RFValue} from 'react-native-responsive-fontsize';
 //import {FONT_FAMILY, SIZES} from '../../../Constants/commonStyles';
 const screenWidth=Dimensions.get('screen').width
@@ -26,18 +26,20 @@ export const styles = StyleSheet.create({
     flex: 6
   },
   notificationText: {
-    //fontFamily: FONT_FAMILY.MEDIUM,
+    fontFamily: FONT_FAMILY.MEDIUM,
     fontSize: RFValue(12),
     marginRight: 16,
     color: 'black',
   },
   nameText: {
     fontWeight: 'bold',
+    fontFamily:FONT_FAMILY.SEMI_BOLD
   },
   text: {
     textAlign: 'left',
     marginVertical: 8,
     fontSize: SIZES.font11,
+    fontFamily:FONT_FAMILY.REGULAR
   },
   box: {
     alignSelf: 'center',

@@ -1,5 +1,5 @@
 import { StyleSheet,Dimensions } from "react-native";
-import { COLORS,SIZES } from "../../../Constants/commonStyles";
+import { COLORS,FONT_FAMILY,SIZES } from "../../../Constants/commonStyles";
  
 const screenWidth = Dimensions.get('window').width
 export const styles = StyleSheet.create({
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
         fontWeight:'bold',
         padding:'1%',
         letterSpacing:0.4,
-        
+        fontFamily:FONT_FAMILY.SEMI_BOLD
     },
     heading:{
         fontSize:SIZES.font24,

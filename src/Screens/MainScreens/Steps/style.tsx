@@ -38,6 +38,15 @@ export const styles = StyleSheet.create({
     },
     parent:{
         backgroundColor:COLORS.PRIMARY.GREY
-    }
+    },
+    lineChartCtr: {
+        backgroundColor: 'white',
+        paddingHorizontal: 8,
+      },
+      lineChartHeadingText: {
+        textAlign: 'center',
+        fontSize: SIZES.font17,
+        marginVertical: 32,
+      },
 })
 

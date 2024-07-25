@@ -20,7 +20,7 @@ import { UserDb, UserInterestDb, UserPreferencesDb } from './src/DbModels /user'
 import { PostDb } from './src/DbModels /post';
 import { StoryDb, AllStoryDb } from './src/DbModels /story';
 import { MealsDb,ItemsDb } from './src/DbModels /meals';
-// GoogleSignin.configure(); 
+
 function App(): React.JSX.Element {
 
   useEffect(() => {

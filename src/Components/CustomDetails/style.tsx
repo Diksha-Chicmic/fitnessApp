@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
         maxHeight: '22%',
         marginHorizontal: 10,
         marginVertical: 8,
+        //borderWidth:2
 
     },
     border: {
@@ -21,13 +22,13 @@ export const styles = StyleSheet.create({
         height: 18,
         width: 18,
         marginRight: 10,
-        borderRadius: 4
+        borderRadius: 4,
     },
     box1: {
         flexDirection: 'row',
     },
 
     text: {
-        fontSize: SIZES.font14
+        fontSize: SIZES.font14,
     }
 })

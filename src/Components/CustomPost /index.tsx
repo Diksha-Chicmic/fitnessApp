@@ -19,11 +19,12 @@ const PostScreen: React.FC<PostProps> = ({ image, profilePic, name, time, captio
 
 
 const [iconColor, setIconColor] = useState(COLORS.SECONDARY.GREY);
-const [likesCount, setLikesCount] = useState<number>(likes || 0);
+//const [likesCount, setLikesCount] = useState<number>(likes || 0);
 const { firstName, lastName, photo: userPhoto , id} = useAppSelector((state) => state.User.data);
+const [likesCount, setLikesCount] = useState<number>(0);
 const [postComments, setPostComments] = useState<Comment[]>([]);
 const [post,setPost]=useState<string>('');
-
+const [likedByUsersId, setLikedByUsersId] = useState<string[]>([]);
 const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
 const [imageLoading, setImageLoading] = useState<boolean>(true);
 
@@ -34,6 +35,8 @@ useEffect(() => {
       console.log('fetching ',postData,'postdata')
       setPostComments(postData!.comments || []);
       //setPost(postData);
+      setLikesCount(postData!.likedByUsersId.length || 0)
+      setLikedByUsersId(postData!.likedByUsersId || []);
       setPost(postData!.userId)
     } catch (error) {
       console.log('Error fetching post:', error);
@@ -43,21 +46,40 @@ useEffect(() => {
 }, [postId]);
 console.log(post);
 
-const handlePress = async () => {
- const notification = {
-  userId: id!, 
-  message: `liked your post`,
-  isUnread: true,
-  isShownViaPushNotification: false
+const handleLikePress = async () => {
+  try {
+    let updatedLikedByUsersId;
+    let updatedLikesCount = likesCount;
+
+    if (likedByUsersId.includes(id)) {
+      // User already liked the post, so remove the like
+      updatedLikedByUsersId = likedByUsersId.filter(userId => userId !== id);
+      updatedLikesCount -= 1;
+      setIconColor(COLORS.SECONDARY.GREY);
+    } else {
+      // User has not liked the post, so add the like
+      updatedLikedByUsersId = [...likedByUsersId, id];
+      updatedLikesCount += 1;
+      setIconColor(COLORS.PRIMARY.PURPLE);
+
+     const notification = {
+        userId: id!,
+        message: `liked your post`,
+        isUnread: true,
+        isShownViaPushNotification:false,
+      };
+      await sendNotification(notification,post);  // Function to send notification
+    }
+
+    setLikedByUsersId(updatedLikedByUsersId);
+    setLikesCount(updatedLikesCount);
+
+    await addLikes(postId, updatedLikedByUsersId);  // F
+  } catch (error) {
+    console.error('Error handling like:', error);
+  }
 };
- await sendNotification(notification, post);
-  setIconColor(prevColor =>
-    prevColor === COLORS.SECONDARY.GREY ? COLORS.PRIMARY.PURPLE : COLORS.SECONDARY.GREY
-  );
-  setLikesCount(prevCount =>
-    iconColor === COLORS.SECONDARY.GREY ? prevCount + 1 : prevCount - 1
-  );
-};
+
 
 const handleCommentPress = () => {
   SheetManager.show('comment-sheet', {
@@ -100,10 +122,10 @@ const handleCommentPress = () => {
     <View style={[styles.conatiner, parentStyle]}>
       <View style={styles.direction}>
       {profilePicLoading && <CustomLoading size='small'/>}
-        <Image source={profilePic ? { uri: profilePic } : null} style={styles.profile} 
+       {profilePic? <Image source={ { uri: profilePic! }} style={styles.profile} 
         onLoadStart={() => setProfilePicLoading(true)}
           onLoad={() => setProfilePicLoading(false)}
-          onError={() => setProfilePicLoading(false)}/>
+          onError={() => setProfilePicLoading(false)}/>:null}
         <View>
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.time}>{time}</Text>
@@ -116,7 +138,7 @@ const handleCommentPress = () => {
         onLoad={() => setImageLoading(false)}
         onError={() => setImageLoading(false)}/>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity onPress={handleLikePress}>
           <View style={styles.direction}>
             {ICONS.HEART({ height: 20, width: 20, color: iconColor })}
             <Text style={styles.text}>{likesCount}</Text>

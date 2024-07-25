@@ -124,7 +124,7 @@ function Community({ navigation }) {
                 name={post.userName}
                 time={getTimePassed(post.createdOn.seconds * 1000)}
                 caption={post.caption}
-                likes={0}
+                likes={post.likedByUsersId.length}
                 comments={post.comments.length}
               />
             </TouchableOpacity>

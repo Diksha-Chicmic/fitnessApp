@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View,StyleSheet,Text} from 'react-native';
+import {View,StyleSheet,Text, Alert} from 'react-native';
 import SelectGender from '../SelectGender';
 import CustomButton from '../CustomButton';
 import CustomInput from '../CustomInput';
@@ -33,6 +33,10 @@ const ChangeUserInfo: React.FC<ChangeUserInfoProps> = ({setModalFalse}) => {
 
   const handleSubmitChange = async () => {
     console.log('submit')
+    if(firstName=== '' || lastName === ''){
+      Alert.alert('Error',"First Name and LastName can't be empty");
+      return;
+   }
     if(netInfo.isConnected){
     if (firstName !== '' && lastName !== '') {
         console.log('inside submit ')

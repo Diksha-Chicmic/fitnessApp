@@ -1,5 +1,5 @@
 export interface detailsProps{
-    calNum:string,
+    calNum:number,
     goalNum:number,
     calText:string,
     goalText:string,

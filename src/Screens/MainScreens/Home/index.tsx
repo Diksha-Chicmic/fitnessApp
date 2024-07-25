@@ -6,6 +6,7 @@ import { STRINGS } from "../../../Constants/strings";
 import CustomCard from "../../../Components/CustomCard";
 import { useAppSelector } from "../../../Redux/Store";
 import { styles } from "./style";
+import { FONT_FAMILY } from "../../../Constants/commonStyles";
 function Home({navigation}:HomeScreenProps){
    const { totalSteps,
         nutrition,
@@ -22,13 +23,16 @@ function Home({navigation}:HomeScreenProps){
    const stepsPercentage = (totalSteps / stepsGoal) * 100;
     return(
         <SafeAreaView style={styles.parent} >
-            <View style={styles.container}>
+           <View style={styles.container}>
            <Text style={styles.heading}> {STRINGS.HOME.HEADING} {userName} </Text>
            <Text style={styles.text}>  {STRINGS.HOME.TEXT} </Text>
            <TouchableOpacity>
             <Text style={styles.text2}>{STRINGS.HOME.TEXT2}</Text>
            </TouchableOpacity>
            </View>
+           {/* <Text style={{fontFamily:FONT_FAMILY.REGULAR}}>dhjwd</Text>
+           <Text>dhjwd</Text> */}
+
            <CustomCard title="Nutrition" percentage={nutritionPercentage} point={`${nutrition} cal / ${totalNutrition} cal`}  icon={ICONS.FOOD} onPress={nutritions}/>
            <CustomCard title="Water" percentage={waterPercentage} point={`${dailyGlass} / ${totalGlasses} glasses`} icon={ICONS.WATER} onPress={water}/>
            <CustomCard title="Daily Steps" percentage={stepsPercentage} point={` ${totalSteps} steps/ ${stepsGoal} steps`} icon={ICONS.STEPS} onPress={steps}/>

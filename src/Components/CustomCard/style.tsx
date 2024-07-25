@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, SIZES } from "../../Constants/commonStyles";
+import { COLORS, FONT_FAMILY, SIZES } from "../../Constants/commonStyles";
 import { RFValue } from "react-native-responsive-fontsize";
 export const styles = StyleSheet.create({
     container: {
@@ -22,18 +22,21 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginLeft: 20,
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+       
     },
     
     title: {
         fontSize: RFValue(18),
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
+        fontFamily:FONT_FAMILY.BOLD
     },
     text: {
         fontSize: RFValue(11),
         //marginTop: 4,
         color:'grey',
-        marginBottom:9
+        marginBottom:9,
+        fontFamily:FONT_FAMILY.REGULAR
     },
     parentContainer: {
         flexDirection: 'row',
@@ -71,7 +74,8 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 3,
         fontSize: SIZES.font13,
-        fontWeight: 'bold',
+       // fontWeight: 'bold',
+        fontFamily:FONT_FAMILY.SEMI_BOLD
     },
     cc: {
         position: 'relative',

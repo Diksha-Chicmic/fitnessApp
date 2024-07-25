@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
-import { SIZES,COLORS } from "../../../Constants/commonStyles";
+import { SIZES,COLORS, FONT_FAMILY } from "../../../Constants/commonStyles";
 
 
 export const styles = StyleSheet.create({
     heading: {
-      fontSize: SIZES.font18,
+      fontSize: SIZES.fontH4,
       fontWeight: 'bold',
+      fontFamily:FONT_FAMILY.BOLD
     },
     direction: {
       flexDirection: 'row',

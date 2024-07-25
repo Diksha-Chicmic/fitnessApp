@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ListRenderItem, View,Text} from 'react-native';
+import { FlatList, ListRenderItem, View, Text } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { styles } from './style';
 import { useRealm } from '@realm/react';
@@ -16,41 +16,44 @@ const renderItem: ListRenderItem<{
   title: string;
   icon: React.ReactNode;
   selected: boolean;
-}> = ({item}) => <SelectInterest item={item} />;
+}> = ({ item }) => <SelectInterest item={item} />;
 
 const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({
   setModalFalse,
 }) => {
-  const {interests, id, firstName,lastName,gender,photo,preferences} = useAppSelector(state => state.User.data);
-  const dispatch= useAppDispatch()
-    console.log('iiiiiiiii',interests)
+  const { interests, id, firstName, lastName, gender, photo, preferences } = useAppSelector(state => state.User.data);
+  const dispatch = useAppDispatch()
+  console.log('iiiiiiiii', interests)
   const interestDataWithIcons = interests.map((val, index) => ({
     ...val,
     icon: INTERESETS[index].icon,
   }));
 
- 
-  const netInfo= useNetInfo();
+
+  const netInfo = useNetInfo();
   const realm = useRealm();
   const handleSubmitChange = async () => {
-    if(netInfo.isConnected){
-    await firestore()
-      .collection(firebaseDB.collections.users)
-      .doc(id!)
-      .update({
-        interests: interestDataWithIcons.map(val => {
-          const {selected, title} = val;
-          return {selected, title};
-        }),
-      });
-  
-    setModalFalse();
-  }else{
-    realm.write(()=>{
-      realm.create(
-        UserDb,{
-          interests:interestDataWithIcons,
-          id:id!,
+    if (netInfo.isConnected) {
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(id!)
+        .update({
+          interests: interestDataWithIcons.map(val => {
+            const { selected, title } = val;
+            return { selected, title };
+          }),
+        });
+
+      setModalFalse();
+    } else {
+      realm.write(() => {
+        realm.create(
+          UserDb, {
+          interests: interestDataWithIcons.map(val => {
+            const { selected, title } = val;
+            return { selected, title };
+          }),
+          id: id!,
           gender,
           firstName,
           lastName,
@@ -58,16 +61,23 @@ const ChangeUserInterests: React.FC<ChangeUserInterestsProps> = ({
           preferences
 
         }
-      )
-    })
-    setModalFalse();
-  } 
-  dispatch(updateUser({interests:interestDataWithIcons}))
-};
+        )
+      })
+      setModalFalse();
+    }
+    dispatch(updateUser({
+      interests: interestDataWithIcons.map(val => {
+        const { selected, title } = val;
+        return { selected, title };
+      }),
+    }),
+    );
+  };
+
 
   return (
     <View style={styles.parent}>
-       <Text style={styles.title}>Change Interests</Text>
+      <Text style={styles.title}>Change Interests</Text>
       <View style={styles.flatListCtr}>
         <FlatList
           data={interestDataWithIcons}
