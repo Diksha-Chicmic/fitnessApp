@@ -15,6 +15,7 @@ import CustomLoading from '../CustomLoading';
 
 const PostDetails = ({ route }) => {
   const { post } = route.params;
+  console.log('egwe',post)
   const [comments, setComments] = useState<Comment[]>(post.comments || []);
   const { id: userId, photo: userPhoto, firstName, lastName } = useAppSelector(
     (state) => state.User.data
@@ -99,7 +100,7 @@ const [userPost,setUserPost]= useState<string>('')
         name={post.userName}
         time={getTimePassed(post.createdOn.seconds * 1000)}
         caption={post.caption}
-        likes={0}
+        likes={post.likedByUsersId.length}
         comments={comments.length}
         parentStyle={styles.parent}
         postId={post.postId}

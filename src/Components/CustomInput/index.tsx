@@ -32,7 +32,6 @@ const CustomInput:React.FC<InputProps> = ({
                 value={value}
                 onChangeText={onChangeText}
                 autoCorrect={false}
-                autoCapitalize={type === 'name' ? 'words' : 'none'}
                 maxLength={maxLength}
                 secureTextEntry={secureText}
                 numberOfLines={lines}

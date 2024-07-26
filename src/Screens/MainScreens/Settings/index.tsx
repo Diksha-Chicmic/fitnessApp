@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, Text } from "react-native";
 import auth from "@react-native-firebase/auth";
 import { EditScreenProps } from "../../../Constants/navigation";
 import Settings from "../../../Components/CustomSetting";
-import { COLORS, SIZES } from "../../../Constants/commonStyles";
+import { styles } from "./style";
 function SettingScreen({navigation}:EditScreenProps){
     const moveToEditScreen=()=>{
         navigation.push('EditProfile')
@@ -14,7 +14,9 @@ function SettingScreen({navigation}:EditScreenProps){
     const moveToAboutUsScreen=()=>{
         navigation.push('AboutUs')
     }
-
+    const moveToResetScreen=()=>{
+        navigation.push('ResetPassword')
+    }
 const logOut=()=>{
   // dispatch(updateSettingsCachedData({isBiometricEnable:finger}));
     auth().signOut();
@@ -26,24 +28,13 @@ const logOut=()=>{
            <Settings title="Push Notifications" hasSwitch={true}/>
            <Settings title= "Give Feedback" onPress={movetoFeedbackScreen}/>
            <Settings title="About us" onPress={moveToAboutUsScreen}/>
+           <Settings title="Reset Password" onPress={moveToResetScreen}/>
            <Settings title= "Log Out" onPress={logOut}/>
-
         </SafeAreaView>
     )
 }
 
-const styles= StyleSheet.create({
-    container:{
-      //marginHorizontal:10,
-       flex:1,
-       backgroundColor:COLORS.PRIMARY.GREY
-    },
-    heading:{
-        fontSize:SIZES.font24,
-        fontWeight:'bold',
-        marginVertical:20
-    }
-})
+
 
 
 export default SettingScreen

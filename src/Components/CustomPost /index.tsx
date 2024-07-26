@@ -27,6 +27,7 @@ const [post,setPost]=useState<string>('');
 const [likedByUsersId, setLikedByUsersId] = useState<string[]>([]);
 const [profilePicLoading, setProfilePicLoading] = useState<boolean>(true);
 const [imageLoading, setImageLoading] = useState<boolean>(true);
+const [hasLiked, setHasLiked] = useState(false);
 
 useEffect(() => {
   const fetchPost = async () => {
@@ -37,6 +38,9 @@ useEffect(() => {
       //setPost(postData);
       setLikesCount(postData!.likedByUsersId.length || 0)
       setLikedByUsersId(postData!.likedByUsersId || []);
+      const userHasLiked = postData!.likedByUsersId.includes(id);
+      setHasLiked(userHasLiked);
+      setIconColor(userHasLiked ? COLORS.PRIMARY.PURPLE : COLORS.SECONDARY.GREY);
       setPost(postData!.userId)
     } catch (error) {
       console.log('Error fetching post:', error);
@@ -46,39 +50,48 @@ useEffect(() => {
 }, [postId]);
 console.log(post);
 
+
+
 const handleLikePress = async () => {
   try {
-    let updatedLikedByUsersId;
+    let updatedLikedByUsersId = likedByUsersId;
     let updatedLikesCount = likesCount;
+    let updatedHasLiked = hasLiked;
 
-    if (likedByUsersId.includes(id)) {
+    if (hasLiked) {
       // User already liked the post, so remove the like
       updatedLikedByUsersId = likedByUsersId.filter(userId => userId !== id);
       updatedLikesCount -= 1;
-      setIconColor(COLORS.SECONDARY.GREY);
+      updatedHasLiked = false;
     } else {
       // User has not liked the post, so add the like
       updatedLikedByUsersId = [...likedByUsersId, id];
       updatedLikesCount += 1;
-      setIconColor(COLORS.PRIMARY.PURPLE);
+      updatedHasLiked = true;
 
-     const notification = {
-        userId: id!,
+      const notification = {
+        userId: id,
         message: `liked your post`,
         isUnread: true,
-        isShownViaPushNotification:false,
+        isShownViaPushNotification: false,
       };
-      await sendNotification(notification,post);  // Function to send notification
+      await sendNotification(notification, post);  // Function to send notification
     }
 
     setLikedByUsersId(updatedLikedByUsersId);
     setLikesCount(updatedLikesCount);
+    setHasLiked(updatedHasLiked);
 
-    await addLikes(postId, updatedLikedByUsersId);  // F
+    // Update the icon color
+    setIconColor(updatedHasLiked ? COLORS.PRIMARY.PURPLE : COLORS.SECONDARY.GREY);
+
+    await addLikes(postId, updatedLikedByUsersId);  // Function to update likes in the database
   } catch (error) {
     console.error('Error handling like:', error);
   }
 };
+
+
 
 
 const handleCommentPress = () => {

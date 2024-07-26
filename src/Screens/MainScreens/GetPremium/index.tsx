@@ -44,7 +44,7 @@ function Premium(){
       <Carousel
         width={screenWidth}
         height={screenWidth / 2 + 160} // Adjust height to accommodate text
-        autoPlay
+      //  autoPlay
         data={data}
         scrollAnimationDuration={2000}
         onSnapToItem={(index) => setCurrentIndex(index)}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     fontSize: SIZES.fontH3,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginTop: 10, // Adjust margin to space out from the image
+    marginTop: 10,
   },
   text: {
     fontSize: SIZES.font14,

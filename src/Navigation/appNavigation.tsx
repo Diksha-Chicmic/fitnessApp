@@ -17,7 +17,7 @@ import ChooseFood from "../Components/AddDishes";
 import Feedback from "../Screens/MainScreens/Feeback";
 import AboutUs from "../Screens/MainScreens/AboutUs";
 import notifee ,{ AndroidImportance }from "@notifee/react-native";
-import { updateHealthData,resetHealthData } from "../Redux/Reducers/userHealth";
+import { updateHealthData,resetHealthData, setModalShown } from "../Redux/Reducers/userHealth";
 import { updateUser } from "../Redux/Reducers/currentUser";
 import { firebaseDB, storeUserHealthData } from "../utils/userhandle";
 import { date } from "../utils/common";
@@ -25,7 +25,9 @@ import AppleHealthKit, { HealthKitPermissions } from 'react-native-health'
 import { Timestamp } from "@react-native-firebase/firestore";
 import firestore from '@react-native-firebase/firestore';
 import { getUserData,updateNotificationReadStatus } from "../utils/userhandle";
+import ResetPassword from "../Screens/MainScreens/ResetPassword";
 import WithModal from "../Components/WithModal";
+import GoalAchieved from "../Components/GoalAchieved";
 const Stack = createNativeStackNavigator<homeStackParamList>();
 
 
@@ -33,14 +35,19 @@ const Stack = createNativeStackNavigator<homeStackParamList>();
 const AppNavigator = () => {
   console.log('reruin')
     const [isModalVisible, setModalVisible] = useState(false);
-
+     const [stepsModal,setStepsModal]= useState(false);
     const openModal = () => {
       setModalVisible(true);
     };
-  
     const closeModal = () => {
       setModalVisible(false);
     };
+    const openStepsModal=()=>{
+      setStepsModal(true)
+    }
+    const closeStepsModal=()=>{
+      setStepsModal(false)
+    }
     const {id} = useAppSelector(state => state.User.data);
     const {data:healthData} = useAppSelector(state => state.Health);
     const dispatch = useAppDispatch();
@@ -187,12 +194,19 @@ const AppNavigator = () => {
               ),
             }}
           />
-          <Stack.Screen name="DailySteps" component={Steps} />
+          <Stack.Screen name="DailySteps" component={Steps} options={{
+            headerRight:()=>(
+               <TouchableOpacity onPress={openStepsModal}>
+                  {ICONS.PLUS({ height: 18, width: 18 })}
+                </TouchableOpacity>
+            ),
+          }} />
           <Stack.Screen name="WaterIntake" component={Water} />
           <Stack.Screen name="PostDetails" component={PostDetails} />
           <Stack.Screen name="EditProfile" component={EditProfile}/>
           <Stack.Screen name="Feedback" component={Feedback}/>
           <Stack.Screen name="AboutUs" component={AboutUs}/>
+          <Stack.Screen name="ResetPassword" component={ResetPassword}/>
         </Stack.Navigator>
   
         <WithModal
@@ -203,6 +217,12 @@ const AppNavigator = () => {
         >
           <ChooseFood setModalFalse={closeModal} />
         </WithModal>
+       <WithModal 
+       modalVisible={stepsModal}
+        setModalFalse={closeStepsModal}>
+          <GoalAchieved />
+          </WithModal>
+        
       </View>
     )
 };

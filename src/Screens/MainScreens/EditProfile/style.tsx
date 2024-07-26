@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import { COLORS } from '../../../Constants/commonStyles';
+import { COLORS, FONT_FAMILY } from '../../../Constants/commonStyles';
 import { SIZES } from '../../../Constants/commonStyles';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export const styles = StyleSheet.create({
   parent: {
@@ -10,14 +11,14 @@ export const styles = StyleSheet.create({
   infoTextHeading: {
     marginBottom: 3,
     color: 'black',
-    //fontFamily: FONT_FAMILY.REGULAR,
+    fontFamily: FONT_FAMILY.REGULAR,
     fontWeight: '700',
     fontSize: SIZES.font13,
   },
   infoText: {
     marginBottom: 3,
     color: COLORS.PRIMARY.PURPLE,
-    //fontFamily: FONT_FAMILY.REGULAR,
+    fontFamily: FONT_FAMILY.REGULAR,
     fontWeight: '700',
     fontSize: SIZES.font13,
   },
@@ -26,9 +27,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: 32,
     marginBottom: 8,
     color: COLORS.SECONDARY.GREY,
-    //fontFamily: FONT_FAMILY.MEDIUM,
+    fontFamily: FONT_FAMILY.MEDIUM,
     fontSize: SIZES.fontH5,
-    // fontSize: RFValue(12),
+    
   },
   nameAndGenderCtr: {
     flex: 1,

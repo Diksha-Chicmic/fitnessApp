@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet, } from "react-native"
 import { COLORS,FONT_FAMILY,SIZES} from "../../Constants/commonStyles"
 
 export const styles=StyleSheet.create({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, Text,Alert } from "react-native";
+import { View, SafeAreaView, Text,Alert, TouchableOpacity } from "react-native";
 import auth from "@react-native-firebase/auth";
 import { FirestoreError } from "@react-native-firebase/firestore";
 import CustomButton from "../../Components/CustomButton";
@@ -11,7 +11,7 @@ import { EmailValidationError,PassEmptyError } from "../../Constants/errors";
 import { useAppDispatch } from "../../Redux/Store";
 import { updateUser } from "../../Redux/Reducers/currentUser";
 import { getUserData } from "../../utils/userhandle";
-import { SignInProps } from "../../Constants/navigation";
+import { NAVIGATION, SignInProps } from "../../Constants/navigation";
 import { styles } from "./styles";
 import { User } from "../../Defs/user";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -44,6 +44,10 @@ function SignIn({navigation}:SignInProps) {
             
         }
     }
+
+    const handleForgotPassword=()=>{
+         navigation.navigate(NAVIGATION.FORGOTPASSWORD);
+    }
     
 
     
@@ -68,6 +72,9 @@ function SignIn({navigation}:SignInProps) {
                 secureText={true}
             />
             <PassEmptyError pass={password} formKey={form}/>
+            <TouchableOpacity  onPress={handleForgotPassword}>
+            <Text style={styles.passText}>Forgot password?</Text>
+            </TouchableOpacity >
             <Text style={[styles.text, styles.customButtonParent]}>{STRINGS.SIGNIN.TEXT}</Text>
             <SocialLogins />
             <CustomButton title='Continue' onPress={handlePress} />

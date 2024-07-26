@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SIZES } from "../../Constants/commonStyles";
+import { COLORS, FONT_FAMILY, SIZES } from "../../Constants/commonStyles";
  export const styles = StyleSheet.create({
   conatiner:{
     paddingHorizontal: 28,
@@ -16,7 +16,14 @@ import { SIZES } from "../../Constants/commonStyles";
   customButtonParent: {
     marginTop: 78,
   },
-    
+  passText:{
+    fontSize:SIZES.font14,
+    color:COLORS.PRIMARY.PURPLE,
+    fontFamily:FONT_FAMILY.MEDIUM,
+    textAlign:'center',
+    marginLeft:'50%'
+  },
+  
 })
 
 

@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     heading: {
       fontSize: SIZES.fontH4,
       fontWeight: 'bold',
-      fontFamily:FONT_FAMILY.BOLD
+      fontFamily:FONT_FAMILY.BOLD,
+  
     },
     direction: {
       flexDirection: 'row',

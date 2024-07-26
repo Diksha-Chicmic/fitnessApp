@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
   dltText:{
     color: COLORS.SECONDARY.WHITE,
           fontWeight: 'bold',
-          //fontFamily: FONT_FAMILY.REGULAR,
+          fontFamily: FONT_FAMILY.REGULAR,
           fontSize: SIZES.font14,
   }
 });

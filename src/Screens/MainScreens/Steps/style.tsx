@@ -37,7 +37,8 @@ export const styles = StyleSheet.create({
         marginTop: '3%'
     },
     parent:{
-        backgroundColor:COLORS.PRIMARY.GREY
+        backgroundColor:COLORS.PRIMARY.GREY,
+        flex:1
     },
     lineChartCtr: {
         backgroundColor: 'white',

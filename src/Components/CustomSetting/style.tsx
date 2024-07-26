@@ -1,19 +1,21 @@
 import {StyleSheet} from 'react-native';
-import { COLORS,SIZES} from '../../Constants/commonStyles';
+import { COLORS,FONT_FAMILY,SIZES} from '../../Constants/commonStyles';
 
 export const styles = StyleSheet.create({
   parent: {
     borderBottomWidth: 1,
     borderColor: COLORS.SECONDARY.GREY,
-    paddingVertical: 16,
+    paddingVertical: '4%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginHorizontal:'3%'
   },
   headingText: {
-   // fontFamily: FONT_FAMILY.MEDIUM,
+    fontFamily: FONT_FAMILY.MEDIUM,
     fontSize: SIZES.font13,
     color: 'black',
+    paddingHorizontal:'3%'
   },
   switchCtr: {
     borderWidth: 2,

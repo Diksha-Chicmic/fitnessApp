@@ -9,7 +9,8 @@ import { useAppSelector } from '../../Redux/Store';
 import { styles } from './style';
 
 const CustomDrawerRight: React.FC = () => {
-  const {photo,notifications} = useAppSelector(state => state.User.data);
+  const {photo,notifications=[]} = useAppSelector(state => state.User.data);
+  //to be see 
   const {isConnected} = useNetInfo();
   const unreadNotifications = useCallback(() => notifications.filter(val => val.isUnread).length,[notifications]);
 

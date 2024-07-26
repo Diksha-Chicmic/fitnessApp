@@ -7,11 +7,12 @@ import { StoryData } from "../Defs/user";
 
 export const NAVIGATION: { LANDING: 'LandingPage', SIGNIN: 'SignIn' , ONBOARDING:'Onboarding' , ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', 
 ADDFINGERPRINT:'AddFingerprint', ADDPROFILE: 'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender', READYTOGO:'ReadyToGo',
-ADDFIRSTNAME:'AddFirstName', ADDLASTNAME:'AddLastName'}
+ADDFIRSTNAME:'AddFirstName', ADDLASTNAME:'AddLastName',FORGOTPASSWORD:'ForgotPassword'}
 
  = 
 { LANDING: 'LandingPage', SIGNIN: 'SignIn',ONBOARDING:'Onboarding', ADDEMAIL:'AddEmail', ADDPASSWORD:'AddPassword', ADDFINGERPRINT:'AddFingerprint', 
-ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo',ADDFIRSTNAME:'AddFirstName', ADDLASTNAME:'AddLastName'}
+ADDPROFILE:'AddProfile', ADDPREFERENCES:'AddPreferences', ADDINTEREST:'AddInterest', ADDGENDER:'AddGender',READYTOGO:'ReadyToGo',ADDFIRSTNAME:'AddFirstName', 
+ADDLASTNAME:'AddLastName', FORGOTPASSWORD:'ForgotPassword'}
 
 
 export type authNavigationList={
@@ -71,6 +72,7 @@ export type onboardingStackParamList = {
     AddInterest:undefined
     AddGender:undefined
     ReadyToGo:undefined
+    ForgotPassword:undefined
 };
 export type LandingPageProps = NativeStackScreenProps<
 onboardingStackParamList,
@@ -119,6 +121,10 @@ export type LastNameProps=NativeStackScreenProps<
 onboardingStackParamList,
 "AddLastName">
 
+export type ForgotPasswordProps =NativeStackScreenProps<
+onboardingStackParamList,
+"ForgotPassword">
+
 export type homeStackParamList = {
   HomeNavigator: undefined;
   Nutrition: undefined;
@@ -129,6 +135,7 @@ export type homeStackParamList = {
   EditProfile:undefined;
   Feedback:undefined
   AboutUs:undefined
+  ResetPassword:undefined
   // PostScreen: { postId: string };
 };
 export type AppNavigationProps = NativeStackNavigationProp<homeStackParamList>;
@@ -164,3 +171,6 @@ export type AboutUsScreenProps = NativeStackScreenProps<
   homeStackParamList,
   "AboutUs"
 >;
+export type ResetScreenProps= NativeStackScreenProps<
+homeStackParamList,
+"ResetPassword">
