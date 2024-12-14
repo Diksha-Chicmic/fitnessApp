@@ -12,7 +12,7 @@ function LandingPage({ navigation }: LandingPageProps) {
         navigation.navigate(NAVIGATION.SIGNIN)
     }
     const moveToEmail=()=>{
-        navigation.navigate(NAVIGATION.ADDEMAIL)
+        navigation.navigate(NAVIGATION.ADDFIRSTNAME)
     }
     return (
         <SafeAreaView>

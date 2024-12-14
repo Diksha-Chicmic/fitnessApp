@@ -19,7 +19,23 @@ import Male from '../Assets/Svgs/man.svg'
 import Female from '../Assets/Svgs/female.svg'
 import Fingerprint from '../Assets/Svgs/fingerprint.svg'
 import RightArrow from '../Assets/Svgs/right-arrow.svg'
-
+import Drawer from '../Assets/Svgs/drawer.svg'
+import Home from '../Assets/Svgs/home.svg'
+import Community from '../Assets/Svgs/community.svg'
+import Bell from '../Assets/Svgs/bell.svg'
+import Settings from '../Assets/Svgs/settings.svg'
+import Cross from '../Assets/Svgs/cross-svgrepo-com.svg'
+import RedSmile from '../Assets/Svgs/redSmile.svg'
+import YellowSmile  from '../Assets/Svgs/yellowSmile.svg'
+import EmptyGlass from '../Assets/Svgs/EmptyGlass.svg'
+import FilledGlass from '../Assets/Svgs/filledGlass.svg'
+import Plus from '../Assets/Svgs/plus.svg'
+import Heart from '../Assets/Svgs/heart.svg'
+import Comment from '../Assets/Svgs/comment.svg'
+import Camera from '../Assets/Svgs/camera.svg'
+import AddImage from '../Assets/Svgs/add-image.svg'
+import AddPhoto from '../Assets/Svgs/add-photo.svg'
+import Plate from '../Assets/Svgs/plate.svg'
 
 import Avatar1 from '../Assets/Svgs/Avatars/avatar_1.svg'
 import Avatar2 from '../Assets/Svgs/Avatars/avatar_2.svg'
@@ -68,8 +84,23 @@ export const ICONS = {
     FEMALE: (params: iconProps) => Female({ ...iconStyle({ ...params }) }),
     FINGERPRINT: (params: iconProps) => Fingerprint({ ...iconStyle({ ...params }) }),
     RIGHTARROW: (params: iconProps) => RightArrow({ ...iconStyle({ ...params }) }),
-    
-
+    DRAWER:(params: iconProps) => Drawer({ ...iconStyle({ ...params }) }),
+    HOME:(params: iconProps) => Home({ ...iconStyle({ ...params }) }),
+    SETTINGS:(params: iconProps) => Settings({ ...iconStyle({ ...params }) }),
+    BELL:(params: iconProps) => Bell({ ...iconStyle({ ...params }) }),
+    COMMUNITY:(params: iconProps) => Community({ ...iconStyle({ ...params }) }),
+    CROSS:(params: iconProps) => Cross({ ...iconStyle({ ...params }) }),
+    REDSMILE:(params: iconProps) => RedSmile({ ...iconStyle({ ...params }) }),
+    YELLOWSMILE:(params: iconProps) => YellowSmile({ ...iconStyle({ ...params }) }),
+    EMPTYGLASS:(params: iconProps) => EmptyGlass({ ...iconStyle({ ...params }) }),
+    GLASSFILLED:(params: iconProps) => FilledGlass({ ...iconStyle({ ...params }) }),
+    PLUS:(params: iconProps) => Plus({ ...iconStyle({ ...params }) }),
+    COMMENT:(params: iconProps) => Comment({ ...iconStyle({ ...params }) }),
+    HEART:(params: iconProps) => Heart({ ...iconStyle({ ...params }) }),
+    CAMERA:(params: iconProps) => Camera({ ...iconStyle({ ...params }) }),
+    ADDIMAGE:(params: iconProps) => AddImage({ ...iconStyle({ ...params }) }),
+    ADDPHOTO:(params: iconProps) => AddPhoto({ ...iconStyle({ ...params }) }),
+    PLATE:(params: iconProps) => Plate({ ...iconStyle({ ...params }) }),
 }
 
 const Avatar={

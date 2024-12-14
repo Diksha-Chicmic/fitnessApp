@@ -6,11 +6,14 @@ import {PassEmptyError} from "../../Constants/errors";
 import { isValidPassword } from "../../utils/passValidity";
 import PassInputCheck from "../../Components/PassValidation";
 import { AddPasswordProps, NAVIGATION } from "../../Constants/navigation";
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 import { STRINGS } from "../../Constants/strings";
 import styles from "./style";
 function AddPassword({navigation}:AddPasswordProps) {
     const [password, setPassword] = useState<string>('')
     const [form,setForm]= useState<boolean>(false)
+    const dispatch = useAppDispatch();
     const handleClick = () => {
         setForm(true);
 
@@ -18,6 +21,8 @@ function AddPassword({navigation}:AddPasswordProps) {
             // Password is empty or only contains spaces
             setPassword(' '); // This will trigger the empty password validation in PassEmptyError component
         } else if (isValidPassword.checkAll(password)) {
+            dispatch(updateUser({password:password}))
+            console.log(password)
             navigation.navigate(NAVIGATION.ADDFINGERPRINT)
             console.log('password is okie');
         }

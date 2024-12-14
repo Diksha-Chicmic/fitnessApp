@@ -1,17 +1,16 @@
-
-
 import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { styles } from './style';
 
-const PassInputCheck = ({
+interface PassInpProps{
+    length: boolean,
+    number: boolean,
+    uppercase: boolean
+}
+const PassInputCheck:React.FC<PassInpProps> = ({
     length,
     number,
-    uppercase }: Readonly<{
-        length: boolean,
-        number: boolean,
-        uppercase: boolean
-    }>) => {
+    uppercase }) => {
     return (
         <View style={styles.container}>
             <View style={styles.field}>

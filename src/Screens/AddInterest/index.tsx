@@ -5,6 +5,8 @@ import { ICONS } from "../../Constants/icons";
 import CustomButton from "../../Components/CustomButton";
 import { STRINGS } from "../../Constants/strings";
 import { NAVIGATION,AddInterestProps } from "../../Constants/navigation";
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
 
 const style = {
@@ -30,19 +32,19 @@ const interests: Interest[] = [
 ];
 
 const AddInterest = ({navigation}:AddInterestProps) => {
-    const [selectedInterests, setSelectedInterests] = useState<{ [key: string]: boolean }>({});
+    const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+    const dispatch = useAppDispatch();
 
     const handleSelect = (title: string) => {
-        setSelectedInterests(prevState => ({
-            ...prevState,
-            [title]: !prevState[title]
-        }));
+        setSelectedInterests(prevState =>
+            prevState.includes(title)
+                ? prevState.filter(interest => interest !== title)
+                : [...prevState, title]
+        );
     };
 
     const handlePress = () => {
-        const isAnySelected = Object.values(selectedInterests).some(isSelected => isSelected);
-
-        if (!isAnySelected) {
+        if (selectedInterests.length === 0) {
             Alert.alert(
                 "Selection Required",
                 "Please select at least one interest before proceeding.",
@@ -50,7 +52,8 @@ const AddInterest = ({navigation}:AddInterestProps) => {
             );
         } else {
             console.log('Proceed to the next step...');
-            navigation.navigate(NAVIGATION.ADDGENDER)
+            dispatch(updateUser({ interests: selectedInterests }));
+            navigation.navigate(NAVIGATION.ADDGENDER);
         }
     };
 
@@ -58,7 +61,7 @@ const AddInterest = ({navigation}:AddInterestProps) => {
         <SelectInterest
             text={item.title}
             icon={item.icon}
-            selected={selectedInterests[item.title] || false}
+            selected={selectedInterests.includes(item.title)}
             onSelect={() => handleSelect(item.title)}
         />
     );

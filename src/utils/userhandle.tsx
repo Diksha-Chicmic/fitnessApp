@@ -1,0 +1,225 @@
+import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import firestore, { Timestamp } from "@react-native-firebase/firestore";
+ import "react-native-get-random-values";
+import { v4 as uuidv4 } from 'uuid';
+import storage from "@react-native-firebase/storage";
+
+import { User,Post,Comment,Health } from "../Defs/user";
+
+export const firebaseDB = {
+  collections: {
+    users: "users",
+    posts:"posts"
+  },
+  documents: {
+    users: {},
+    post:{
+      allIds:'allIds'
+    }
+  },
+};
+
+// user
+export const createUser = async (email: string, password: string) => {
+  try {
+    const userCredential: FirebaseAuthTypes.UserCredential = await auth().createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    return userCredential;
+  } catch (e) {
+    console.log("error creating user", e);
+  }
+};
+export const storeUserData = async (
+    user: User,
+    userCredential: FirebaseAuthTypes.UserCredential
+  ) => {
+    try {
+      const userEmail:any  = user.email;
+  
+      console.log(user, 'its a user detail out');
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(userCredential.user.uid)
+        .set(
+           user
+        );
+  
+  
+      console.log("New User");
+    } catch (e) {
+      console.log("Error storing User data - ", e);
+    }
+  };
+
+  
+  
+  export const getUserData = async (uid: string) => {
+    try {
+      const snapshot = await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(uid)
+        .get();
+  
+      const userData = snapshot.data();
+      console.log(userData);
+      return userData;
+    } catch (e) {
+      console.log("Error getting user data - ", e);
+      return null;
+    }
+  };
+  // health data 
+  export type UserHealthDataFirebaseDb = Omit<Health, 'currentDate'> & {
+    currentDate: Timestamp;
+  };
+  export const storeUserHealthData = async (
+    healthData: Health,
+    uid: FirebaseAuthTypes.UserCredential['user']['uid'],
+  ) => {
+    try {
+      const sendHealthData: UserHealthDataFirebaseDb = {
+        ...healthData,
+        currentDate: Timestamp.fromDate(new Date()),
+      };
+      await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(uid)
+        .update({
+          healthData: firestore.FieldValue.arrayUnion(sendHealthData),
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
+  export const getHealthData = async (uid: string) => {
+    try {
+      const snapshot = await firestore()
+        .collection(firebaseDB.collections.users)
+        .doc(uid)
+        .get();
+      return snapshot.data() as Array<UserHealthDataFirebaseDb>;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  export const storePost = async (post: Post) => {
+    try {
+      console.log('wadawd wad awa wf')
+      const newPostId = post.postId ?? uuidv4();
+      const reference = storage().ref(
+        "media/" + "posts/" + newPostId + "/" + "photo"
+      );
+      await reference.putFile(post.photo);
+      const url = await reference.getDownloadURL();
+      await firestore()
+        .collection(firebaseDB.collections.posts)
+        .doc(newPostId)
+        .set({ ...post, postId: newPostId, photo: url });
+    } catch (e) {
+      console.log('error with storing post ',e);
+    }
+  };
+
+ 
+  export const storePostComment = async (postId: string, comment: Comment) => {
+    try{
+      console.log('comments')
+    await firestore()
+      .collection(firebaseDB.collections.posts)
+      .doc(postId)
+      .update({
+        comments: firestore.FieldValue.arrayUnion(comment),
+      });
+    }catch(e){
+      console.log('error in storing comment',e)
+    }
+
+  };
+  
+  export const getPost = async (postId: string) => {
+    const snapshot = await firestore()
+      .collection(firebaseDB.collections.posts)
+      .doc(postId)
+      .get();
+    console.log("post data", snapshot.data());
+    return snapshot.data();
+  };
+
+  export const getAllPost = async () => {
+    try {
+      const snapshot = await firestore()
+        .collection(firebaseDB.collections.posts)
+        .get();
+      const data = snapshot.docs;
+      return data.map((val) => val.data()) as Post[];
+    } catch (e) {
+      console.log("error with getting posts ", e);
+    }
+  };
+
+  export const addLikes = async (
+    postId: string,
+    likedByUsersId: Array<string>
+  ) => {
+    await firestore()
+      .collection(firebaseDB.collections.posts)
+      .doc(postId)
+      .update({
+        likedByUsersId: likedByUsersId,
+      });
+  };
+
+
+
+//   export type UserFromFirebaseDb = Omit<
+//   Omit<Omit<User, 'createdOn'>, 'notifications'>,
+//   'healthData'
+// > & {
+//   createdOn: Timestamp;
+//   notifications: Array<NotificationDataFirebaseDB>;
+//   healthData: Array<Omit<HealthData, 'currentDate'> & {currentDate: Timestamp}>;
+// };
+// export const storeUserData = async (
+//   user: Omit<User, 'createdOn'>,
+//   userId: FirebaseAuthTypes.UserCredential['user']['uid'],
+// ) => {
+//   try {
+//     const userDataToSend: Omit<User, 'createdOn'> & {
+//       createdOn: Timestamp;
+//     } = {
+//       ...user,
+//       createdOn: Timestamp.fromDate(new Date()),
+//     };
+//     await firestore().collection('users').doc(userId).set(userDataToSend);
+//     console.log('User added!');
+//   } catch (e) {
+//     console.log('error storing User data - ', e);
+//   }
+// };
+
+// export type UserHealthDataFirebaseDb = Omit<HealthData, 'currentDate'> & {
+//   currentDate: Timestamp;
+// };
+// export const storeUserHealthData = async (
+//   healthData: HealthData,
+//   uid: FirebaseAuthTypes.UserCredential['user']['uid'],
+// ) => {
+//   try {
+//     const sendHealthData: UserHealthDataFirebaseDb = {
+//       ...healthData,
+//       currentDate: Timestamp.fromDate(new Date()),
+//     };
+//     await firestore()
+//       .collection(firebaseDB.collections.users)
+//       .doc(uid)
+//       .update({
+//         healthData: firestore.FieldValue.arrayUnion(sendHealthData),
+//       });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };
+

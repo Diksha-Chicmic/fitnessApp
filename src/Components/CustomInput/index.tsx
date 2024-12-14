@@ -1,18 +1,9 @@
 import { TextInput, View,StyleProp,TextStyle,ViewStyle } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import { styles } from "./style";
-const CustomInput = ({
-    text,
-    icon,
-    hasError,
-    onChangeText,
-    maxLength = 100,
-    type,
-    value,
-    placeholderTextColor= '#B0B1C8',
-    parentStyle,
-    secureText= false
-}: Readonly<{
+import React from "react";
+
+interface InputProps{
     text: string,
     icon?: any,
     hasError?: boolean,
@@ -23,7 +14,19 @@ const CustomInput = ({
     placeholderTextColor?: string,
     parentStyle?:StyleProp<ViewStyle>,
     secureText?:boolean
-}>) => {
+}
+const CustomInput:React.FC<InputProps> = ({
+    text,
+    icon,
+    hasError,
+    onChangeText,
+    maxLength = 100,
+    type,
+    value,
+    placeholderTextColor= '#B0B1C8',
+    parentStyle,
+    secureText= false
+}) => {
     return (
         <View style={[styles.container,parentStyle]}>
             {icon ? (

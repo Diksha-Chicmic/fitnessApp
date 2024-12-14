@@ -5,6 +5,8 @@ import AvatarSelector from '../../Components/AvatarSelection'
 import CustomButton from '../../Components/CustomButton';
 import { AvatarKey } from '../../Constants/icons';
 import { NAVIGATION, AddProfileProps } from '../../Constants/navigation';
+import { useAppDispatch } from '../../Redux/Store';
+import { updateUser } from '../../Redux/Reducers/currentUser';
 import { STRINGS } from '../../Constants/strings';
 import { styles } from './style';
 
@@ -13,7 +15,7 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
   const [selectedAvatar, setSelectedAvatar] = useState<AvatarKey | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null | undefined>(null);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-
+  const dispatch = useAppDispatch()
   const handleAvatarSelect = (avatar: AvatarKey) => {
     setSelectedAvatar(avatar);
     console.log(`Selected Avatar: ${avatar}`);
@@ -23,10 +25,12 @@ const AddProfile = ({ navigation }:AddProfileProps) => {
     if (selectedAvatar) {
       console.log(`Profile updated with avatar: ${selectedAvatar}`);
       // Add your update profile logic here
+      dispatch(updateUser({photo:selectedAvatar}))
       navigation.navigate(NAVIGATION.ADDPREFERENCES);
     } else if (selectedImage) {
       console.log(`Profile updated with image: ${selectedImage}`);
       // Add your update profile with image logic here
+      dispatch(updateUser({photo:selectedImage}))
       navigation.navigate(NAVIGATION.ADDPREFERENCES);
     } else {
       console.log('No avatar or image selected');

@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import auth from '@react-native-firebase/auth';
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { EmailValidationError } from "../../Constants/errors";
 import { NAVIGATION, ADDEMAILInProps } from "../../Constants/navigation";
 import { STRINGS } from "../../Constants/strings";
+import { useAppDispatch } from "../../Redux/Store";
+import { updateUser } from "../../Redux/Reducers/currentUser";
 import { styles } from "./style";
 
 const AddEmail = ({navigation}:ADDEMAILInProps) => {
     const [email, setEmail] = useState<string>('');
     const [form, setForm] = useState<boolean>(false);
-
+    const dispatch = useAppDispatch();
     const handleSubmit = () => {
         setForm(true);
         if (!email.trim()) {
@@ -18,6 +21,7 @@ const AddEmail = ({navigation}:ADDEMAILInProps) => {
             setEmail(' '); // This will trigger the empty email validation in EmailValidationError component
         } else {
             console.log('Form submitted');
+            dispatch(updateUser({ email:email }));
             navigation.navigate(NAVIGATION.ADDPASSWORD);
         }
     }
